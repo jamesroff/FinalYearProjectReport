@@ -1,0 +1,71 @@
+\documentclass[11pt]{article}
+
+% First load extension packages
+\usepackage[a4paper,margin=25mm]{geometry}    % page layout
+\usepackage{setspace}
+%\onehalfspacing % line spacing
+\singlespacing
+\usepackage{amsfonts,amssymb,amsmath} % useful math extensions
+\usepackage{graphicx} % graphics import
+\usepackage{siunitx} % easy SI units
+\usepackage{subcaption}
+\usepackage[noabbrev]{cleveref}
+
+\usepackage{rotating}
+
+% Change paragraph indentation
+\setlength{\parskip}{10pt}
+\setlength{\parindent}{0pt}
+
+% Bibliography
+\usepackage[style=ieee,backend=biber,citestyle=numeric-comp,sorting=nty,doi=false,url=false,isbn=false]{biblatex}
+\addbibresource{references.bib}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% User-defined commands
+\newcommand{\diff}[2]{\frac{\mathrm{d}{#1}}{\mathrm{d}{#2}}}
+\newcommand{\ddiff}[2]{\frac{\mathrm{d}^2{#1}}{\mathrm{d}{#2}^2}}
+\newcommand{\pdiff}[2]{\frac{\partial{#1}}{\partial{#2}}}
+\newcommand{\pddiff}[2]{\frac{\partial^2{#1}}{\partial{#2}^2}}
+\newcommand{\pdiffdiff}[3]{\frac{\partial^2{#1}}{\partial{#2}\partial{#3}}}
+\renewcommand{\vec}[1]{\boldsymbol{#1}}
+\newcommand{\Idx}{\;\mathrm{d}x}
+\newcommand{\Real}{\mathbb{R}}
+\newcommand{\Complex}{\mathbb{C}}
+\newcommand{\Rational}{\mathbb{Q}}
+\newcommand{\Integer}{\mathbb{Z}}
+\newcommand{\Natural}{\mathbb{N}}
+
+% topmatter
+
+\title{Modelling the Instabilities of Pilot-Operated\\Pressure Relief Valves  \vspace{-20pt}}
+
+\author{James Roff \\ Supervised by Prof. Alan Champneys \vspace{-10pt}}
+
+\date{\today}
+
+
+% main body
+\begin{document}
+\maketitle
+\vspace{-50pt}
+
+\input{Sections/problem_description.tex}
+\input{Sections/literature_review.tex}
+%\input{Sections/project_plan.tex}
+\input{Sections/progress.tex}
+\input{Sections/project_plan.tex}
+
+%Create the style, and include the bibliography.
+\newpage
+\printbibliography
+
+
+%\newpage
+%\begin{sidewaysfigure}
+%\input{Sections/Stuff/ValveDiagram.tex}
+%\end{sidewaysfigure}
+
+% the end
+\end{document}

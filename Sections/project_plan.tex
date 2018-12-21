@@ -1,0 +1,22 @@
+\section{Project Plan}
+
+%Clearly, the simplified model needs many further improvements. Firstly, exploration into the accuracy of the closing mechanism must be performed. This would be the next task for the following weeks, Weeks 10--11, and may consist of two parts. Comparison of this simplified model to a one-dimensional Navier-Stokes simulation would help validate the simplifications made to the pilot-operated PRV system. However, the other part consists of performing additional nonlinear analysis of the derived system of equations.
+
+The concern of the model presented in \cref{sec: Prog} establishes  the need for further analysis for the main valve closing. This will consist of two tasks over Weeks 10--11. Firstly, a phase space diagram will allow further understanding of the valve dynamics upon closing. Secondly, the case of a small mass flow into the tank causes a slow unstable manifold as $\alpha \rightarrow 0$, allowing the dynamics along this manifold to be studied. These should both help understand the main valve closing mechanism.
+
+Originally, I designated Week 12 as float to complete any unfinished work. This time will be liable to be used for finishing the analysis from Weeks 10--11. However, if possible, then I will progress with the next stage.
+
+% Next stage - depends on progress
+% if model == wrong:
+%     develop full main/pilot model
+% else:
+%     develop pipe model
+
+Clearly, one of the major queries from preliminary analysis is whether the valve can ever open further rather than closing. One possible theory which would eliminate this is when the pilot valve closes, the main piston is below the unstable equilibrium. Hence, the valve would always be repelled towards the closed position. The truth of this theory depends on the valve dynamics during the pilot valve closing. Therefore, deriving the equations of motion for the entire pilot-operated PRV would be necessary. This consists of a system of 5 or 6 first-order differential equations, depending on if compressible fluid effects are considered within the main valve dome.
+%If further analysis of the system presented in \cref{sec: Prog} suggests an inaccuracy, then the next stage will be deriving a full set of 5, possibly 6, first-order differential equations representing not only the main valve but also the pilot valve dynamics. This would also need to include possible collisions when the piston undergoes impacts. Although more complex, the full model should be more intuitive results as can replicate the dynamics of valve opening and closing.
+
+After the analysis of the model presented in \cref{sec: Prog} is completed, a clear understanding of the closing mechanism should have been achieved. Then, this project will progress towards reproducing the chatter instability as desired. This will involve including the fluid dynamics within the upstream inlet pipework. The fluid dynamics will be approximated by the acoustic quarterwave, following a similar form to previous work on spring-operated PRVs~\cite{Hos2015DynamicModelling}. Analysis can then be performed to give further understanding on chatter instability for pilot-operated PRVs, which will include trying to identify related bifurcations. In particular, this analysis should try to explain why chatter instability is less prevalent than for spring-operated PRVs.
+
+I predict that both of the above tasks would take around two weeks each to complete. Hence, completing all of the above forms the progress for Weeks 13--16. This leaves Week 17 to prepare for the submission of the draft chapter. Throughout all of the previous work, I plan to be writing up the final report in parallel. Week 17 will be focused on proof-reading and finalising the draft section to maximise the impact of feedback received.
+
+Weeks 18--20 constitute the time between the submission of the draft chapter and the draft report. I have given two main tasks during this time. First is a focus on writing up the final sections of the report. Secondly, some time must be allocated for finishing any outstanding work. This may include performing small additional tasks to validate or investigate possible shortcomings. The draft report submission forms an important deadline, as afterwards I only want to be working on improving the report and creating the poster for final presentation. Hence, Weeks 21--22 have entirely been allocated for creating the poster, although a small amount of time will be used to make final edits on the report based on feedback from the draft submissions.

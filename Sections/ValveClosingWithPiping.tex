@@ -1,0 +1,31 @@
+\section{Valve Closing with Inlet piping}
+
+Similar to previously, the main valve piston equation of motion is given by
+
+\begin{equation*}
+\begin{split}
+    m_v \ddot{x} + c_v \dot{x} &= A_v \left( p_d - p_t \right) + \dot{m}(L,t) \left( v(L,t) - v_d \sin(\theta) \right) \\
+    \dot{p}_t &= \frac{a^2}{V} \left( \dot{m}_{in} - \dot{m}(0,t) \right)
+\end{split}
+\end{equation*}
+
+At the inlet of the pipe, an ideal inflow from the tank using Bernoulli's equation allows the first boundary condition
+
+\begin{equation*}
+    p_t(t) = p(0,t) + \frac{1}{2} \rho(0,t) v(0,t)^2
+\end{equation*}
+
+Mass conservation at the outlet of the pipe gives the second boundary condition of
+
+\begin{equation*}
+    \dot{m}(L,t) = \rho(L,t) A_p v(L,t) = \dot{m}_d(t)
+\end{equation*}
+
+Assuming that the temperature remains constant, the density is only a function of the pressure. Additionally, $p = a^2 \rho$ from $\frac{p}{\rho}$ being constant and $\diff{p}{\rho} = a^2$. This allows a PDE describing the fluid behaviour which is identical to in~\cite{Hos2015ModelPipe} of
+
+\begin{equation*}
+\begin{split}
+    \pdiff{p}{t} + v \pdiff{p}{\eta} + \rho a^2 \pdiff{v}{\eta} &= 0 \\
+    \pdiff{v}{t} + v \pdiff{v}{\eta} + \frac{1}{\rho} \pdiff{p}{\eta} &= \lambda \frac{L}{D} v \left| v \right|
+\end{split}
+\end{equation*}

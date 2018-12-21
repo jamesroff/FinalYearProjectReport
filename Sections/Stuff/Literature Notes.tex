@@ -1,0 +1,51 @@
+\subsection{Spring-operated Pressure Relief Valves}
+
+\cite{LicskoNonlinearValve}
+Presents mathematical model for pressure tank with direct-spring operated PRV without downstream pipework, and non-dimensionalises the three degree-of-freedom differential equation. Identifies that a Hopf bifurcation occurs, corresponding to cycling???. Plots bifurcation diagram for non-dimensional flow rate. Also finds a grazing bifurcation as flow rate decreases so impacts with set. Analyses this grazing bifurcation, and finds the set of parameters used an immediate progression to chaos occurs.
+
+\cite{Hos2012GrazingModel}
+%% Lots of complex maths focusing on grazing bifurcations (impact dynamics) %%
+Summarises results from \cite{LicskoNonlinearValve} and does further numerical bifurcation analysis. Concentrates on analysis of grazing bifurcation, interested in the extension of nonlinear bifurcation theory to piecewise-smooth dynamical systems. A one-dimensional bifurcation diagram (volumetric flow rate) shows steady-state to periodic orbit to period-doubling to choatic behaviour as mass flow rate decreases. Two parameter bifurcation diagram (volumetric flow rate, spring pre-compression) shows qualitatively similar behaviour of decreasing mass flow rate regardless of spring pre-compression. Also identifies codimension-2 bifurcation of a Bautin bifurcation where the Hopf bifurcation changes from sub to super-critical. Relates chatter to low mass flow rates where chaotic dynamics occur.
+
+\cite{Darby2013TheModel}
+% Presents a set of ODE equations representing the direct spring-operated PRV dynamic response including upstream pipework. Proposes a method of solving equivalent to a local stepwise linearisation of a nonlinear equation. Shows 3 time trajectories corresponding to stable, "flutter" (just looks like underdamped system), and chatter. Identifies which physical parameters may effect stability of the valve system, although is pretty much every parameter.
+
+\cite{Bazso2013AnValve}
+% Performs an experimental study of a direct spring-operated PRV. Studies the one parameter bifurcation diagram while change mass flow rate. Also shows two parameter bifurcation diagram of mass flow rate and spring pre-compression. Finds a Hopf bifurcation occuring as flow rate in decreased through the valve, qualitatively similar to \cite{Hos2012GrazingModel}. Also sees the grazing bifurcation occur when the poppet impacts with the valve body, and chaotic like oscillations for very low flow rate. Importantly, notes the Hopf bifurcation occurs at quarter-wave pipe eigenfrequency.
+
+\cite{ErdOdiTheEstimation}
+% Presents simplified analysis of instability for direct spring-operated PRV using the effective area curve (A_eff). Proposes simple analytical expression for estimating shape of A_eff for different valve geometries. Validates these against CFD and finds good agreement. Relates blow-down effect to hysteresis due to a fold bifurcation below set pressure. Relates this to the A_eff curve, where a positive slope for small lift causes blowdown. Additionally, the criteria for quarter-wave instability is expressed related to the pressure-valve lift curve.
+
+\cite{Hos2015ModelPipe} %% VERY GOOD EXPLANATION OF QWM DERIVATION %%
+% Key assumption, acoustic energy in quarter wave close to stability. They note that like \cite{Botros1997Riser-ReliefInteractions}, set up standing waves of wavelength (n + 0.5)/2L for n = 0,1,2... Good quantitative agreement between the GDM and QWM, except when large amplitude oscillations (expansion not valid) and impact (no longer harmonic wavelengths as sharp-gradient waves). Again shows stability for pipe length and mass flow rate, with good quantitative agreement with full GDM simulations. Shorter pipe length or higher mass flow rate is more stable.
+% \cite{Bazso2014BifurcationPipe} Conducts advanced bifurcation analysis of this QWM
+
+\cite{Bazso2014BifurcationPipe}
+% Performs detailed analysis of simplified quarter-wave model presented by \cite{Hos2015ModelPipe}. Finds a complex set of bifurcations, particularly around a codimension-2 Hopf-Hopf bifurcation. Focuses on a set of parameter values, and looks at the two-parameter bifurcation diagram for pipe length parameter, $\gamma$, and mass flow rate, $q$. Notes when opening, the valve is in an unstable region, but if dq/dt is large enough, system stabilises. Also identifies desired operating parameter values for valve operation (large q and \gamma). Also comments on hysteresis, but no great detail given.
+% Looks at global bifurcations / interplay between valve-only and pipe instabilities analysed as separate instabilities in \cite{Hos2012GrazingModel}
+
+\cite{Erdodi2017PredictionModelling}
+% Direct continuation of "CFD simulation on the dynamics of a direct spring operated pressure relief valve 2015". Compares to results of GDM and QWM in \cite{Hos2015DynamicModelling}. Focuses on stability maps of mass flow rate against pipe length. For stable systems, good quantiative agreement. For unstable, good initial quantitative agreement (trajectory). CFD simulations show qualitative agreeement, although a quantitative error exists. The error is smaller for the closed form approximation of the solution, and both estimate a lower critical pipe length (good as if model suggests stable, likely to be stable in reality). CFD finds instability does occur at quarter-wave frequency. Shows quasi-steady state CFD simulation can be used to estimate discharge coefficient and fluid force (A_eff curve).
+
+\subsection{Pilot Operated Pressure Relief Valves}
+
+\cite{Botros1997Riser-ReliefInteractions}
+dynamic stability of dual outlet pilot-operated PRV with compressible gas medium, focusing on acoustic interactions. Splits the opening of the valve into four stage: 1 - pilot opens; 2 - main valve begins to move; 3 - main valve continues to open, but choked in pipe; 4 - dome pressure decreases quickly to ambient. Solution found numerically solving ODEs and PDE for each time step. Show that the choked flow boundary condition is approximately equal to closed boundary condition. Pressure forces were much greater than holding spring or piston weight. For L/D < 20, the piston frequency corresponds to the quarter-wave frequency. For L/D > 20, a second frequency emerges. High amplitude when w = (4n + 1)/4 pi. Also considers wedge o-ring seal. Also ran experimental results, and found a piston jamming occurred, motivating \cite{Botros1998Riser-ReliefModel}. Phase 3 is very short. Piston oscillation frequency matches the risers one-quarter wave frequency. NO UNSTABLE (FLUTTER/CHATTER), BUT OSCILLATIONS.
+\cite{Botros1998Riser-ReliefModel}
+Proposes improvements to previous model \cite{Botros1997Riser-ReliefInteractions}, including effect of wedge-O-ring seal and jamming. Derive theoretical equations of motion, and use field tests to find key parameter (alpha) based on piston lift. Finds good qualitative agreement between model and experimental results.
+
+\cite{Zung2002NonlinearDesigners}
+Simple model of two-stage solenoid-operated pilot proportional valve, modelling the orifices between different chambers within the valve. Concentrates on using physical dimensions for parameters to help with valve design. Focuses on proposing a simple mode, but compares well to the limited experimental results provided. No consideration of the upstream system (tank, inlet pipe) was made. No analysis (e.g. stability) performed, or bifurcation/stability diagrams.
+
+\cite{Ye2009DynamicSystem}
+two-stage pilot-operated solenoid valve modelled, including upstream and downstream pipework with compressible gas. Pilot-stage valve considered on/off. Considers flow through orifices, and compressible effect within two internal chambers (dome and dome/pilot connection). Models upstream and downstream pipework as chambers. Does local stability analysis at the steady state, using a Hurwitz so no analytical expression for stability. Does plot stability map, but uses volumetric flow rate and supply pressure as parameters. States subcritical stability of equilibrium. Identifies bistability region, which may indicate a hysteresis loop. Looks at change of working state by increasing flow rate, moving from "soft self-excited oscillation", period-1, period-2, period-4 oscillations then stability. Finds qualitative similar experimental/simulation behaviour, an close quantitative agreement vibration frequencies, although small discrepancies existed. Also studies effect of design parameters (pre-compression, cone angle, orifice diameter) on stability diagram, coming up with increasing a increases stability region, etc.
+
+\cite{Allison2015TestingValves}
+VERY USEFUL PAPER, FINDS INSTABILITY
+
+%Simple model with little fluid dynamic effects, modelling as four different chambers in the valve~\cite{Ye2009DynamicSystem}. Very simple stability analysis (local stability of equilibria using Hurwitz), with no reference to bifurcations. However, stability regions mapped for supply pressure against supply flow rate. Compares simulations to experimental results and finds good agreement. Finds progression from stable limit cycle, period-2 stable limit cycle, period-4 stable limit cycle and then stable equilibrium by increasing flow rate.
+
+%Aims to propose a non-linear model of solenoid-operated two-stage pilot proportional valve~\cite{Zung2002NonlinearDesigners}. This uses only physical dimensions of the valve to allow valve designers choose the dimensions appropriately. Simulations and limited experimental comparison is performed to validate the model. However, no analysis of stability is presented.
+
+%Studies the chatter of pilot-operated pressure relief valves~\cite{Allison2015TestingValves}. Importantly, recognises that a similar instability seen for direct spring-operated PRV can occur for PORV. Also notices similar trends, like does not occur for shorter inlet pipe length (only L = 0) and instability occurs mostly for valve closing, but can occur on opening. Proposes simple spring to represent fluid forces, but neglects pilot dynamics as experimental results suggest it is not influenced by these.
+

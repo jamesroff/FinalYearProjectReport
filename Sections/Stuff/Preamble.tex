@@ -1,0 +1,65 @@
+\documentclass[a4paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+% Bibliography
+\usepackage[style=ieee,backend=biber,citestyle=numeric-comp,sorting=nty,doi=false,url=false,isbn=false]{biblatex}
+\addbibresource{references.bib}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+%% Sets page size and margins
+\usepackage[a4paper,top=2.5cm,bottom=2.5cm,left=2.5cm,right=2.5cm,marginparwidth=2.5cm]{geometry}
+\fontsize{11pt}{13pt}
+
+%% Sets line spacing
+\usepackage{setspace}
+\singlespacing
+
+%% Useful packages
+\usepackage{amsmath}
+\usepackage{xfrac}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{titling}
+\usepackage{parskip} %removes indents on new paragraphs
+\usepackage[toc,page]{appendix}
+\usepackage{chngpage}
+\usepackage{graphicx} % graphics import
+\usepackage{siunitx} % easy SI units
+\usepackage{csquotes}
+\usepackage{rotating}
+
+%Figures
+\usepackage{wrapfig}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{chngpage}
+\usepackage{float}
+
+% Clever referencing
+\usepackage[noabbrev]{cleveref}
+
+% Change paragraph indentation
+\setlength{\parskip}{10pt}
+\setlength{\parindent}{0pt}
+
+%figures to end
+%\usepackage[nomarkers,nolists]{endfloat}
+%\renewcommand{\efloatseparator}{\mbox{}}
+
+%Colours for notes and shit
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{xcolor}
+
+\definecolor{James}{RGB}{0, 40, 114}
+
+\captionsetup{justification=centering}
+
+\input{Sections/Stuff/UserCommands.tex}
