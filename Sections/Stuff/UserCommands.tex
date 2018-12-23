@@ -1,9 +1,21 @@
-\newcommand{\diff}[2]{\frac{\mathrm{d}{#1}}{\mathrm{d}{#2}}}
-\newcommand{\ddiff}[2]{\frac{\mathrm{d}^2{#1}}{\mathrm{d}{#2}^2}}
-\newcommand{\pdiff}[2]{\frac{\partial{#1}}{\partial{#2}}}
-\newcommand{\pddiff}[2]{\frac{\partial^2{#1}}{\partial{#2}^2}}
+\usepackage{xparse}
+
+\newcommand{\diff}[3][]{\IfNoValueTF{#1}
+{ \frac{\mathrm{d}{#2}}{\mathrm{d}{#3}} }
+{ \frac{\mathrm{d}^{#1}{#2}}{\mathrm{d} {#3}^{#1} }} }
+
+\newcommand{\pdiff}[3][]{\IfNoValueTF{#1}
+{ \frac{\partial{#2}}{\partial{#3}} }
+{ \frac{\partial^{#1} {#2}}{\partial {#3}^{#1}} } }
+
+\newcommand{\fun}[3][]{\IfNoValueTF{#1}
+{ \mathrm{#2}\mathopen{}\left(#3\right)\mathclose{} }
+{ \mathrm{#2}^{#1}\mathopen{}\left(#3\right)\mathclose{} }}
+
 \newcommand{\pdiffdiff}[3]{\frac{\partial^2{#1}}{\partial{#2}\partial{#3}}}
+
 \renewcommand{\vec}[1]{\boldsymbol{#1}}
+
 \newcommand{\Idx}{\;\mathrm{d}x}
 \newcommand{\Real}{\mathbb{R}}
 \newcommand{\Complex}{\mathbb{C}}
