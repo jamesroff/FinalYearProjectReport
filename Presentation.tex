@@ -1,0 +1,91 @@
+\documentclass[svgnames,fragile]{beamer}
+
+%\documentclass[a4paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+% Bibliography
+\usepackage[style=ieee,backend=biber,citestyle=numeric-comp,sorting=nty,doi=false,url=false,isbn=false]{biblatex}
+\addbibresource{references.bib}
+%% STOP BIBLATEX-BEAMER ERROR (start) %%
+\usepackage{silence}
+\WarningFilter{biblatex}{Patching footnotes failed}
+%% STOP BIBLATEX-BEAMER ERROR (end) %%
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+%% Sets page size and margins
+\fontsize{11pt}{13pt}
+
+%% Useful packages
+\usepackage{amsmath}
+\usepackage{xfrac}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+%\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+%\usepackage{titling}
+\usepackage{parskip} %removes indents on new paragraphs
+\usepackage[toc,page]{appendix}
+\usepackage{chngpage}
+\usepackage{graphicx} % graphics import
+\usepackage{siunitx} % easy SI units
+\usepackage{csquotes}
+\usepackage{rotating}
+
+%Figures
+\usepackage{wrapfig}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{chngpage}
+\usepackage{float}
+
+% Clever referencing
+\usepackage[noabbrev]{cleveref}
+
+% Change paragraph indentation
+\setlength{\parskip}{10pt}
+\setlength{\parindent}{0pt}
+
+%figures to end
+%\usepackage[nomarkers,nolists]{endfloat}
+%\renewcommand{\efloatseparator}{\mbox{}}
+
+%Colours for notes and shit
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{xcolor}
+
+\captionsetup{justification=centering}
+
+\input{Sections/Stuff/UserCommands.tex}
+
+
+%\setbeamerfont{footnote}{size=\scriptsize}
+\setbeamerfont{footnote}{size=\tiny}
+
+\subtitle{}
+\institute[]{Department of Engineering Mathematics\\ University of Bristol}
+
+\usetheme{AnnArbor}
+\usecolortheme{beaver}
+\setbeamercolor{frametitle}{bg=gray!15!white,fg=darkred}
+\setbeamercolor*{titlelike}{parent=palette primary}
+
+\author{James Roff}
+
+\date{}
+\title[Instabilities of Pilot-Operated PRVs]{Modelling the Instabilities of a Pilot-Operated Pressure Relief Valve}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}{Test}
+    Text \footfullcite{Bazso2013AnValve}
+\end{frame}
+
+\end{document}

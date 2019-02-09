@@ -4,7 +4,7 @@ Similar to previously, the main valve piston equation of motion is given by
 
 \begin{equation*}
 \begin{split}
-    m_v \ddot{x} + c_v \dot{x} &= A_v \left( p_d - p_t \right) + \dot{m}(L,t) \left( v(L,t) - v_d \sin(\theta) \right) \\
+    m_v \ddot{x} + c_v \dot{x} &= A_v \left( p(L,t) - p_t \right) + \dot{m}(L,t) \left( v(L,t) - v_d \sin(\theta) \right) \\
     \dot{p}_t &= \frac{a^2}{V} \left( \dot{m}_{in} - \dot{m}(0,t) \right)
 \end{split}
 \end{equation*}
@@ -23,9 +23,111 @@ Mass conservation at the outlet of the pipe gives the second boundary condition 
 
 Assuming that the temperature remains constant, the density is only a function of the pressure. Additionally, $p = a^2 \rho$ from $\frac{p}{\rho}$ being constant and $\diff{p}{\rho} = a^2$. This allows a PDE describing the fluid behaviour which is identical to in~\cite{Hos2015ModelPipe} of
 
-\begin{equation*}
+\begin{equation} \label{eq: FluidPDE}
 \begin{split}
     \pdiff{p}{t} + v \pdiff{p}{\eta} + \rho a^2 \pdiff{v}{\eta} &= 0 \\
     \pdiff{v}{t} + v \pdiff{v}{\eta} + \frac{1}{\rho} \pdiff{p}{\eta} &= \lambda \frac{L}{D} v \left| v \right|
 \end{split}
+\end{equation}
+
+The assumed velocity and pressure distributions are a quarter-wave of the inlet pipe, given by
+
+\begin{equation} \label{eq: PressVelDist}
+\begin{split}
+    p(\eta,t) &= p_t(t) + B(t) \fun{sin}{2\pi \frac{\eta}{4L}} \, ,\\
+    v(\eta,t) &= v_L(t) + C(t) \fun{cos}{2\pi \frac{\eta}{4L}} \, .
+\end{split}
+\end{equation}
+
+These distributions fulfil the boundary conditions of equalling the tank pressure ($p_t(t)$) at $\eta = 0$ and mass conservation with the discharge at $\eta = L$. Here, the velocity at $\eta = L$ is
+
+\begin{equation*}
+    v_L(t) = \frac{\sqrt{2} \pi D C_d}{A_p \sqrt{\rho}} x(t) \sqrt{p_t(t)+B(t)} \, .
 \end{equation*}
+
+Substituting the velocity and pressure distributions given by \cref{eq: PressVelDist} into the PDE describing the fluid flow (\cref{eq: FluidPDE}) gives a differential equation which must be satisfied at all locations along the pipe. Using the collocation technique, it is sufficient that this differential equation is only satisfied at the mid-point of the pipe, where $\eta = \frac{L}{2}$. Here, $\fun{sin}{2 \pi \frac{\eta}{4L}} = \fun{cos}{2 \pi \frac{\eta}{4L}} = \frac{1}{\sqrt{2}}$. This requires that
+~
+\begin{equation*}
+\begin{split}
+    \sqrt{2} \dot{p}_t(t) + \dot{B}(t) + \frac{\pi \sqrt{2}}{4 L} B(t) \left( \sqrt{2} v_L(t) + C(t) \right) &= a^2 \rho \frac{\pi}{2L} C(t) \, , \\
+    \sqrt{2} \dot{v}_L(t) + \dot{C}(t) - \frac{\pi \sqrt{2}}{4 L} C(t) \left( \sqrt{2} v_L(t) + C(t) \right) &= - \frac{1}{\rho} \frac{\pi \sqrt{2}}{2 L} B(t) \\
+    &\qquad + \lambda \frac{L}{2D} \left( \sqrt{2} v_L(t) + C(t) \right) \left| \sqrt{2} v_L(t) + C(t) \right| \, .
+\end{split}
+\end{equation*}
+
+Note that these two equations form a set of differential equations for $\dot{B}(t)$ and $\dot{C}(t)$, which can be added to the original three first order differential equations describing the motion of the valve and pressure in the tank. Also note the last term including $\lambda$ is a frictional loss through the pipe, which may initially be neglected. Also, $\dot{v}_L(t)$ is used instead of the lengthy expression, which is
+
+\begin{equation*}
+    \dot{v}_L(t) = \frac{\sqrt{2} \pi D C_d}{A_p \sqrt{\rho}} \sqrt{p_t(t) + B(t)} \left( \dot{x}(t) + \frac{1}{2} x(t) \frac{\dot{p}_t(t) + \dot{B}(t)}{p_t(t) + B(t)} \right) \, .
+\end{equation*}
+
+The differential equation describing the tank pressure, using the assumed velocity distribution, can be written as
+
+\begin{equation*}
+    \dot{p}_t(t) = \frac{a^2}{V} \left( \dot{m}_{in} - \rho A_p C(t) - \sqrt{2} \pi D C_d x(t) \sqrt{\rho} \sqrt{p_t(t) + B(t)} \right) \, .
+\end{equation*}
+
+The full set of differential equations are
+~
+\begin{equation*}
+\begin{split}
+    \dot{x} &= v \\
+    \dot{v} &= - \frac{c_v}{m_v} v + \frac{A_v}{m_v} B + \frac{\zeta^2}{m_v A_p} x^2 B + \frac{\zeta^2}{m_v A_p} x^2 p_t \\
+    \dot{p}_t &= \frac{a^2}{V} \left( \dot{m}_{in} - \rho A_p C(t) - \sqrt{2} \pi D C_d x(t) \sqrt{\rho} \sqrt{p_t(t) + B(t)} \right) \, , \\
+    \dot{B} &= a^2 \rho \frac{\pi}{2L} C - \sqrt{2} \dot{p}_t - \frac{\pi}{2L} \frac{\sqrt{2} \pi D C_d}{A_p \sqrt{\rho}} x B \sqrt{p_t + B} - \frac{\pi \sqrt{2}}{4L} B C \, , \\
+    ~
+    \dot{C} &=
+    \frac{\pi \zeta}{2 A_p L \sqrt{\rho}} x C \sqrt{p_t + B}
+    + \frac{\pi \sqrt{2}}{4L} C^2
+    - \frac{\pi}{2 L \rho} B
+    - \frac{\sqrt{2} \zeta}{A_p \sqrt{\rho}} v \sqrt{p_t + B}
+    + \frac{2 - \sqrt{2}}{2} \frac{\zeta}{A_p \sqrt{\rho}} \frac{x}{\sqrt{p_t + B}} \dot{p}_t \\ &\quad %linebreak
+    - \frac{\sqrt{2}\pi\zeta a^2 \rho}{4 L A_p \sqrt{\rho}} \frac{x C}{\sqrt{p_t + B}}
+    + \frac{\sqrt{2}\pi\zeta^2}{4L A_p\,^2 \rho} x^2 B
+    + \frac{\pi \zeta}{4 L A_p \sqrt{\rho}} \frac{x B C}{\sqrt{p_t + B}}
+    + \lambda \frac{\sqrt{2}L}{4 D} \left( \sqrt{2} v_L + C \right) \left| \sqrt{2} v_L + C \right|
+\end{split}
+\end{equation*}
+
+where $\zeta = \sqrt{2} \pi D C_d$.
+
+\subsection{Quarter Wave Behaviour}
+
+Assumptions:
+
+\begin{itemize}
+    \item Fix the valve position - $x = 0$, $v = 0$
+    \item Constant tank pressure - $\dot{p}_t = 0$
+\end{itemize}
+
+Write $\ddot{C} = f(C)$ where eigenfrequency should be $\omega = 2\pi\left( a / 4L \right)$. \textbf{DO AS A NICE CHECK AND EXPLANATION OF QUARTER-WAVE}.
+
+\subsection{Non-dimensionalisation}
+
+Very complex!
+
+\subsection{Parameter Values}
+
+Typical values for the parameters are given in the table below. Some from \cite{Hos2016DynamicService}.
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{c|c|c|c}
+        Symbol & Description & Value & Units \\ \hline \hline
+        $m_v$ & Main valve piston mass & ? & \si{kg} \\ \hline % NEED TO GET
+        $c_v$ & Main valve damping coefficient & ? & \si{kg.s^{-1}} \\ \hline % NEED TO GET
+        $C_d$ & Fluid discharge coefficient & ? & - \\ \hline % Alans paper uses 0.32
+        $D$ & Inlet pipe diameter & ? & \si{m} \\ \hline % 0.0266 - Valve 1E2 from \cite{Hos2016DynamicService}
+        %$A_p$ & Inlet pipe area & ? & \si{m^2} \\ \hline
+        $A_v$ & Main valve piston area & ? & \si{m^2} \\ \hline
+        $\dot{m}_{in}$ & Mass flow rate into tank & ? & \si{kg.s^{-1}} \\ \hline % 0-3.8 Valve 1E2 from \cite{Hos2016DynamicService}
+        $\rho$ & Density of fluid & $\approx$1000 & \si{kg.m^{-3}} \\ \hline % Valve 1E2 from \cite{Hos2016DynamicService}
+        $a$ & Sonic velocity & 890 & \si{m.s^{-1}} \\ \hline % Valve 1E2 from \cite{Hos2016DynamicService}
+        $V$ & Tank volume & 10.6 & \si{m^3} \\ \hline % Valve 1E2 from \cite{Hos2016DynamicService}
+        $r$ & Coefficient of restitution & 0.9 & - \\ \hline % r = 0.8 in \cite{Hos2016DynamicService}
+        $\lambda$ & Pipe friction coefficient (Darcy-Weisbach) & ? & - \\ \hline % I should be able to find from the Moody chart
+        $L$ & Length of pipe & ? & \si{m} \\ % could estimate this parameter easily
+    \end{tabular}
+    \caption{Typical parameter values for a Pilot-Operated PRV used for the Valve Closing QWM.}
+    \label{tab: ValveClosingQWMParameterValues}
+\end{table}
