@@ -1,96 +1,163 @@
 \section{Valve Closing with Inlet piping}
 
-Similar to previously, the main valve piston equation of motion is given by
+ADD SECTION EXPLAINING SAME ASSUMPTIONS AS PREVIOUSLY
 
-\begin{equation*}
+Now, the effect of the fluid within the inlet piping between the pressure tank and pilot-operated PRV will be considered. The fluid properties within the pipework are functions of time and distance along the pipe. Hence, the pressure and velocity in the pipe will be described by $p(\eta,t)$ and $v(\eta,t)$ respectively. The three forces acting on the piston now depend upon the fluid properties within the pipe. Similarly, the differential equation for the pressure in the tank can be expressed in terms of the fluid properties within the piping. Hence, the differential equations describing the main piston motion and pressure within the tank are given by
+
+\begin{equation} \label{eq: ValveODEsPipe}
 \begin{split}
-    m_v \ddot{x} + c_v \dot{x} &= A_v \left( p(L,t) - p_t \right) + \dot{m}(L,t) \left( v(L,t) - v_d \sin(\theta) \right) \\
-    \dot{p}_t &= \frac{a^2}{V} \left( \dot{m}_{in} - \dot{m}(0,t) \right)
-\end{split}
-\end{equation*}
-
-At the inlet of the pipe, an ideal inflow from the tank using Bernoulli's equation allows the first boundary condition
-
-\begin{equation*}
-    p_t(t) = p(0,t) + \frac{1}{2} \rho(0,t) v(0,t)^2
-\end{equation*}
-
-Mass conservation at the outlet of the pipe gives the second boundary condition of
-
-\begin{equation*}
-    \dot{m}(L,t) = \rho(L,t) A_p v(L,t) = \dot{m}_d(t)
-\end{equation*}
-
-Assuming that the temperature remains constant, the density is only a function of the pressure. Additionally, $p = a^2 \rho$ from $\frac{p}{\rho}$ being constant and $\diff{p}{\rho} = a^2$. This allows a PDE describing the fluid behaviour which is identical to in~\cite{Hos2015ModelPipe} of
-
-\begin{equation} \label{eq: FluidPDE}
-\begin{split}
-    \pdiff{p}{t} + v \pdiff{p}{\eta} + \rho a^2 \pdiff{v}{\eta} &= 0 \\
-    \pdiff{v}{t} + v \pdiff{v}{\eta} + \frac{1}{\rho} \pdiff{p}{\eta} &= \lambda \frac{L}{D} v \left| v \right|
+    m_v \ddot{x} + c_v \dot{x} &= A_p p(L,t) - A_v p_t + \dot{m}(L,t)
+    %\left(
+    v(L,t) %- v_d \sin(\theta) \right)
+    \, , \\
+    \dot{p}_t &= \frac{a^2}{V} \left( \dot{m}_{in} - \dot{m}(0,t) \right) \, .
 \end{split}
 \end{equation}
 
-The assumed velocity and pressure distributions are a quarter-wave of the inlet pipe, given by
+Note that the mass flow rate, $\dot{m}(\eta,t)$, is required for these equations of motion. However, the mass flow rate is simply the product of the pipe area $A_p$, fluid density $\rho$, and fluid velocity $v(\eta,t)$.
+
+The form of both the pressure and velocity distributions within the pipe will be considered to consist purely of a quarter-wave around the \textbf{dominant} pressure and velocity within the pipe. A very similar approach has previously been adopted for the simpler direct spring-operated PRV \cite{Hos2016DynamicService,Hos2015ModelPipe}. The quarter-wave velocity and pressure distributions assumed within the pipe are given by
 
 \begin{equation} \label{eq: PressVelDist}
 \begin{split}
-    p(\eta,t) &= p_t(t) + B(t) \fun{sin}{2\pi \frac{\eta}{4L}} \, ,\\
+    p(\eta,t) &= p_0(t) + B(t) \fun{sin}{2\pi \frac{\eta}{4L}} \, ,\\
     v(\eta,t) &= v_L(t) + C(t) \fun{cos}{2\pi \frac{\eta}{4L}} \, .
 \end{split}
 \end{equation}
 
-These distributions fulfil the boundary conditions of equalling the tank pressure ($p_t(t)$) at $\eta = 0$ and mass conservation with the discharge at $\eta = L$. Here, the velocity at $\eta = L$ is
+Importantly, at $\eta = L$, the velocity ensures that mass is conserved between the mass flow in the pipe and the mass discharged through the main valve. At $\eta = 0$, the sum of the pressure $p(0,t)$ and the dynamic pressure is equal to the pressure within the tank. This relaxes an assumption made during previous work~\cite{Hos2015ModelPipe}, where the ideal acceleration of the fluid between the tank and the pipe is neglected. This relationship can be expressed as
 
 \begin{equation*}
-    v_L(t) = \frac{\sqrt{2} \pi D C_d}{A_p \sqrt{\rho}} x(t) \sqrt{p_t(t)+B(t)} \, .
+\begin{split}
+    p_t(t) &= p(0,t) + \frac{1}{2} \rho(0,t) v(0,t)^2 \\
+           &= p_0(t) + \frac{\rho}{2} \left( v_L(t) + C(t) \right)^2 \, .
+\end{split}
 \end{equation*}
 
-Substituting the velocity and pressure distributions given by \cref{eq: PressVelDist} into the PDE describing the fluid flow (\cref{eq: FluidPDE}) gives a differential equation which must be satisfied at all locations along the pipe. Using the collocation technique, it is sufficient that this differential equation is only satisfied at the mid-point of the pipe, where $\eta = \frac{L}{2}$. Here, $\fun{sin}{2 \pi \frac{\eta}{4L}} = \fun{cos}{2 \pi \frac{\eta}{4L}} = \frac{1}{\sqrt{2}}$. This requires that
+ADD MORE EXPLANATION OF WHERE THIS EQUATION COMES FROM! Additionally, the mass conservation at $\eta=L$ yields
+%Mass conservation at the outlet of the pipe gives the second boundary condition of
+
+\begin{equation*}
+\begin{split}
+    \dot{m}(L,t) &= \rho(L,t) A_p v(L,t) = \dot{m}_d(t) \, . \\
+    \rho A_p v(L,t) &= \pi D x(t) C_d \rho \sqrt{\frac{2}{\rho} \left( p(L,t) + \frac{\rho}{2} v(L,t)^2 \right)} \, .
+\end{split}
+\end{equation*}
+
+Here, it is useful to group some of the coefficients, so we define $\zeta = \sqrt{2} \pi D C_d$. However, the boundary conditions defined above yield extremely complex expressions for $p_0(t)$ and $v_L(t)$. Additionally, both the pressure and velocity become functions of both $B$ and $C$. This becomes an issue when using $\pdiff{p}{t}$ and $\pdiff{v}{t}$ to find two ordinary differential equations for $\dot{B}$ and $\dot{C}$ as the two equations contain both $\dot{B}$ and $\dot{C}$. 
+
+The most general simplification is to neglect the fluctuations in velocity, $C(t) \approx 0$, for the boundary conditions. This yields the following expressions,
+
+\begin{equation*}
+    p_0(t) = p_t(t) - \frac{\zeta^2 x^2}{2 A_p\,^2} \left( p_t(t) \textcolor{Red}{+ B(t)} \right)
+    \, , \qquad
+    v_L(t) = \frac{\zeta x}{A_p \sqrt{\rho}} \sqrt{p_t(t) + B(t)} \, .
+\end{equation*}
+
+Notably, the expression for $v_L(t)$ is identical to that given by \cite{Hos2015ModelPipe}, while $p_0(t) \neq p_t(t)$ because the conversion of the tank static pressure into dynamic pressure is (partially) considered. The term in \textcolor{Red}{red} represents another small fluctuation which could be neglected. When these pressure and velocity distributions are substituted into the previous equations of motion, \cref{eq: ValveODEsPipe}, the following are found
+
+\begin{equation*}
+\begin{split}
+    m_v \ddot{x} + c_v \dot{x} &= \frac{\zeta^2 x^2}{2 A_p} p_t(t) + \frac{\zeta^2 x^2}{A_p} \left( 1 \textcolor{Red}{- \frac{1}{2}} \right) B(t) - \left( A_v - A_p \right) p_t(t)
+    \, , \\
+    \dot{p}_t &= \frac{a^2}{V} \left( \dot{m}_{in} - \rho A_p C(t) - \zeta x(t) \sqrt{\rho} \sqrt{p_t(t) + B(t)} \right) \, .
+\end{split}
+\end{equation*}
+
+When the quarter wave is not present, namely when $B(t) = C(t) = 0$, the equations reduce to the original equations for the valve closing model, \cref{eq: ClosingDiffEqFull}. Now it becomes clear why the conversion between dynamic and static pressure at the tank end must be included. Without consideration of the acceleration of the fluid, the equation of motion would not be identical to the one derived previously.
+
+Now, the two ODEs describing the quarter-wave will be derived.
+
+Substituting the velocity and pressure distributions given by \cref{eq: PressVelDist} into the PDE describing the fluid flow (\cref{eq: FluidPDE}) gives a differential equation which must be satisfied at all locations along the pipe. Using the collocation technique, it is sufficient that this differential equation is only satisfied at the mid-point of the pipe, where $\eta = \frac{L}{2}$. Here, $\fun{sin}{2 \pi \frac{\eta}{4L}} = \fun{cos}{2 \pi \frac{\eta}{4L}} = \frac{1}{\sqrt{2}}$.
+This requires that
 ~
 \begin{equation*}
 \begin{split}
-    \sqrt{2} \dot{p}_t(t) + \dot{B}(t) + \frac{\pi \sqrt{2}}{4 L} B(t) \left( \sqrt{2} v_L(t) + C(t) \right) &= a^2 \rho \frac{\pi}{2L} C(t) \, , \\
+    \sqrt{2} \dot{p}_0(t) + \dot{B}(t) + \frac{\pi \sqrt{2}}{4 L} B(t) \left( \sqrt{2} v_L(t) + C(t) \right) &= a^2 \rho \frac{\pi}{2L} C(t) \, , \\
     \sqrt{2} \dot{v}_L(t) + \dot{C}(t) - \frac{\pi \sqrt{2}}{4 L} C(t) \left( \sqrt{2} v_L(t) + C(t) \right) &= - \frac{1}{\rho} \frac{\pi \sqrt{2}}{2 L} B(t) \\
     &\qquad + \lambda \frac{L}{2D} \left( \sqrt{2} v_L(t) + C(t) \right) \left| \sqrt{2} v_L(t) + C(t) \right| \, .
 \end{split}
 \end{equation*}
 
-Note that these two equations form a set of differential equations for $\dot{B}(t)$ and $\dot{C}(t)$, which can be added to the original three first order differential equations describing the motion of the valve and pressure in the tank. Also note the last term including $\lambda$ is a frictional loss through the pipe, which may initially be neglected. Also, $\dot{v}_L(t)$ is used instead of the lengthy expression, which is
-
-\begin{equation*}
-    \dot{v}_L(t) = \frac{\sqrt{2} \pi D C_d}{A_p \sqrt{\rho}} \sqrt{p_t(t) + B(t)} \left( \dot{x}(t) + \frac{1}{2} x(t) \frac{\dot{p}_t(t) + \dot{B}(t)}{p_t(t) + B(t)} \right) \, .
-\end{equation*}
-
-The differential equation describing the tank pressure, using the assumed velocity distribution, can be written as
-
-\begin{equation*}
-    \dot{p}_t(t) = \frac{a^2}{V} \left( \dot{m}_{in} - \rho A_p C(t) - \sqrt{2} \pi D C_d x(t) \sqrt{\rho} \sqrt{p_t(t) + B(t)} \right) \, .
-\end{equation*}
-
-The full set of differential equations are
+The full equation for $\dot{B}(t)$ is
 ~
+%EQUATION FOR $\dot{B}(t)$.
 \begin{equation*}
 \begin{split}
-    \dot{x} &= v \\
-    \dot{v} &= - \frac{c_v}{m_v} v + \frac{A_v}{m_v} B + \frac{\zeta^2}{m_v A_p} x^2 B + \frac{\zeta^2}{m_v A_p} x^2 p_t \\
-    \dot{p}_t &= \frac{a^2}{V} \left( \dot{m}_{in} - \rho A_p C(t) - \sqrt{2} \pi D C_d x(t) \sqrt{\rho} \sqrt{p_t(t) + B(t)} \right) \, , \\
-    \dot{B} &= a^2 \rho \frac{\pi}{2L} C - \sqrt{2} \dot{p}_t - \frac{\pi}{2L} \frac{\sqrt{2} \pi D C_d}{A_p \sqrt{\rho}} x B \sqrt{p_t + B} - \frac{\pi \sqrt{2}}{4L} B C \, , \\
-    ~
-    \dot{C} &=
-    \frac{\pi \zeta}{2 A_p L \sqrt{\rho}} x C \sqrt{p_t + B}
-    + \frac{\pi \sqrt{2}}{4L} C^2
-    - \frac{\pi}{2 L \rho} B
-    - \frac{\sqrt{2} \zeta}{A_p \sqrt{\rho}} v \sqrt{p_t + B}
-    + \frac{2 - \sqrt{2}}{2} \frac{\zeta}{A_p \sqrt{\rho}} \frac{x}{\sqrt{p_t + B}} \dot{p}_t \\ &\quad %linebreak
-    - \frac{\sqrt{2}\pi\zeta a^2 \rho}{4 L A_p \sqrt{\rho}} \frac{x C}{\sqrt{p_t + B}}
-    + \frac{\sqrt{2}\pi\zeta^2}{4L A_p\,^2 \rho} x^2 B
-    + \frac{\pi \zeta}{4 L A_p \sqrt{\rho}} \frac{x B C}{\sqrt{p_t + B}}
-    + \lambda \frac{\sqrt{2}L}{4 D} \left( \sqrt{2} v_L + C \right) \left| \sqrt{2} v_L + C \right|
+    \dot{B}(t) = \left( \frac{2 A_p\,^2}{2 A_p\,^2 \textcolor{Red}{- \sqrt{2} \zeta^2 x(t)^2}} \right)
+    &\left( \textcolor{Blue}{
+    \frac{\pi}{2L} a^2 \rho C(t) - \frac{\pi \sqrt{2}}{4L} \left( \sqrt{2} v_L(t) + C(t) \right) - \sqrt{2} \dot{p}_t(t)}
+     \right.  \\ & \quad \left.  % linebreak
+    + \frac{\sqrt{2} \zeta^2 x(t)^2}{2 A_p\,^2} \dot{p}_t(t) + \frac{\sqrt{2} \zeta^2 x(t)}{A_p\,^2} \left( p_t(t) \textcolor{Red}{+ B(t)} \right) \dot{x}(t)
+    \right)
 \end{split}
 \end{equation*}
 
-where $\zeta = \sqrt{2} \pi D C_d$.
+Here, the \textcolor{Red}{red} terms represent those which possibly could be neglected. The \textcolor{Blue}{blue} terms represent those which occur within~\cite{Hos2015ModelPipe} when the red terms are neglected. Hence, the black terms are those to be included which were not in the original derivation.
 
+Similarly, the full equation for $\dot{C}(t)$ is
+~
+\begin{equation*}
+\begin{split}
+    \dot{C}(t) &=
+    \textcolor{Blue}{
+    \frac{\pi}{2L} \frac{\zeta}{A_p \sqrt{\rho}} x C \sqrt{p_t + B}
+    + \frac{\pi \sqrt{2}}{4 L} C^2
+    - \frac{1}{\rho} \frac{\pi}{2L} B
+    } \\ & \quad % linebreak
+    - \frac{\sqrt{2} \zeta}{2 A_p \sqrt{\rho}} \frac{1}{\sqrt{p_t+B}} \left( \frac{2 A_p\,^2}{2 A_p\,^2 \textcolor{Red}{- \sqrt{2} \zeta^2 x^2}} \right) x \left(
+    \textcolor{Blue}{
+    \frac{\pi}{2L} a^2 \rho C
+    - \frac{\pi \sqrt{2}}{4 L} B C
+    - \frac{\pi}{2L} B v_L }
+    \right)
+    \\ & \quad % linebreak
+    - \frac{\zeta}{A_p \sqrt{\rho}} \dot{x} \sqrt{p_t + B} \left( \frac{
+    \textcolor{Blue}{2 \sqrt{2} A_p\,^2}
+    + 2 \zeta^2 x^2 \textcolor{Red}{- 2 \zeta^2 x^2}}{
+    \textcolor{Blue}{2 A_p\,^2}
+    \textcolor{Red}{- \sqrt{2} \zeta^2 x^2}} \right)
+    \\ & \quad % linebreak
+    + \frac{\zeta}{A_p \sqrt{\rho}} \frac{x \dot{p}_t}{\sqrt{p_t+B}} \left( \frac{
+    \textcolor{Blue}{\left( 2 - \sqrt{2} \right) A_p\,^2}
+    + \zeta^2 x^2 \textcolor{Red}{- \zeta^2 x^2}}{
+    \textcolor{Blue}{2 A_p\,^2}
+    \textcolor{Red}{+ \sqrt{2} \zeta^2 x^2}} \right)
+    \\ & \quad % linebreak
+    \textcolor{Blue}{
+    + \lambda \frac{L \sqrt{2}}{4 D} \left( \sqrt{2} v_L + C \right) \left| \sqrt{2} v_L + C \right| }
+\end{split}
+\end{equation*}
+
+Again, the \textcolor{Red}{red} terms represent those which possibly could be neglected. The \textcolor{Blue}{blue} terms represent those which occur within~\cite{Hos2015ModelPipe} when the red terms are neglected. Hence, the black terms are those to be included which were not in the original derivation.
+
+% \subsection{Actual pressure and velocity profiles}
+
+% Neglecting the small change in velocity at the tank end of the inlet piping. The pressure and velocity distributions are:
+
+% \begin{equation} \label{eq: BetterPressVelDist}
+% \begin{split}
+%     p(\eta,t) &= p_t(t) - \frac{\zeta^2 x^2}{2 A_p\,^2} \left( p_t(t) + B(t) \right) + B(t) \fun{sin}{2\pi \frac{\eta}{4L}} \, ,\\
+%     v(\eta,t) &= v_L(t) + C(t) \fun{cos}{2\pi \frac{\eta}{4L}} \, .
+% \end{split}
+% \end{equation}
+
+% Substituting these distributions into equations of motion of valve and tank pressure yields:
+
+% \begin{equation*}
+% \begin{split}
+%     m_v \ddot{x} + c_v \dot{x} &= A_p \left( 1 - \frac{\zeta^2 x^2}{2 A_p\,^2} \right) \left( p_t(t) + B(t) \right)  - A_v p_t + \rho A_p %v(L,t)^2
+%     \left( \frac{\zeta x}{A_p \sqrt{\rho}} \sqrt{p_t(t) + B(t)} \right)^2 \\
+%     \dot{p}_t %&= \frac{a^2}{V} \left( \dot{m}_{in} - \dot{m}(0,t) \right)
+%     &= \frac{a^2}{V} \left( \dot{m}_{in} - \zeta x \sqrt{\rho} \sqrt{p_t(t) + B(t)} - \rho A_p C(t) \right)
+% \end{split}
+% \end{equation*}
+
+\newpage
+\input{Sections/Archive/OldQuarterWaveDerivation.tex}
+
+
+\newpage
 \subsection{Quarter Wave Behaviour}
 
 Assumptions:
@@ -104,7 +171,76 @@ Write $\ddot{C} = f(C)$ where eigenfrequency should be $\omega = 2\pi\left( a / 
 
 \subsection{Non-dimensionalisation}
 
-Very complex!
+The reference distance, pressure, time and velocity are
+
+\begin{equation*}
+\begin{split}
+    x_{ref} = \sqrt{\frac{A_v - A_p}{4 \pi}}
+    \, , \quad
+    p_{ref} = p_a = 1 \si{bar}
+    \, , \quad
+%%    \omega_{ref} = \frac{\pi}{2L} a
+    \omega_{ref} = \sqrt{\frac{p_{ref} x_{ref}}{m_v}} \, .
+%    \, , \quad
+%    t_{ref} = 
+\end{split}
+\end{equation*}
+
+The new dimensionless parameters are defined as
+
+\begin{equation*}
+\begin{split}
+    \tau &= \omega_{ref} t \\
+    y_1 &= \frac{x}{x_{ref}} \\
+    y_2 &= \frac{\dot{x}}{x_{ref} \omega_{ref}} \\
+    y_3 &= \frac{p_t}{p_{ref}} \\
+    \tilde{p}(s,\tau) &= \frac{1}{p_{ref}} p(\zeta,t) \\
+    \tilde{v}(s,\tau) &= \frac{1}{\omega_{ref} x_{ref}} v(\zeta,t) 
+\end{split}
+\end{equation*}
+
+The dimensionless parameters needed are
+
+\begin{equation*}
+\begin{split}
+    \gamma = \frac{L \omega_{ref}}{a} \, , \quad
+    q = \frac{\dot{m}_{in}}{\dot{m}_{cap}} \, , \quad
+    \Lambda = \frac{x_{ref}}{L} \, , \quad
+    \alpha = \frac{\omega_{ref} a \rho x_{ref}}{p_{ref}} \, , \quad
+    \delta = \frac{\zeta x_{ref}}{A_p}
+    \, , \\ % newline
+    \beta = \frac{a^2}{V} \frac{\dot{m}_{cap}}{p_{ref} \omega_{ref}} \, , \quad
+    \mu = \frac{\rho A_p \omega_{ref} x_{ref}}{\dot{m}_{cap}} \, , \quad
+    \sigma = \frac{\zeta x_{ref} \sqrt{\rho p_{ref}}}{A_p \rho x_{ref} \omega_{ref}} \, , \quad
+    \phi = \lambda \frac{x_{ref}}{2D} \, .
+\end{split}
+\end{equation*}
+
+\newpage
+The dimensionless equations are hence
+
+\begin{equation}
+\begin{split}
+    \dot{y}_1 &= y_2 \\
+    \dot{y}_2 &= \\
+    \dot{y}_3 &= \beta q - \beta \mu C - \beta \mu \sigma y_1 \sqrt{y_3 + B} \\
+    \dot{B} &= \frac{\pi}{2} \frac{\alpha}{\gamma} C - \sqrt{2} \dot{y}_3 + \frac{\sqrt{2}}{2} \delta^2 y_1\,^2 \dot{y}_3 + \sqrt{2} \delta^2 y_1 y_2 y_3 + \frac{\pi}{2} \frac{\Lambda \delta}{\alpha} y_1 B \sqrt{y_3 + B} - \frac{\pi \sqrt{2}}{4} \Lambda B C \\
+    \dot{C} &= \frac{\pi}{2} \Lambda \sigma y_1 C \sqrt{y_3 + B}
+    + \frac{\pi \sqrt{2}}{4} \Lambda C^2
+    - \frac{\pi}{2} \frac{1}{\alpha \gamma} B
+    - \frac{\pi \sqrt{2}}{4} \frac{\alpha \sigma}{\gamma} \frac{y_1 C}{\sqrt{y_3 + B}}
+    + \frac{\pi}{4} \Lambda \sigma \frac{y_1 B C}{\sqrt{y_3 + B}}
+    \\ & \quad %newline
+    + \frac{\pi \sqrt{2}}{4} \Lambda \sigma^2 y_1\,^2 B
+    - \sqrt{2} \sigma y_2 \sqrt{y_3 + B}
+    - \sigma \delta^2 y_1\,^2 y_2 \sqrt{y_3 + B}
+    + \frac{2-\sqrt{2}}{2} \sigma \frac{y_1 \dot{y}_3}{\sqrt{y_3 + B}} 
+    \\ & \quad %newline
+    + \frac{1}{2} \sigma \delta^2 y_1\,^2 \frac{y_1 \dot{y}_3}{\sqrt{y_3 + B}}
+    + \frac{\sqrt{2}}{2} \textcolor{Red}{L} \, \phi \left( \sqrt{2} \sigma y_1 \sqrt{y_3 + B} + C \right) \left| \sqrt{2} \sigma y_1 \sqrt{y_3 + B} + C \right|
+\end{split}
+\end{equation}
+
 
 \subsection{Parameter Values}
 

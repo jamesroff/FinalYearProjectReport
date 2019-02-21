@@ -50,7 +50,7 @@ Finally, the static pressure acting on the bottom of the piston must be calculat
 
 All of the fluid properties calculated can be substituted into the piston equation of motion, given by~\cref{eq: Newton}. This yields the final equation of motion describing the piston motion,
 
-\begin{equation} \label{eq: DiffEqValve}
+\begin{equation} \label{eq: CompDiffEqValve}
     m_v \ddot{x} + c_v \dot{x} = p_t \left(
     C_d \,^2 \left( 4 \pi \cos^2(\theta) x^2
     - 2 \pi D \sin(\theta) \cos(\theta) x \right)
@@ -66,7 +66,7 @@ Finally, the equation for the pressure within the tank must be found. Obviously,
 
 where $a$ is the sonic velocity, $V$ is the volume of the tank, and $\dot{m}_{in}$ and $\dot{m}_{out}$ are the mass flow rates in and out of the tank respectively.
 
-Hence, the system of differential equations representing the main valve closing is given by \cref{eq: DiffEqValve,,eq: DiffEqPres}. These form a nonlinear system of differential equations, which will be now be analysed.
+Hence, the system of differential equations representing the main valve closing is given by \cref{eq: CompDiffEqValve,,eq: DiffEqPres}. These form a nonlinear system of differential equations, which will be now be analysed.
 
 \subsection{Equilibrium}
 
@@ -82,7 +82,17 @@ Hence, the system of differential equations representing the main valve closing 
 
 %\subsection{No Discharge Angle}
 
-Firstly, the steady state of \cref{eq: DiffEqValve,,eq: DiffEqPres} must be calculated. To simplify the expression of the steady state, the discharge angle $\theta$ will be assumed to be zero. The steady state of the system is calculated by equating the derivatives to zero. This gives equilibrium as
+Firstly, the steady state of \cref{eq: CompDiffEqValve,,eq: DiffEqPres} must be calculated. To simplify the expression of the steady state, the discharge angle $\theta$ will be assumed to be zero. This greatly simplifies the equations of motion to
+
+\begin{equation} \label{eq: ClosingDiffEqFull}
+    m_v \ddot{x} + c_v \dot{x} = p_t \left(
+    C_d \,^2 \left( 4 \pi \cos^2(\theta) x^2
+    - 2 \pi D \sin(\theta) \cos(\theta) x \right)
+    - \left( A_v - \frac{\pi D^2}{4} \right)
+    \right) \, .
+\end{equation}
+
+The steady state of the system is calculated by equating the derivatives to zero. This gives equilibrium as
 
 \begin{equation*}
     x_0 = \frac{1}{C_d} \sqrt{\frac{A_v - \frac{\pi D^2}{4}}{4 \pi}}
@@ -114,7 +124,7 @@ Before further analysis is performed, it is useful to express the system in term
 %     t_{ref} = \frac{m_v}{c_v} \, .
 % \end{equation*}
 
-By calculating the derivatives for the non-dimensional variables, \cref{eq: DiffEqValve,,eq: DiffEqPres} can be expressed as dimensionless equations. It can be shown that applying these variable transformation leads to the system of equations,
+By calculating the derivatives for the non-dimensional variables, \cref{eq: CompDiffEqValve,,eq: DiffEqPres} can be expressed as dimensionless equations. It can be shown that applying these variable transformation leads to the system of equations,
 
 \begin{equation} \label{eq: Non-DimODE}
 \begin{split}
