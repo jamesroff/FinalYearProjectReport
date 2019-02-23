@@ -25,6 +25,8 @@ The form of both the pressure and velocity distributions within the pipe will be
 \end{split}
 \end{equation}
 
+\subsection{Boundary Conditions}
+
 Importantly, at $\eta = L$, the velocity ensures that mass is conserved between the mass flow in the pipe and the mass discharged through the main valve. At $\eta = 0$, the sum of the pressure $p(0,t)$ and the dynamic pressure is equal to the pressure within the tank. This relaxes an assumption made during previous work~\cite{Hos2015ModelPipe}, where the ideal acceleration of the fluid between the tank and the pipe is neglected. This relationship can be expressed as
 
 \begin{equation*}
@@ -65,6 +67,8 @@ Notably, the expression for $v_L(t)$ is identical to that given by \cite{Hos2015
 \end{equation*}
 
 When the quarter wave is not present, namely when $B(t) = C(t) = 0$, the equations reduce to the original equations for the valve closing model, \cref{eq: ClosingDiffEqFull}. Now it becomes clear why the conversion between dynamic and static pressure at the tank end must be included. Without consideration of the acceleration of the fluid, the equation of motion would not be identical to the one derived previously.
+
+\subsection{Quarter-Wave Model Derivation} \label{sec: QWM Derivation}
 
 Now, the two ODEs describing the quarter-wave will be derived.
 
@@ -112,15 +116,14 @@ Similarly, the full equation for $\dot{C}(t)$ is
     - \frac{\pi}{2L} B v_L }
     \right)
     \\ & \quad % linebreak
-    - \frac{\zeta}{A_p \sqrt{\rho}} \dot{x} \sqrt{p_t + B} \left( \frac{
-    \textcolor{Blue}{2 \sqrt{2} A_p\,^2}
-    + 2 \zeta^2 x^2 \textcolor{Red}{- 2 \zeta^2 x^2}}{
-    \textcolor{Blue}{2 A_p\,^2}
-    \textcolor{Red}{- \sqrt{2} \zeta^2 x^2}} \right)
+    - \frac{\zeta}{A_p \sqrt{\rho}} \dot{x} \sqrt{p_t + B} \left( 
+    \frac{ 2 \sqrt{2} \left( p_t + B \right) A_p\,^2 + 2 \zeta^2 x^2 \left( p_t \textcolor{red}{+ B} \right) \textcolor{Red}{- 2 \zeta^2 x^2 \left( p_t + B \right)} }
+    { \left( p_t + B \right) \left( 2 A_p\,^2 \textcolor{Red}{- \sqrt{2} \zeta^2 x^2} \right) }
+    \right)
     \\ & \quad % linebreak
     + \frac{\zeta}{A_p \sqrt{\rho}} \frac{x \dot{p}_t}{\sqrt{p_t+B}} \left( \frac{
     \textcolor{Blue}{\left( 2 - \sqrt{2} \right) A_p\,^2}
-    + \zeta^2 x^2 \textcolor{Red}{- \zeta^2 x^2}}{
+    - \zeta^2 x^2 \textcolor{Red}{+ \zeta^2 x^2}}{
     \textcolor{Blue}{2 A_p\,^2}
     \textcolor{Red}{+ \sqrt{2} \zeta^2 x^2}} \right)
     \\ & \quad % linebreak
@@ -153,21 +156,87 @@ Again, the \textcolor{Red}{red} terms represent those which possibly could be ne
 % \end{split}
 % \end{equation*}
 
-\newpage
-\input{Sections/Archive/OldQuarterWaveDerivation.tex}
+%\newpage
+%\input{Sections/Archive/OldQuarterWaveDerivation.tex}
 
+\subsection{Final Equations}
 
-\newpage
+% Explain why neglected \textcolor{Red}{B(t)} term
+% Write out full set of 5 ODEs
+
+Previously, the dynamic pressure at the tank end of the pipe, $\eta = 0$, can be approximated using $v(0,t) = v_L(t) + C(t) \approx v_L(t)$. Similarly, the dynamic pressure can be approximated by neglected the small pressure fluctuation so that $p_t(t) + B(t) \approx p_t(t)$. This removes the terms coloured \textcolor{Red}{red} previously during the derivation of the QWM in \cref{sec: QWM Derivation}. Equivalently, this ensures that the boundary conditions are fully satisfied when $B(t) = C(t) = 0$. This is a reasonable assumption as during the onset of the chatter instability, both $B(t)$ and $C(t)$ represent very small amplitude oscillations so are close to zero.
+
+This has an added bonus of remaining consistent with previously derived equations for a quarter wave model in the liquid case, for example in~\cite{Hos2015ModelPipe}. In fact, most terms which occur are equivalent to those previously derived. These are coloured in \textcolor{Blue}{blue}. However, considering the ideal acceleration of the fluid between the tank and the pipe adds some additional higher order terms. This yields a system of five first-order differential equations, given by
+~
+\begin{equation}
+\begin{split}
+    \dot{x} &= v \, , \\
+    m_v \dot{v} &= - c_v v \frac{\zeta^2 x^2}{2 A_p} p_t(t) + \frac{\zeta^2 x^2}{A_p} B(t) - \left( A_v - A_p \right) p_t(t)
+    \, , \\
+    \dot{p}_t &= \frac{a^2}{V} \left( \dot{m}_{in} - \rho A_p C(t) - \zeta x(t) \sqrt{\rho} \sqrt{p_t(t) + B(t)} \right)
+    \, , \\
+    \dot{B}(t) &= \textcolor{Blue}{
+    \frac{\pi}{2L} a^2 \rho C(t) - \frac{\pi \sqrt{2}}{4L} \left( \sqrt{2} v_L(t) + C(t) \right) - \sqrt{2} \dot{p}_t(t)} + \frac{\sqrt{2} \zeta^2 x(t)^2}{2 A_p\,^2} \dot{p}_t(t) + \frac{\sqrt{2} \zeta^2 x(t)}{A_p\,^2} p_t(t) \dot{x}(t)
+    \, , \\
+    \dot{C}(t) &=
+    \textcolor{Blue}{
+    \frac{\pi}{2L} \frac{\zeta}{A_p \sqrt{\rho}} x C \sqrt{p_t + B}
+    + \frac{\pi \sqrt{2}}{4 L} C^2
+    - \frac{1}{\rho} \frac{\pi}{2L} B
+    }
+    %\\ & \quad % linebreak
+    + \frac{\zeta}{A_p \sqrt{\rho}} \frac{x \dot{p}_t}{\sqrt{p_t+B}} \left( 
+    \textcolor{Blue}{\frac{2 - \sqrt{2}}{2}} -
+    \frac{\zeta^2 x^2}{2 A_p\,^2} \right)
+    \\ & \quad % linebreak
+    - \frac{\sqrt{2} \zeta}{2 A_p \sqrt{\rho}} \frac{1}{\sqrt{p_t+B}} x \left(
+    \textcolor{Blue}{
+    \frac{\pi}{2L} a^2 \rho C
+    - \frac{\pi \sqrt{2}}{4 L} B C
+    - \frac{\pi}{2L} B v_L }
+    \right)
+    %\\ & \quad % linebreak
+    - \frac{\zeta}{A_p \sqrt{\rho}} \dot{x} \sqrt{p_t + B} \left( 
+    \textcolor{Blue}{\sqrt{2}} +
+    \frac{2 \zeta^2 x^2}{2 A_p\,^2}
+    \right)
+    \\ & \quad % linebreak
+    \textcolor{Blue}{
+    + \lambda \frac{L \sqrt{2}}{4 D} \left( \sqrt{2} v_L + C \right) \left| \sqrt{2} v_L + C \right| }
+    \, .
+\end{split}
+\end{equation}
+
 \subsection{Quarter Wave Behaviour}
 
-Assumptions:
+The quarter wave behaviour within the pipe can be seen when fixing the valve closed, $x = \dot{x} = 0$, and keeping the tank pressure constant, $\dot{p}_t = 0$. When the differential equation for $\dot{C}(t)$ is differentiated again, applying the conditions of the closed valve and constant tank pressure, gives
+~
+\begin{equation*}
+    \ddot{C}(t) = \frac{\pi \sqrt{2}}{2 L} C \dot{C} - \frac{1}{\rho} \frac{\pi}{2 L} \dot{B} \, .
+\end{equation*}
 
-\begin{itemize}
-    \item Fix the valve position - $x = 0$, $v = 0$
-    \item Constant tank pressure - $\dot{p}_t = 0$
-\end{itemize}
+Note that the first term including $\dot{C}(t)$ is a convective term so can be neglected from this equation. Substituting the non-convective terms from $\dot{B}(t)$ yields
+~
+\begin{equation*}
+    \ddot{C}(t) = - \frac{1}{\rho} \frac{\pi}{2 L} \left( \frac{\pi}{2L} a^2 \rho C(t) \right) = - \omega^2 C(t) \, .
+\end{equation*}
 
-Write $\ddot{C} = f(C)$ where eigenfrequency should be $\omega = 2\pi\left( a / 4L \right)$. \textbf{DO AS A NICE CHECK AND EXPLANATION OF QUARTER-WAVE}.
+This equation for $\ddot{C}(t)$ is an undamped oscillator with a natural frequency of
+~
+\begin{equation*}
+    \omega = 2 \pi \left( \frac{a}{4 L} \right) \, ,
+\end{equation*}
+
+which corresponds to the quarter-wave frequency of the pipe.
+
+% Assumptions:
+
+% \begin{itemize}
+%     \item Fix the valve position - $x = 0$, $v = 0$
+%     \item Constant tank pressure - $\dot{p}_t = 0$
+% \end{itemize}
+
+% Write $\ddot{C} = f(C)$ where eigenfrequency should be $\omega = 2\pi\left( a / 4L \right)$. \textbf{DO AS A NICE CHECK AND EXPLANATION OF QUARTER-WAVE}.
 
 \subsection{Non-dimensionalisation}
 
@@ -216,40 +285,47 @@ The dimensionless parameters needed are
 \end{split}
 \end{equation*}
 
-\newpage
-The dimensionless equations are hence
+However, the dimensionless parameters are related by
 
+\begin{equation*}
+    \Lambda \sigma^2 = \left( \frac{x_{ref}}{L} \right) \left( \frac{\zeta \sqrt{p_{ref}}}{A_p \rho \omega_{ref}} \right)^2 = \left( \frac{a}{L \omega_{ref}} \right) \left( \frac{p_{ref}}{\omega_{ref} a \rho x_{ref}} \right) \left( \frac{\zeta x_{ref}}{A_p} \right)^2 = \frac{\delta^2}{\alpha \gamma}
+\end{equation*}
+
+The dimensionless equations are hence
+~
 \begin{equation}
 \begin{split}
     \dot{y}_1 &= y_2 \\
     \dot{y}_2 &= \\
     \dot{y}_3 &= \beta q - \beta \mu C - \beta \mu \sigma y_1 \sqrt{y_3 + B} \\
     \dot{B} &= \frac{\pi}{2} \frac{\alpha}{\gamma} C - \sqrt{2} \dot{y}_3 + \frac{\sqrt{2}}{2} \delta^2 y_1\,^2 \dot{y}_3 + \sqrt{2} \delta^2 y_1 y_2 y_3 + \frac{\pi}{2} \frac{\Lambda \delta}{\alpha} y_1 B \sqrt{y_3 + B} - \frac{\pi \sqrt{2}}{4} \Lambda B C \\
-    \dot{C} &= \frac{\pi}{2} \Lambda \sigma y_1 C \sqrt{y_3 + B}
+    \dot{C} &=
+    \textcolor{Blue}{- \frac{\pi}{2} \frac{1}{\alpha \gamma} B}
+    \textcolor{Blue}{- \frac{\pi \sqrt{2}}{4} \frac{\alpha \sigma}{\gamma} \frac{y_1 C}{\sqrt{y_3 + B}} }
+    \textcolor{Blue}{- \sqrt{2} \sigma y_2 \sqrt{y_3 + B} }
+    \textcolor{Blue}{+ \frac{2-\sqrt{2}}{2} \sigma \frac{y_1 \dot{y}_3}{\sqrt{y_3 + B}} }
+    \textcolor{Blue}{- \sigma \delta^2 y_1\,^2 y_2 \frac{y_3}{\sqrt{y_3 + B}} }
+    \\ & \quad %newline
+    \textcolor{Blue}{- \frac{1}{2} \sigma \delta^2 y_1\,^2 \frac{y_1 \dot{y}_3}{\sqrt{y_3 + B}} }
+    + \frac{\pi}{2} \Lambda \sigma y_1 C \sqrt{y_3 + B}
     + \frac{\pi \sqrt{2}}{4} \Lambda C^2
-    - \frac{\pi}{2} \frac{1}{\alpha \gamma} B
-    - \frac{\pi \sqrt{2}}{4} \frac{\alpha \sigma}{\gamma} \frac{y_1 C}{\sqrt{y_3 + B}}
     + \frac{\pi}{4} \Lambda \sigma \frac{y_1 B C}{\sqrt{y_3 + B}}
-    \\ & \quad %newline
     + \frac{\pi \sqrt{2}}{4} \Lambda \sigma^2 y_1\,^2 B
-    - \sqrt{2} \sigma y_2 \sqrt{y_3 + B}
-    - \sigma \delta^2 y_1\,^2 y_2 \sqrt{y_3 + B}
-    + \frac{2-\sqrt{2}}{2} \sigma \frac{y_1 \dot{y}_3}{\sqrt{y_3 + B}} 
     \\ & \quad %newline
-    + \frac{1}{2} \sigma \delta^2 y_1\,^2 \frac{y_1 \dot{y}_3}{\sqrt{y_3 + B}}
     + \frac{\sqrt{2}}{2} \textcolor{Red}{L} \, \phi \left( \sqrt{2} \sigma y_1 \sqrt{y_3 + B} + C \right) \left| \sqrt{2} \sigma y_1 \sqrt{y_3 + B} + C \right|
 \end{split}
 \end{equation}
 
-
+\newpage
 \subsection{Parameter Values}
 
 Typical values for the parameters are given in the table below. Some from \cite{Hos2016DynamicService}.
 
 \begin{table}[ht]
     \centering
-    \begin{tabular}{c|c|c|c}
-        Symbol & Description & Value & Units \\ \hline \hline
+    \begin{tabular}{c|l|r|l}
+        \large \textbf{Symbol} &  \multicolumn{1}{c}{\large \textbf{Description}} & \multicolumn{1}{|c}{\large \textbf{Value}} & \multicolumn{1}{|c}{\large \textbf{Units}} \\ \hline \hline
+        \multicolumn{4}{c}{\textbf{Dimensional}} \\ \hline
         $m_v$ & Main valve piston mass & ? & \si{kg} \\ \hline % NEED TO GET
         $c_v$ & Main valve damping coefficient & ? & \si{kg.s^{-1}} \\ \hline % NEED TO GET
         $C_d$ & Fluid discharge coefficient & ? & - \\ \hline % Alans paper uses 0.32
@@ -262,8 +338,45 @@ Typical values for the parameters are given in the table below. Some from \cite{
         $V$ & Tank volume & 10.6 & \si{m^3} \\ \hline % Valve 1E2 from \cite{Hos2016DynamicService}
         $r$ & Coefficient of restitution & 0.9 & - \\ \hline % r = 0.8 in \cite{Hos2016DynamicService}
         $\lambda$ & Pipe friction coefficient (Darcy-Weisbach) & ? & - \\ \hline % I should be able to find from the Moody chart
-        $L$ & Length of pipe & ? & \si{m} \\ % could estimate this parameter easily
+        $L$ & Length of pipe & ? & \si{m} \\ \hline \hline % could estimate this parameter easily
+        \multicolumn{4}{c}{\textbf{Dimensionless}} \\ \hline
+        $\gamma$ & Pipe length parameter & ? & - \\ \hline
+        $q$ & Mass flow rate ratio & 0 -- 1 & - \\ \hline
+        $\Lambda$ & \textit{Convective importance} & ? & - \\ \hline
+        $\alpha$ & Velocity to sonic velocity ratio & ? & - \\ \hline
+        $\delta$ & Discharge to pipe area & ? & - \\ \hline
+        $\beta$ & Tank size parameter & ? & - \\ \hline
+        $\mu$ & Mass flow rate ratio & ? & - \\ \hline
+        $\sigma$ & Velocity to mass flow rate parameter & ? & - \\ \hline
+        $\phi$ & Friction factor & ? & - \\
     \end{tabular}
     \caption{Typical parameter values for a Pilot-Operated PRV used for the Valve Closing QWM.}
     \label{tab: ValveClosingQWMParameterValues}
 \end{table}
+
+\newpage
+\begin{itemize}
+    \item Explain premise of model i.e. assume a quarter wave
+    \item Subsection:
+    \begin{itemize}
+    \item Explain why can't neglect dynamic/static pressure conversion
+    \item Explain full boundary conditions and why neglect the C(t) (to make $p_0$ and $v_L$ nice)
+    \end{itemize}
+    \item Subsection:
+    \begin{itemize}
+    \item Talk through derivation with B(t) included in red
+    \end{itemize}
+    \item Subsection:
+    \begin{itemize}
+    \item Explain why neglected \textcolor{Red}{B(t)} term
+    \item Write out full set of 5 ODEs
+    \item Calculate $\ddot{C}(t)$ and show quarter-wave frequency
+    \end{itemize}
+    \item Subsection:
+    \begin{itemize}
+    \item Non-dimensionalisation
+    \end{itemize}
+\end{itemize}
+
+\newpage
+\input{Sections/Archive/OldQuarterWaveDerivation.tex}
