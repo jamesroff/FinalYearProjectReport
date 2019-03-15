@@ -4,6 +4,9 @@
 { \frac{\mathrm{d}{#2}}{\mathrm{d}{#3}} }
 { \frac{\mathrm{d}^{#1}{#2}}{\mathrm{d} {#3}^{#1} }} }
 
+\newcommand{\dash}[1]{#1{'}}
+\newcommand{\ddash}[1]{#1{''}}
+
 \newcommand{\pdiff}[3][]{\IfNoValueTF{#1}
 { \frac{\partial{#2}}{\partial{#3}} }
 { \frac{\partial^{#1} {#2}}{\partial {#3}^{#1}} } }
@@ -22,8 +25,12 @@
 \newcommand{\Rational}{\mathbb{Q}}
 \newcommand{\Integer}{\mathbb{Z}}
 \newcommand{\Natural}{\mathbb{N}}
+\newcommand{\Order}[1]{\mathcal{O}\left( #1 \right)}
 
 \definecolor{James}{RGB}{0, 40, 114}
 \definecolor{Red}{RGB}{255,0,0}
 \definecolor{Green}{RGB}{0,255,0}
 \definecolor{Blue}{RGB}{0,0,255}
+
+\newcommand{\power}[1]{^{\;#1}}
+%\newcommand{\power}[1]{{}^{#1}}

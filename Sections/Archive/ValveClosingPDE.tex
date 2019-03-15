@@ -1,12 +1,12 @@
-\section{Valve Closing with Piping PDEs}
+\section{Valve Closing with Piping PDEs} \label{sec: PDE}
 
 Assuming that the temperature remains constant, the density is only a function of the pressure. Additionally, $p = a^2 \rho$ from $\frac{p}{\rho}$ being constant and $\diff{p}{\rho} = a^2$. This allows a PDE describing the fluid behaviour which is identical to in~\cite{Hos2015ModelPipe} of
 
-\begin{equation} \label{eq: FluidPDE}
+\begin{equation*}
 \begin{split}
     \pdiff{p}{t} + v \pdiff{p}{\eta} + \rho a^2 \pdiff{v}{\eta} &= 0 \\
     \pdiff{v}{t} + v \pdiff{v}{\eta} + \frac{1}{\rho} \pdiff{p}{\eta} &= \lambda \frac{L}{D} v \left| v \right|
 \end{split}
-\end{equation}
+\end{equation*}
 
-\textbf{Numerically solve this PDE with appropriate boundary conditions.}
+\textbf{Numerically solve this PDE with appropriate boundary conditions.} \textcolor{Red}{- No longer going to do this!}
