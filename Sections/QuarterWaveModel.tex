@@ -1,8 +1,11 @@
 \section{Valve Closing with Inlet piping}
 
-Now, the effect of the fluid within the inlet piping between the pressure tank and pilot-operated PRV will be considered. Unlike previously in \cref{sec: PDE} where a system of partial differential equations is used to describe the fluid, it is assumed the fluid behaviour is described by a standing quarter acoustic wave. This follows an identical method to that used to calculate an analytic stability boundary for the simpler direct spring-operated PRV~\cite{Hos2015ModelPipe,Hos2015DynamicModelling,Hos2016DynamicService,Hos2017DynamicRecommendations}. As in \cref{sec: Prog}, the dynamics of the valve will still only be considered while the main valve is closing.
+Now, the effect of the fluid within the inlet piping between the pressure tank and pilot-operated PRV will be considered.
+Rather than studying a full system of partial differential equations describing the fluid within the pipework, the fluid is assumed to be described by a standing quarter acoustic wave.
+%Unlike previously in \cref{sec: PDE} where a system of partial differential equations is used to describe the fluid, it is assumed the fluid behaviour is described by a standing quarter acoustic wave.
+This follows an identical method to that used to calculate an analytic stability boundary for the simpler direct spring-operated PRV~\cite{Hos2015ModelPipe,Hos2015DynamicModelling,Hos2016DynamicService,Hos2017DynamicRecommendations}. As in \cref{sec: Prog}, the dynamics of the valve will still only be considered while the main valve is closing.
 
-The pressure and velocity of the fluid within the pipework are functions of time and distance along the pipe. Hence, the fluid properties within the pipe will be described by $p(\eta,t)$ and $v(\eta,t)$ respectively. As before, the fluid is considered only slightly compressible. The slightly compressible nature of the fluid is taken into account while obtaining \cref{eq: FluidPDE}. Hence, the fluid may now be considered incompressible as before, so the density of the fluid is constant.
+The pressure and velocity of the fluid within the pipework are functions of time and distance along the pipe. Hence, the fluid properties within the pipe will be described by $p(\eta,t)$ and $v(\eta,t)$ respectively. As before, the fluid is considered only slightly compressible. The slightly compressible nature of the fluid is taken into account while obtaining \cref{eq: FluidPDE}. Hence, the fluid may now be considered incompressible as before, so the density of the fluid is constant. \textcolor{Red}{REWORD!}
 
 First, the dynamics of the main valve piston must be found, which will depend upon the fluid within the inlet piping. As before in \cref{sec: Prog}, the three forces acting on the piston are the pipe pressure, dome pressure and change of momentum of the fluid. These three forces acting on the piston depend upon the fluid properties within the pipe. Similarly, the differential equation describing the dynamics for the pressure in the tank can be expressed in terms of the same fluid properties. Hence, the differential equations describing the main piston motion and pressure within the tank are given by
 
@@ -64,7 +67,7 @@ As $C(t)$ is a small fluctuation, a binomial expansion may be applied to the squ
 
 Additionally, both the pressure and velocity become functions of both $B$ and $C$. When calculating $\pdiff{p}{t}$ and $\pdiff{v}{t}$ to ensure \cref{eq: FluidPDE} is satisfied, a system of two ordinary differential equations for $\dot{B}$ and $\dot{C}$. However, as both $p(\eta,t)$ and $v(\eta,t)$ are functions of $B$ and $C$, both ordinary differential equations are in terms of $\dot{B}$ and $\dot{C}$. As the system is linear for $\dot{B}$ and $\dot{C}$, this could be solved, but would involve algebra too long to be of use for further analysis.
 
-The most general simplification is to neglect the fluctuations in velocity, $C(t) \approx 0$, when calculating the boundary conditions. As $C(t)$ represents a small amplitude oscillation, the assumption that $v_L(t) + C(t) \approx v_L(t)$ is valid. However, if large amplitude oscillations occur, then the boundary conditions will no longer be satisfied. As this model is only interested in the onset of a flutter instability, this is an acceptable assumption. By allowing $C(t) \approx 0$, the boundary conditions can be solved to give
+The most general simplification is to neglect the fluctuations in velocity, $C(t) \approx 0$, when calculating the boundary condition given by \cref{eq: QWMBoundary1}. As $C(t)$ represents a small amplitude oscillation, the assumption that $v_L(t) + C(t) \approx v_L(t)$ is valid. However, if large amplitude oscillations occur, then the boundary conditions will no longer be satisfied. As this model is only interested in the onset of a flutter instability, this is an acceptable assumption. By allowing $C(t) \approx 0$, the boundary conditions can be solved to give
 ~
 \begin{equation} \label{eq: QWMPresAndVelBound}
     p_0(t) = p_t(t) - \frac{\zeta^2 x^2}{2 A_p\power{2}} \left( p_t(t) \textcolor{Red}{+ B(t)} \right)
@@ -84,24 +87,48 @@ The expression for $v_L(t)$ is identical to that for the direct spring-operated 
 
 When the quarter wave is not present, namely when $B(t) = C(t) = 0$, the equations reduce to the original equations for the valve closing model, \cref{eq: ClosingDiffEqFull}, presented in \cref{sec: Prog}. Now, it becomes clear why the ideal acceleration of the fluid at the tank end must be included. Neglecting this acceleration, the equation of motion is not identical to the previously system. This is as the force on the valve due to the change in momentum is counteracted by the decrease in fluid static pressure due to the fluid flow. Neglecting the conversion between dynamic and static conversion hence overestimates the force acting on the valve by a factor of 2.
 
-\subsection{Quarter-Wave Derivation} \label{sec: QWM Derivation}
+\subsection{Quarter-Wave Derivation} \label{subsec: QWM Derivation}
 
-Assuming that the temperature remains constant, the density is only a function of the pressure. Additionally, $p = a^2 \rho$ from $\frac{p}{\rho}$ being constant and $\diff{p}{\rho} = a^2$. This allows a PDE describing the fluid behaviour which is identical to in~\cite{Hos2015ModelPipe} of
+The fluid within the inlet piping is a spatio-temporal function. The distance along the pipe will be described by $\eta$, such that $\eta = 0$ at the tank end of the pipe. \textcolor{Red}{This can be seen in \cref{fig: Diagram}.} The equations of motion for the fluid consist of the standard 1D unsteady equation for continuity and conversation of momentum and energy. These are given by
 
+\begin{equation*}
+    \pdiff{}{t} \begin{pmatrix}
+    \rho \\ \rho v \\ \rho e
+    \end{pmatrix} +
+    \pdiff{}{\eta} \begin{pmatrix}
+    \rho v \\ \rho v^2 + p \\ \rho v e + p v
+    \end{pmatrix} =
+    \begin{pmatrix}
+    0 \\ \rho \lambda \frac{v \left| v \right|}{2 D} \\ 0
+    \end{pmatrix} \, .
+\end{equation*}
+
+The density, velocity, pressure and internal energy along the length of the pipe are given by $\rho(\eta,t)$, $v(\eta,t)$, $p(\eta,t)$ and $e(\eta,t)$ respectively. The non-conservative force represents the frictional loss through the inlet piping, for which $\lambda$ is a friction factor and again $D$ is the diameter of the pipe. However, a number of assumptions will now be made to simplify the partial differential equations describing the fluid.
+
+Firstly, as the working fluid is a liquid, it can be assumed that the temperature of the fluid remains constant as the fluid is very close to incompressible. Hence, the energy equation is not required to be considered. Additionally, as the temperature is constant, the density is only a function of the pressure. Hence, $\frac{p}{\rho}$ is a conserved quantity. Also, the relationship between the pressure and density can be written in terms of the sonic velocity, $a$, using
+~
+\begin{equation*}
+    \diff{p}{\rho} = a^2 \, .
+\end{equation*}
+
+Applying each of these assumption allows use to simplify the continuity and momentum equations to
+~
 \begin{equation} \label{eq: FluidPDE}
 \begin{split}
     \pdiff{p}{t} + v \pdiff{p}{\eta} + \rho a^2 \pdiff{v}{\eta} &= 0 \\
-    \pdiff{v}{t} + v \pdiff{v}{\eta} + \frac{1}{\rho} \pdiff{p}{\eta} &= \lambda \frac{L}{D} v \left| v \right|
+    \pdiff{v}{t} + v \pdiff{v}{\eta} + \frac{1}{\rho} \pdiff{p}{\eta} &=  \frac{\lambda}{D} v \left| v \right|
 \end{split}
 \end{equation}
 
-Now, the ordinary differential equations which describe the dynamics of the quarter-wave will be derived. The partial differential equation given by \cref{eq: FluidPDE} must be satisfied at all points along the pipe. A collocation technique will be used, ensuring the fluid equations are satisfied at a single location at the mid-point of the pipe, where $\eta = \frac{L}{2}$. At this point, $\fun{sin}{2 \pi \frac{\eta}{4L}} = \fun{cos}{2 \pi \frac{\eta}{4L}} = \frac{1}{\sqrt{2}}$, so the entire equation is rationalised by multiplied by $\sqrt{2}$. Hence, using the assumed pressure and velocity distributions from \cref{eq: PressVelDist} requires that
+As we may expect, the PDE describing the fluid behaviour is identical to for the direct spring-operated PRV case~\cite{Hos2015ModelPipe}.
+
+Now, the partial differential equation given in \cref{eq: FluidPDE} will be expressed as a system of ordinary differential equations using the collocation technique. These ordinary differential equations will describe the dynamics of the quarter-wave. The partial differential equation given by \cref{eq: FluidPDE} must be satisfied at all points along the pipe. The collocation technique will be used, ensuring that the fluid equations are satisfied at a single location, the mid-point of the pipe where $\eta = \frac{L}{2}$. At this point, $\fun{sin}{2 \pi \frac{\eta}{4L}} = \fun{cos}{2 \pi \frac{\eta}{4L}} = \frac{1}{\sqrt{2}}$, so the entire equation is rationalised by multiplied by $\sqrt{2}$. Hence, using the pressure and velocity distributions from \cref{eq: PressVelDist} requires that
 ~
 \begin{equation*}
 \begin{split}
     \sqrt{2} \dot{p}_0(t) + \dot{B}(t) + \frac{\pi \sqrt{2}}{4 L} B(t) \left( \sqrt{2} v_L(t) + C(t) \right) &= a^2 \rho \frac{\pi}{2L} C(t) \, , \\
     \sqrt{2} \dot{v}_L(t) + \dot{C}(t) - \frac{\pi \sqrt{2}}{4 L} C(t) \left( \sqrt{2} v_L(t) + C(t) \right) &= - \frac{1}{\rho} \frac{\pi \sqrt{2}}{2 L} B(t) \\
-    &\qquad + \lambda \frac{L}{2D} \left( \sqrt{2} v_L(t) + C(t) \right) \left| \sqrt{2} v_L(t) + C(t) \right| \, .
+    &\qquad + \frac{\lambda}{2D} \left( \sqrt{2} v_L(t) + C(t) \right) \left| \sqrt{2} v_L(t) + C(t) \right| \, .
 \end{split}
 \end{equation*}
 
@@ -150,7 +177,7 @@ Similarly, the second equation may be re-arranged to find an ordinary differenti
     \textcolor{Red}{+ \sqrt{2} \zeta^2 x^2}} \right)
     \\ & \quad % linebreak
     \textcolor{Blue}{
-    + \lambda \frac{L \sqrt{2}}{4 D} \left( \sqrt{2} v_L + C \right) \left| \sqrt{2} v_L + C \right| } \, .
+    + \frac{\lambda \sqrt{2}}{4 D} \left( \sqrt{2} v_L + C \right) \left| \sqrt{2} v_L + C \right| } \, .
 \end{split}
 \end{equation}
 
@@ -181,7 +208,7 @@ The terms are coloured in the same way as before. Notably, the equation for $\do
 %\newpage
 %\input{Sections/Archive/OldQuarterWaveDerivation.tex}
 
-\subsection{Final Equations} \label{sec: QWMFinalDimensional}
+\subsection{Final Equations} \label{subsec: QWMFinalDimensional}
 
 % Explain why neglected \textcolor{Red}{B(t)} term
 % Write out full set of 5 ODEs
@@ -224,7 +251,7 @@ The additional bonus of this simplification is the differential equations remain
     \right)
     \\ & \quad % linebreak
     \textcolor{Blue}{
-    + \lambda \frac{L \sqrt{2}}{4 D} \left( \sqrt{2} v_L + C \right) \left| \sqrt{2} v_L + C \right| }
+    + \frac{\lambda \sqrt{2}}{4 D} \left( \sqrt{2} v_L + C \right) \left| \sqrt{2} v_L + C \right| }
     \, .
 \end{split}
 \end{equation}
@@ -273,7 +300,7 @@ This is a damped linear oscillator, which has a natural frequency of $\omega = \
 
 Using the dimensionless parameters defined in \cref{tab: ValveClosingQWMParameterValues} and the equilibrium of $y_1 = 1$ and an arbitrary tank pressure of $y_3 = 10$ ($p_t = 10 \, \si{bar \, g}$) gives a damping coefficient of $\zeta \approx 9.942$. As $\zeta \gg 1$, the system is heavily overdamped. The significance of this result will be discussed further \textbf{LATER}. Notably, this damping is small if the valve is nearly closed, suggesting oscillations are more likely to occur for a nearly closed valve.
 
-\subsection{Non-dimensionalisation}
+\subsection{Non-dimensionalisation} \label{subsec: QWMNonDim}
 
 As before in \cref{sec: Prog}, it is useful to introduce a dimensionless form of the quarter-wave model. However, a slightly different choice of dimensionless variables is used. This is to allow the quarter-wave model to be studied in terms of a pipe length parameter, $\gamma$, and dimensionless mass flow rate, $q$. These parameters have been identified as important parameters for instability in spring-operated PRVs, with $\gamma$ and $q$ defined later in this section being consistent with the previous research~\cite{Hos2016DynamicService}. Hence, the reference distance, pressure and time used are given by
 ~
@@ -424,7 +451,7 @@ This dimensionless equation uses several dimensionless parameters, most of which
     \end{tabular}
 \end{equation*}
 
-As previously mentioned in \cref{sec: QWMFinalDimensional}, an important parameter which appears is the ratio of discharge area to pipe area. This introduces a dimensionless parameter which does not appear in the spring-operated case, which is $\delta$. This can be simplified using the previous expressions for $\zeta$, $x_{ref}$ and $A_p$ to give
+As previously mentioned in \cref{subsec: QWMFinalDimensional}, an important parameter which appears is the ratio of discharge area to pipe area. This introduces a dimensionless parameter which does not appear in the spring-operated case, which is $\delta$. This can be simplified using the previous expressions for $\zeta$, $x_{ref}$ and $A_p$ to give
 
 \begin{equation*}
     \delta = \frac{\zeta x_{ref}}{A_p} = \sqrt{\frac{2 \left( A_v - A_p \right)}{A_p}} \, .
@@ -508,7 +535,7 @@ As shown by the fluid behaviour for the spring-operated case~\cite{Hos2015ModelP
 \end{split}
 \end{equation}
 
-We now try to express the quarter-wave model as a system of two second-order coupled oscillators. Hence, the second derivative, $\ddash{\tilde{B}\,}$, must be calculated by taking the time derivative of $\dash{\tilde{B}\,}$. This means that
+The quarter-wave model will now be expressed as a system of two second-order coupled oscillators. Hence, the second derivative, $\ddash{\tilde{B}\,}$, must be calculated by taking the time derivative of $\dash{\tilde{B}\,}$. This means that
 ~
 \begin{equation*}
     \ddash{\tilde{B}\,} = \frac{\pi}{2} \frac{\alpha}{\gamma} \dash{\tilde{C}\,} - \sqrt{2} \, \ddash{y_3} + \frac{\sqrt{2}}{2} \, \delta^2 \left( 2 \, y_1 \, y_2 \, \dash{y_3} + y_1\power{2} \, \ddash{y_3} \right) + \sqrt{2} \, \delta^2 \left( y_2\power{2} \, y_3 + y_1 \, \dash{y_2} \, y_3 + y_1 \, y_2 \, \dash{y_3} \right) \, .
@@ -531,7 +558,6 @@ Now, the pressure at which the tank is kept at is $p_0$. For the case that the t
     \sqrt{p_0} = \frac{q}{\sigma \mu} \, .
 \end{equation*}
 
-\newpage
 Now, \cref{eq: QWMOscillatorB} will be linearised around the equilibrium given by $p = p_0$, $y_1 = 1$ and $\tilde{B} = \tilde{C} = 0$. Also, the second-order differential equation for the main valve piston lift ($y_1$) is linearised around the same equilibrium, using the new variable, $Y = y_1 - 1$. Hence, the two second-order linearised oscillator equations for $Y$ and $\tilde{B}$ are given by
 ~
 \begin{equation} \label{eq: YandBOscil}
@@ -565,13 +591,8 @@ This is a second-order linear oscillator with a damping force equal to the $\das
 
 As $\omega_p\power{2} > 0$ and $\sqrt{p_0} > 0$, this inequality can never be satisfied so a flutter instability will not occur. However, this makes two unsatisfactory assumptions. Firstly, the non-linear system has been linearised around the unstable equilibrium. It was shown in \cref{sec: Prog} that this equilibrium is unstable, so the valve closes along the unstable manifold of the system. Hence, the linearisation will only be valid close to the equilibrium, not further from the equilibrium where the valve is almost closed. \textcolor{Red}{This is particularly problematic as chatter instability is most likely to occur at low flow rates when the valve is nearly closed for spring-operated PRVs~\cite{Hos2016DynamicService}.}
 
-%%%%%%%%%%%%%%%%%%%%
-%% GOT UP TO HERE %%
-%%%%%%%%%%%%%%%%%%%%
-
 Secondly, it is assumed that $\delta = 0$, which is an unrealistic assumption. However, this analysis does shows some important features. Firstly, the quarter wave frequency of the pipe is clearly important as forms the natural frequency of the pressure oscillations. Additionally, this shows that if $\delta^2$ terms are negligible, i.e. $A_v \approx A_p$, then the valve will never undergo a chatter instability while close to fully open. Now, the analysis will repeated including the effects of $\Order{\delta^2}$ terms.
 
-\newpage
 When the same forced response for $Y(\tau)$ from \cref{eq: YForced} is substituted into the expression for $\ddash{\tilde{B}}$ from \cref{eq: YandBOscil} without neglecting $\Order{\delta^2}$ terms, we find
 ~
 \begin{equation*}
@@ -652,19 +673,19 @@ This suggests that a high mass flow rate through the pilot-operated PRV will cre
 
 
 
-\newpage
-Dimensionless parameter values for Pilot 2J3 valve
+% \newpage
+% Dimensionless parameter values for Pilot 2J3 valve
 
-\begin{tabular}{c|c}
-    Parameter & Value \\ \hline
-    $\gamma$ & 0.1826 \\
-    $q$ & - \\
-    $\Lambda$ & 0.0086 \\
-    $\alpha$ & 12.4099 \\
-    $\delta$ & 1 \\
-    $\kappa$ & 0 \\
-    $\beta$ & 0.3227 \\
-    $\mu$ & 0.1290 \\
-    $\sigma$ & 7.1652 \\
-    $\phi$ & 0.0049 \\
-\end{tabular}
+% \begin{tabular}{c|c}
+%     Parameter & Value \\ \hline
+%     $\gamma$ & 0.1826 \\
+%     $q$ & - \\
+%     $\Lambda$ & 0.0086 \\
+%     $\alpha$ & 12.4099 \\
+%     $\delta$ & 1 \\
+%     $\kappa$ & 0 \\
+%     $\beta$ & 0.3227 \\
+%     $\mu$ & 0.1290 \\
+%     $\sigma$ & 7.1652 \\
+%     $\phi$ & 0.0049 \\
+% \end{tabular}

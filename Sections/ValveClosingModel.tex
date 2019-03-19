@@ -68,6 +68,16 @@ where $a$ is the sonic velocity, $V$ is the volume of the tank, and $\dot{m}_{in
 
 Hence, the system of differential equations representing the main valve closing is given by \cref{eq: CompDiffEqValve,,eq: DiffEqPres}. These form a nonlinear system of differential equations, which will be now be analysed.
 
+\subsection{Valve Collisions} \label{sec: ValveCollision}
+
+The differential equations given by \cref{eq: CompDiffEqValve,eq: DiffEqPres} describe the dynamics of the valve. However, they do not describe when a collision occurs between the main valve piston and the upper and lower stops. These collisions are described by the impact law,
+~
+\begin{equation*}
+    \dot{x}^+ = - r \, \dot{x}^- \, ,
+\end{equation*}
+
+with $\dot{x}^-$ and $\dot{x}^+$ being the velocity of the valve immediately before and after the impact respectively. Also, $r$ is a coefficient of restitution, were $r < 1$ to represent the dissipation of some energy during the collision. This impact law must be applied to both the upper and lower stops, which will be referred to as $x_u$ and $x_l$ respectively. Hence, an impact is considered to occur at time $t$ if $x(t) = x_u$ or $x(t) = x_l$.
+
 \subsection{Equilibrium}
 
 % Calculating the equilibrium of the system gives a quadratic in $x$, which when solved gives
