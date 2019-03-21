@@ -1,7 +1,7 @@
-\subsection{Valve Closing Simulations}
+\section{Valve Closing Simulations} \label{sec: ClosingSimulation}
 
 Now the dynamics of the system of dimensionless differential equations, \cref{eq: Non-DimODE}, will be studied using numerical simulations. This is done using the MATLAB in-built function \textit{ode45}, which uses a 4th order Runge-Kutta method with a 5th order Runge-Kutta corrector to minimise error~\cite{Shampine1997TheSuite}. The simulation of when the valve is slightly perturbed from the equilibria in the negative $x$ direction is shown in \cref{fig:TimeTrajec}. As predicted from the stability analysis, the perturbation grows exponentially until it reaches the low valve stop. At this point, a series of collisions occur which are modelled by considering the impact law given in \cref{sec: ValveCollision}. The collision is implemented by stopping the simulation when one occurs, and using the current values for $x$, $p_t$ and $\dot{x}^+$ from the impact law to form the initial conditions to restart the simulation.
-
+~
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=0.7\textwidth]{Figures/Example/PositionTimeTrajectory.png}
@@ -42,7 +42,7 @@ Although the valve position and velocity both tend towards zero, the tank pressu
 %     \label{fig:EigenvectorPhase}
 % \end{figure}
 
-\subsection{Low flow rates}
+\section{Low flow rates}
 
 As has been previously identified, for low flow rates were $\dot{m}_{in} \rightarrow 0$, the limit of $\alpha \rightarrow 0$ and $\beta \rightarrow \infty$ occurs. Focusing on only the limit of $\alpha \rightarrow 0$, the eigenvalues of the linearised form of \cref{eq: Non-DimODE} around the equilibrium are
 ~ % eigenvalues
@@ -138,9 +138,12 @@ In fact, as $\alpha \rightarrow 0$ and $\beta \gg 1$, the equation $1 - \tilde{x
 % %    \caption{}
 % \end{figure}
 
-\subsection{Fixed Tank Pressure}
+%\newpage
+\section{Fixed Tank Pressure}
 
-One interesting case is when the mass flow rate into the tank, $\dot{m}_{in}$, is allowed to vary such that the tank pressure remains constant. As both $\alpha$ and $\beta$ are functions of $\dot{m}_{in}$ in \cref{eq: Non-DimODE}, this set of dimensionless equations is not useful for the purpose of constant tank pressure. Instead, a new set of dimensionless equations will be introduced. These use the valve equilibrium lift as the reference distance and ambient pressure as the reference pressure. Hence, the reference dimensions are given by
+One interesting case is when the mass flow rate into the tank, $\dot{m}_{in}$, is allowed to vary such that the tank pressure remains constant. As both $\alpha$ and $\beta$ are functions of $\dot{m}_{in}$ in \cref{eq: Non-DimODE}, this set of dimensionless equations is not useful for the purpose of constant tank pressure. Instead, a new set of dimensionless equations will be introduced. These use the valve equilibrium lift as the reference distance and ambient pressure as the reference pressure.
+
+Hence, the reference dimensions are given by
 ~
 \begin{equation*}
 \begin{split}
@@ -184,11 +187,23 @@ It is now clear why such a non-dimensionalisation was chosen. For the tank press
 \end{equation*}
 
 Now, the tank pressure $\tilde{p}$ is a fixed parameter that the tank is held at. Hence, the mass flow into the tank must be directly proportional to the valve lift.
+~
+% POSSIBLY INCLUDE TWO GRAPHS OF $\tilde{x}$ AND $q$?! MAYBE SET MAXIMUM OF $q = 1$ AND SHOW PRESSURE AS VALVE CLOSING
+% 
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.49\textwidth]{Figures/FixedPressure/Position.png}
+    \includegraphics[width=0.49\textwidth]{Figures/FixedPressure/FlowRate.png}
+    \includegraphics[width=0.49\textwidth]{Figures/FixedPressure/Velocity.png}
+    \includegraphics[width=0.49\textwidth]{Figures/FixedPressure/Pressure.png}
+    \caption{Simulation when maximum flow rate into the tank is $q = 2$}
+    \label{fig: FixPres}
+\end{figure}
 
-POSSIBLY INCLUDE TWO GRAPHS OF $\tilde{x}$ AND $q$?! MAYBE SET MAXIMUM OF $q = 1$ AND SHOW PRESSURE AS VALVE CLOSING
+\textcolor{Red}{WRITE A PARAGRAPH ABOUT THIS GRAPH TO FINISH SECTION!}
 
-%\newpage
-\subsection{Impact Dynamics} \label{sec: ImpactDynamics}
+\newpage
+\section{Impact Dynamics} \label{sec: ImpactDynamics}
 
 Now some more thorough consideration of the collisions with either the upper or lower stop will be considered. This is of particular use to simulate the dynamics of the valve between the first collision with the lower stop until the valve remains fully closed. Hence, if the pilot valve dynamics are also considered, a simulation would be able to reproduce the valve closing and then re-opening which is useful to study if cycling may occur. \Cref{fig: ImpactPos} shows the simulation of typical dynamics for a collision with the upper stop. The following analysis can be repeated for a collision with the lower stop, however this is almost identical so will not be considered.
 ~
@@ -214,6 +229,9 @@ An important use of this series is to calculate the time at which the final impa
 \end{equation*}
 
 Now we must find if the series is a geometric series for which a common ratio $r$ exists and is constant for all terms, such that $T_i = T_0 \cdot r^i$ and each successive term is the previous term multiplied by the common ratio. \Cref{fig: ImpactOtherRatio} shows how the ratio between successive terms of $T_i$ changes as more impacts occur. It can be seen that this common ratio $r$ is nearly constant over all impacts, however some small variation does exist.
+
+\newpage
+If the initial common ratio, i.e. $r = \sfrac{T_2}{T_1}$, is used to predict the closing time assuming the time between collisions follows a geometric series, the time at which the valve finally closes is greatly underestimated. This can be seen in \cref{fig: ImpactPos} where the red vertical dashed line represents the time at which the valve is predicted to be fully closed. Clearly, the simulated oscillations occur past this point. This is expected from \cref{fig: ImpactOtherRatio}, where the initial common ratio is much lower than the future ratios.
 ~
 \begin{figure}[ht]
     \centering
@@ -230,8 +248,6 @@ Now we must find if the series is a geometric series for which a common ratio $r
     \caption{Ratio between time of each impact occurring and the time of each impact.}
     \label{fig: ImpactOther}
 \end{figure}
-
-If the initial common ratio, i.e. $r = \sfrac{T_2}{T_1}$, is used to predict the closing time assuming the time between collisions follows a geometric series, the time at which the valve finally closes is greatly underestimated. This can be seen in \cref{fig: ImpactPos} where the red vertical dashed line represents the time at which the valve is predicted to be fully closed. Clearly, the simulated oscillations occur past this point. This is expected from \cref{fig: ImpactOtherRatio}, where the initial common ratio is much lower than the future ratios.
 
 Now we consider the case for which the simulation has modelled the collisions until numerical errors prevent further simulation. It can be seen from \cref{fig: ImpactOtherRatio} that the common ratio $r$ does eventually tend towards a constant value. This means as the collisions continue to occur, the time between each impact appears to tends towards a geometric series. 
 

@@ -1,4 +1,4 @@
-\section{Literature Review}
+\chapter{Literature Review}
 
 \vspace{-10pt}
 % don't need to look at since
@@ -17,7 +17,7 @@ Later work by Hayashi demonstrates the potential of numerical simulations~\cite{
 
 Subsequent to the numerous complex CFD models, Darby derived a simple numerical simulation to recreate a spring-operated PRVs dynamics~\cite{Darby2013TheModel}. This simulation indicates how a simple system can reproduce flutter and chatter instabilities, and will be further analysed in future work. Another work by H\H{o}s, Bazs\H{o} and Champneys proposed a model simple enough for mathematical analysis to be performed~\cite{Hos2015ModelPipe}. The paper represents a shift in insight, where a simple model reproduces chatter is further analysed.
 
-%\subsection{Instability for direct spring-operated PRV}
+%\section{Instability for direct spring-operated PRV}
 
 % Talk about first paper
 The major advancement in understanding for chatter instability was contributed by H\H{o}s et al
@@ -50,7 +50,7 @@ These justify identifying flutter instability as the primary concern for valve d
 The extensive work performed for spring-operated PRVs highlights the vast understanding of the  instabilities which may occur, with little further research possible to achieve further insight.
 
 \vspace{-10pt}
-\subsection{Pilot-operated PRV}
+\section{Pilot-operated PRV}
 
 %% Talk about general work done on instability in pilot-operated PRV %%
 
@@ -69,7 +69,7 @@ The stability of a solenoid pilot-operated PRV was studied by Ye and Chen using 
 %The model uses volumes within the main valve, considering compressiblility and fluid flow between chamber, while a simplified pilot valve is an on/off system.
 Local stability using a Hurwitz criteria reveals a loss of stability of the valve closed position as the flow rate increases. Interestingly, bistability is found close to the subcritical change of stability. Perhaps this bistability suggests a hysteresis loop, similar to the hysteresis loop responsible for blow-down in a spring-operated PRV~\cite{ErdodiTheEstimation}. Numerical continuation identified a period doubling effect from period-1 to period-4 orbits as volumetric flow rate is increased, before a return to the stable equilibrium. Also, qualitative description of the effect of three parameters on the stable operating region in flow rate and supply pressures may aid in making design modifications to improve stability characteristics.
 
-%\subsection{Comparison between chatter in spring and pilot-operated PRV}
+%\section{Comparison between chatter in spring and pilot-operated PRV}
 %
 However, only recently has chatter instability been identified in pilot-operated PRVs~\cite{Allison2015TestingValves}. The experimental work identified many features similar to those for direct-operated PRVs. Firstly, identical to spring-operated PRVs, the unstable chatter occurs primarily at the quarter-wave frequency of the upstream pipework acoustic wave.
 %
@@ -84,7 +84,7 @@ Finally, the chatter instability occurs most often during the valve closing for 
 
 
 
-% \subsection{Stuff 1}
+% \section{Stuff 1}
 % A recent mathematical model was derived, and both Hopf and Grazing bifurcations were found~\cite{LicskoNonlinearValve}. The frequency of the oscillations arising from the Hopf bifurcation lies close to the natural frequency of the mass-spring system, so most likely correspond to cycling. The grazing bifurcation identifies how oscillations can transition to chaos if the poppet impacts the valve. The bifurcation diagram, using flow rate into the tank, demonstrates the low amplitude oscillations developing, which transition into chaotic behaviour as the flow rate further decreases.
 
 % Continuing this work, a detailed bifurcation analysis using numerical methods was performed~\cite{Hos2012GrazingModel}. This found after the initial Hopf bifurcation creates a stable limit cycle, impacts between the valve and poppet cause period doubling towards chaotic behaviour as the mass flow rate further decreases. The chaotic behaviour was related to valve chatter, although no indication whether these oscillations are high frequency is given. By studying a two-dimensional bifurcation diagram of mass flow rate and spring pre-compression, qualitatively similar behaviour for decreasing the mass flow rate was found regardless of spring pre-compression (\textit{relate to \cite{Hos2014DynamicMechanisms}}). Also of note is a Bautin bifurcation, where the Hopf bifurcation changes from sub-critical to super-critical. This finding suggests that parameters can be chosen such that the Hopf bifurcation is super-critical, so stable oscillation occur and prevent an instant progression to chatter.
@@ -97,7 +97,7 @@ Finally, the chatter instability occurs most often during the valve closing for 
 % A set of ordinary differential equations representing the valve rigid body dynamics was proposed, which also included the fluid dynamics in the upstream pipework~\cite{Darby2013TheModel}. A method equivalent to a local stepwise linearisation to solve them was outlined. Three different time trajectories are shown, including one where large amplitude oscillations occur which may be valve chatter. This demonstrates that including inlet pipe effects can reproduce valve chatter, although no analysis of the system was performed.
 
 % \newpage
-% \subsection{Stuff 2}
+% \section{Stuff 2}
 % To simplify the stability analysis, an effective area curve of the valve may be used, representing the equivalent area acted upon by the fluid pressure based on the valve lift. This effective area curve may be measured experimentally, but several methods of estimating for different valve geometries have been proposed~\cite{ErdodiTheEstimation}. A blow-down effect, where the valve closes at a lower pressure than when it opens, can be explained by a hysteresis loop caused by a fold bifurcation at the valve closing pressure. This fold bifurcation only occurs if, for small lifts, the effective area has a positive slope. Hence, as blow-down is desired, the valve should be designed so the effective area has positive slope for small valve lifts. Additionally, the criteria for the quarterwave instability identified in~\cite{Hos2017DynamicRecommendations} may be related to a pressure against valve lift curve, \textit{presenting an intuitive explanation of the instability}.
 
 % Further to previous models~\cite{Hos2014DynamicMechanisms,Hos2015DynamicModelling,Hos2016DynamicService,Hos2017DynamicRecommendations}, a more comprehensive comparison between modelling the full fluid dynamics and a quarterwave approximation within the upstream pipework was performed~\cite{Hos2015ModelPipe}. The creation of standing acoustic waves within the upstream pipework was noted, previously identified by \cite{Botros1997Riser-ReliefInteractions}. The quarterwave approximation was found to agree closely to the full fluid dynamics for small oscillations around the valve equilibrium. However, for large oscillations and when valve impacts occur, the quarterwave model is no longer a good approximation due to the presence of other acoustic waves which can no longer be neglected. A stability diagram for mass flow rate against upstream pipe length demonstrates close agreement between the stability boundary for both the full fluid dynamical model and quarterwave approximation. The stability diagram also agrees with previous findings that shorter pipe lengths and high flow rates are more stable \textbf{Citation to prev. work}.

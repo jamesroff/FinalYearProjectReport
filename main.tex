@@ -2,7 +2,7 @@
 
 \begin{document}
 
-%\input{Sections/Stuff/TitlePage.tex}
+\input{Sections/Stuff/TitlePage.tex}
 
 \newpage
 \begin{abstract}
@@ -11,26 +11,35 @@ Amazing abstract~\cite{Harvey2019QuantitativeMarking}.
 
 \newpage
 \tableofcontents
+\addtocontents{toc}{\protect\thispagestyle{empty}}
 
 \newpage
-%\input{Sections/problem_description.tex}
+\setcounter{page}{1}
+\input{Sections/problem_description.tex}
 
-%\input{Sections/literature_review.tex}
+\newpage
+\input{Sections/literature_review.tex}
 
-%%\input{Sections/Archive/project_plan.tex}
+%\input{Sections/Archive/project_plan.tex}
 
+\newpage
 \input{Sections/ValveClosingModel.tex}
 %\input{Sections/Archive/ValveClosingPDE.tex}
 \newpage
 \input{Sections/QuarterWaveModel.tex}
 
-\newpage
+%\newpage
 \input{Sections/QWMSimulation.tex}
 
 %\input{Sections/project_plan.tex}
 
 \newpage
+\input{Sections/FurtherWork.tex}
+\input{Sections/Conclusion.tex}
+
+\newpage
 \sloppy
+\vspace{-50pt}
 \printbibliography
 
 \end{document}

@@ -1,4 +1,4 @@
-\section{Valve Closing with Inlet piping}
+\chapter{Valve Closing with Inlet piping}
 
 Now, the effect of the fluid within the inlet piping between the pressure tank and pilot-operated PRV will be considered.
 Rather than studying a full system of partial differential equations describing the fluid within the pipework, the fluid is assumed to be described by a standing quarter acoustic wave.
@@ -30,7 +30,8 @@ The pressure and velocity distributions within the pipe will be considered to co
 \end{split}
 \end{equation}
 
-\subsection{Boundary Conditions}
+\newpage
+\section{Boundary Conditions}
 
 At $\eta = L$, the velocity must ensure mass is conserved between the flow through the pipe and the mass discharged through the main valve. At $\eta = 0$, the sum of the pressure $p(0,t)$ and the dynamic pressure is equal to the pressure within the tank. This relaxes an assumption made during previous work~\cite{Hos2015ModelPipe}, where the ideal acceleration of the fluid between the tank and the pipe is neglected. This ideal acceleration between the tank and the entrance of the inlet piping may be written as
 ~
@@ -87,7 +88,7 @@ The expression for $v_L(t)$ is identical to that for the direct spring-operated 
 
 When the quarter wave is not present, namely when $B(t) = C(t) = 0$, the equations reduce to the original equations for the valve closing model, \cref{eq: ClosingDiffEqFull}, presented in \cref{sec: Prog}. Now, it becomes clear why the ideal acceleration of the fluid at the tank end must be included. Neglecting this acceleration, the equation of motion is not identical to the previously system. This is as the force on the valve due to the change in momentum is counteracted by the decrease in fluid static pressure due to the fluid flow. Neglecting the conversion between dynamic and static conversion hence overestimates the force acting on the valve by a factor of 2.
 
-\subsection{Quarter-Wave Derivation} \label{subsec: QWM Derivation}
+\section{Quarter-Wave Derivation} \label{subsec: QWM Derivation}
 
 The fluid within the inlet piping is a spatio-temporal function. The distance along the pipe will be described by $\eta$, such that $\eta = 0$ at the tank end of the pipe. \textcolor{Red}{This can be seen in \cref{fig: Diagram}.} The equations of motion for the fluid consist of the standard 1D unsteady equation for continuity and conversation of momentum and energy. These are given by
 
@@ -122,7 +123,9 @@ Applying each of these assumption allows use to simplify the continuity and mome
 
 As we may expect, the PDE describing the fluid behaviour is identical to for the direct spring-operated PRV case~\cite{Hos2015ModelPipe}.
 
-Now, the partial differential equation given in \cref{eq: FluidPDE} will be expressed as a system of ordinary differential equations using the collocation technique. These ordinary differential equations will describe the dynamics of the quarter-wave. The partial differential equation given by \cref{eq: FluidPDE} must be satisfied at all points along the pipe. The collocation technique will be used, ensuring that the fluid equations are satisfied at a single location, the mid-point of the pipe where $\eta = \frac{L}{2}$. At this point, $\fun{sin}{2 \pi \frac{\eta}{4L}} = \fun{cos}{2 \pi \frac{\eta}{4L}} = \frac{1}{\sqrt{2}}$, so the entire equation is rationalised by multiplied by $\sqrt{2}$. Hence, using the pressure and velocity distributions from \cref{eq: PressVelDist} requires that
+Now, the partial differential equation given in \cref{eq: FluidPDE} will be expressed as a system of ordinary differential equations using the collocation technique. These ordinary differential equations will describe the dynamics of the quarter-wave. The partial differential equation given by \cref{eq: FluidPDE} must be satisfied at all points along the pipe. The collocation technique will be used, ensuring that the fluid equations are satisfied at a single location, the mid-point of the pipe where $\eta = \frac{L}{2}$. At this point, $\fun{sin}{2 \pi \frac{\eta}{4L}} = \fun{cos}{2 \pi \frac{\eta}{4L}} = \frac{1}{\sqrt{2}}$, so the entire equation is rationalised by multiplied by $\sqrt{2}$.
+
+Hence, using the pressure and velocity distributions from \cref{eq: PressVelDist} requires that
 ~
 \begin{equation*}
 \begin{split}
@@ -183,7 +186,7 @@ Similarly, the second equation may be re-arranged to find an ordinary differenti
 
 The terms are coloured in the same way as before. Notably, the equation for $\dot{C}(t)$ is a function of $\dot{B}(t)$. This contributes to the long and unwieldy equation above which is difficult to manipulate algebraically.
 
-% \subsection{Actual pressure and velocity profiles}
+% \section{Actual pressure and velocity profiles}
 
 % Neglecting the small change in velocity at the tank end of the inlet piping. The pressure and velocity distributions are:
 
@@ -208,7 +211,7 @@ The terms are coloured in the same way as before. Notably, the equation for $\do
 %\newpage
 %\input{Sections/Archive/OldQuarterWaveDerivation.tex}
 
-\subsection{Final Equations} \label{subsec: QWMFinalDimensional}
+\section{Final Equations} \label{subsec: QWMFinalDimensional}
 
 % Explain why neglected \textcolor{Red}{B(t)} term
 % Write out full set of 5 ODEs
@@ -258,7 +261,7 @@ The additional bonus of this simplification is the differential equations remain
 
 Note that this uses the expression for $v_L$ given previously in \cref{eq: QWMPresAndVelBound} to write the equation more compactly.
 
-\subsection{Quarter Wave Behaviour}
+\section{Quarter Wave Behaviour} \label{sec: QWBehaviour}
 
 We will now display the quarter-wave behaviour of \cref{eq: FullQWMDimensional}. This can be seen by fixing the valve closed, so $x = \dot{x} = 0$, and enforcing that the tank pressure remains constant, so $\dot{p}_t = 0$. The  equation for $\dot{C}(t)$ is differentiated again to find an expression for $\ddot{C}$. Applying the closed valve and constant tank pressure conditions to this gives
 ~
@@ -288,7 +291,7 @@ Instead, the valve will be fixed open at the equilibrium lift. Again, both $\dot
 
 Only small oscillations around the equilibrium of $C = 0$ are of interest, which is implied by the definition of both $B(t)$ and $C(t)$ as small amplitude pressure and velocity fluctuations. Hence, the above equation can be linearised around $C = 0$ to give the linear equation
 
-\begin{equation*}
+\begin{equation*} \label{eq: QWMBehaviourTheory}
     \ddot{C} + \frac{\pi \sqrt{2}}{4} \frac{\alpha \sigma}{\gamma} \frac{y_1}{\sqrt{y_3 + B}} \dot{C} + \left( \frac{\pi}{2 \gamma} \right)^2 C = 0 \, .
 \end{equation*}
 
@@ -300,7 +303,7 @@ This is a damped linear oscillator, which has a natural frequency of $\omega = \
 
 Using the dimensionless parameters defined in \cref{tab: ValveClosingQWMParameterValues} and the equilibrium of $y_1 = 1$ and an arbitrary tank pressure of $y_3 = 10$ ($p_t = 10 \, \si{bar \, g}$) gives a damping coefficient of $\zeta \approx 9.942$. As $\zeta \gg 1$, the system is heavily overdamped. The significance of this result will be discussed further \textbf{LATER}. Notably, this damping is small if the valve is nearly closed, suggesting oscillations are more likely to occur for a nearly closed valve.
 
-\subsection{Non-dimensionalisation} \label{subsec: QWMNonDim}
+\section{Non-dimensionalisation} \label{subsec: QWMNonDim}
 
 As before in \cref{sec: Prog}, it is useful to introduce a dimensionless form of the quarter-wave model. However, a slightly different choice of dimensionless variables is used. This is to allow the quarter-wave model to be studied in terms of a pipe length parameter, $\gamma$, and dimensionless mass flow rate, $q$. These parameters have been identified as important parameters for instability in spring-operated PRVs, with $\gamma$ and $q$ defined later in this section being consistent with the previous research~\cite{Hos2016DynamicService}. Hence, the reference distance, pressure and time used are given by
 ~
@@ -348,6 +351,7 @@ Using these reference values, the new dimensionless variables can be defined usi
 % \end{split}
 % \end{equation*}
 
+\newpage
 Using these new dimensionless variables, the quarter wave model given in \cref{eq: FullQWMDimensional} can be re-written in a dimensionless form. Hence, the dimensionless quarter-wave model is described by
 ~
 \begin{equation} \label{eq: FullQWMDimensionless}
@@ -468,11 +472,12 @@ However, the dimensionless parameters are related by
 But I don't seem to use $\nu$. Also, which parameter do I use? When is it convective?
 
 % \newpage
-% \subsection{Parameter Values}
+% \section{Parameter Values}
 
 % Typical values for the parameters are given in the table below. Some from \cite{Hos2016DynamicService}.
 % ~
 
+%\newpage % temporary page break
 \begin{table}[ht]
     \centering
     \begin{tabular}{c|l|r|l}
@@ -513,8 +518,7 @@ But I don't seem to use $\nu$. Also, which parameter do I use? When is it convec
 
 \Cref{tab: ValveClosingQWMParameterValues} shows the typical values of both the dimensional and dimensionless parameters used by the quarter-wave model. Where ever possible, these parameters have been chosen to be consistent with the spring-operated PRV~\cite{Hos2016DynamicService}.
 
-\newpage
-\subsection{Pipe-mode Instability}
+\section{Pipe-mode Instability} \label{subsec: QWMAnalyticalBound}
 
 As shown by the fluid behaviour for the spring-operated case~\cite{Hos2015ModelPipe}, the convective and dissipative frictional losses within the pipe may be neglected. This suggests the convective effects can be neglected by assuming $\Lambda = 0$ and the dissipative effects can be neglected by assuming $\phi = 0$. This assumption is supported by the values of the dimensionless parameters in \cref{tab: ValveClosingQWMParameterValues}, where both $\Lambda$ and $\phi$ are orders of magnitude smaller than the other terms. Hence, the quarter-wave model given by \cref{eq: FullQWMDimensionless} reduces to
 ~
@@ -583,6 +587,7 @@ First, we consider the case when $\delta = 0$, in which the expression for $\dda
     \ddash{\tilde{B}\,} + \frac{\pi \sqrt{2}}{2} \frac{\alpha \sigma}{\gamma} \left( \frac{1}{2 \sqrt{p_0}} - \frac{\sqrt{p_0}}{\omega_p\power{2}+2 p_0} \right) \dash{\tilde{B}\,} + \left( \frac{\pi}{2 \gamma} \right)^2 \tilde{B} = 0 \, .
 \end{equation*}
 
+\newpage
 This is a second-order linear oscillator with a damping force equal to the $\dash{\tilde{B}\,}$ coefficient. The point at which the damping switches from positive damping, dissipating the energy of the system for stability, to negative damping corresponds to a Hopf bifurcation~\cite{Kuznetsov2004ElementsTheory}. It is trivial to show the damping is negative, corresponding to an instability, when
 
 \begin{equation*}

@@ -1,4 +1,32 @@
-\documentclass[a4paper]{article}
+\documentclass[a4paper]{report}
+
+%% Chapter spacing
+%\usepackage{titlesec}
+%\titlespacing*{\chapter}{0pt}{-100pt}{40pt}
+\makeatletter
+\def\@makechapterhead#1{%
+  %\vspace*{5\p@}% %%% removed!
+  \vspace*{5pt}
+  {\parindent \z@ \raggedright \normalfont
+    \ifnum \c@secnumdepth >\m@ne
+        \huge\bfseries \@chapapp\space \thechapter
+        \par\nobreak
+        %\vskip 20\p@
+    \fi
+    \interlinepenalty\@M
+    \Huge \bfseries #1\par\nobreak
+    \vskip 20\p@
+  }}
+\def\@makeschapterhead#1{%
+  %\vspace*{5\p@}% %%% removed!
+  \vspace*{5pt}
+  {\parindent \z@ \raggedright \normalfont
+    \normalfont
+    \interlinepenalty\@M
+    \Huge \bfseries #1\par\nobreak
+    \vskip 20\p@
+  }}
+\makeatother
 
 %% Language and font encodings
 \usepackage[english]{babel}
@@ -25,8 +53,9 @@
 \usepackage{amsmath}
 \usepackage{xfrac}
 \usepackage{graphicx}
-\usepackage[colorinlistoftodos]{todonotes}
+%\usepackage[colorinlistoftodos]{todonotes}
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{hyperref}
 \usepackage{titling}
 \usepackage{parskip} %removes indents on new paragraphs
 \usepackage[toc,page]{appendix}
