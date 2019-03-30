@@ -522,7 +522,7 @@ But I don't seem to use $\nu$. Also, which parameter do I use? When is it convec
 
 As shown by the fluid behaviour for the spring-operated case~\cite{Hos2015ModelPipe}, the convective and dissipative frictional losses within the pipe may be neglected. This suggests the convective effects can be neglected by assuming $\Lambda = 0$ and the dissipative effects can be neglected by assuming $\phi = 0$. This assumption is supported by the values of the dimensionless parameters in \cref{tab: ValveClosingQWMParameterValues}, where both $\Lambda$ and $\phi$ are orders of magnitude smaller than the other terms. Hence, the quarter-wave model given by \cref{eq: FullQWMDimensionless} reduces to
 ~
-\begin{equation}
+\begin{equation*}
 \begin{split}
     \dash{y_1} &= y_2 \\
     \dash{y_2} &= - \kappa \, y_2 + y_1\power{2} \, y_3 + 2 \, y_1\power{2} \tilde{B} - y_3 \\
@@ -537,7 +537,22 @@ As shown by the fluid behaviour for the spring-operated case~\cite{Hos2015ModelP
     \\ & \quad %newline
     - \frac{1}{2} \sigma \delta^2 \frac{y_1\power{3} \, \dash{y_3}}{\sqrt{y_3 + \tilde{B}}} 
 \end{split}
-\end{equation}
+\end{equation*}
+
+The flutter instability does not occur from pressure oscillations within the tank~\cite{Allison2015TestingValves}. Hence, we consider the case that the tank volume large enough that $\beta \ll 1$ so $\dash{y_3} = 0$. Hence, the system of four first order equations are
+~
+\begin{equation*}
+\begin{split}
+    \dash{y_1} &= y_2 \\
+    \dash{y_2} &= - \kappa \, y_2 + y_1\power{2} \, p + 2 \, y_1\power{2} \tilde{B} - p \\
+    \dash{\tilde{B}\,} &= \frac{\pi}{2} \frac{\alpha}{\gamma} \, \tilde{C} + \sqrt{2} \, \delta^2 \, y_1 \, y_2 \, p \\
+    \dash{\tilde{C}\,} &=
+    - \frac{\pi}{2} \frac{1}{\alpha \gamma} \tilde{B}
+    - \frac{\pi \sqrt{2}}{4} \frac{\alpha \sigma}{\gamma} \frac{y_1 \tilde{C}}{\sqrt{p + \tilde{B}}}
+    - \sqrt{2} \, \sigma \, y_2 \, \sqrt{p + \tilde{B}}
+    - \sigma \delta^2 \frac{y_1\power{2} \, y_2 \, p}{\sqrt{p + \tilde{B}}}
+\end{split}
+\end{equation*}
 
 The quarter-wave model will now be expressed as a system of two second-order coupled oscillators. Hence, the second derivative, $\ddash{\tilde{B}\,}$, must be calculated by taking the time derivative of $\dash{\tilde{B}\,}$. This means that
 ~
@@ -545,7 +560,7 @@ The quarter-wave model will now be expressed as a system of two second-order cou
     \ddash{\tilde{B}\,} = \frac{\pi}{2} \frac{\alpha}{\gamma} \dash{\tilde{C}\,} - \sqrt{2} \, \ddash{y_3} + \frac{\sqrt{2}}{2} \, \delta^2 \left( 2 \, y_1 \, y_2 \, \dash{y_3} + y_1\power{2} \, \ddash{y_3} \right) + \sqrt{2} \, \delta^2 \left( y_2\power{2} \, y_3 + y_1 \, \dash{y_2} \, y_3 + y_1 \, y_2 \, \dash{y_3} \right) \, .
 \end{equation*}
 
-The flutter instability does not occur from pressure oscillations within the tank~\cite{Allison2015TestingValves}. Hence, we consider the case that the tank volume large enough that $\beta \ll 1$ so $\dash{y_3} = 0$. Substituting $\dash{\tilde{C}\,}$ into the equation for $\ddash{\tilde{B}\,}$ and neglecting variations in the tank pressure yields
+Substituting $\dash{\tilde{C}\,}$ into the equation for $\ddash{\tilde{B}\,}$ and neglecting variations in the tank pressure yields
 ~
 \begin{equation} \label{eq: QWMOscillatorB}
 \begin{split}
@@ -576,7 +591,7 @@ Now, \cref{eq: QWMOscillatorB} will be linearised around the equilibrium given b
 Similarly to for the spring-operated PRV~\cite{Hos2015ModelPipe}, the valve position $Y$ is assumed to be forced by pressure oscillation $\tilde{B}$. The pressure oscillation is assumed to be of the form $\tilde{B} = A(\varepsilon \tau) \cos\left( \omega_p \tau \right)$, where $\varepsilon$ represents the slow time dynamics of how the amplitude changes in time. A multiple timescale asymptotic analysis allows the slow time dynamics of $A(\varepsilon \tau)$ to be neglected. Hence, the forced response solution of the piston dynamics, $Y$, can be expressed by
 ~
 \begin{equation} \label{eq: YForced}
-    Y(\tau) = - \, \frac{1}{\omega_p\power{2} + 2 p_0} \tilde{B}(\tau) + \Order{\kappa} \, .
+    Y(\tau) = - \, \frac{2}{\omega_p\power{2} + 2 p_0} \tilde{B}(\tau) + \Order{\kappa} \, .
 \end{equation}
 
 Notably, the valve damping may be neglected as $\kappa$ represents the mechanical damping on the valve, so is asymptotically smaller than the fluid effects.
@@ -587,7 +602,6 @@ First, we consider the case when $\delta = 0$, in which the expression for $\dda
     \ddash{\tilde{B}\,} + \frac{\pi \sqrt{2}}{2} \frac{\alpha \sigma}{\gamma} \left( \frac{1}{2 \sqrt{p_0}} - \frac{\sqrt{p_0}}{\omega_p\power{2}+2 p_0} \right) \dash{\tilde{B}\,} + \left( \frac{\pi}{2 \gamma} \right)^2 \tilde{B} = 0 \, .
 \end{equation*}
 
-\newpage
 This is a second-order linear oscillator with a damping force equal to the $\dash{\tilde{B}\,}$ coefficient. The point at which the damping switches from positive damping, dissipating the energy of the system for stability, to negative damping corresponds to a Hopf bifurcation~\cite{Kuznetsov2004ElementsTheory}. It is trivial to show the damping is negative, corresponding to an instability, when
 
 \begin{equation*}
