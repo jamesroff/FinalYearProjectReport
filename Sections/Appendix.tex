@@ -1,0 +1,89 @@
+\chapter*{Appendix}
+
+\section*{A1: Integrals used for Galerkin method}
+
+Integral of $\sin$:
+~
+\begin{equation*}
+    \int^L_0 \sin\left( 2 \pi \frac{\eta (2 n - 1)}{4 L} \right) \Idx{\eta} = 
+    \frac{2 L}{\pi} \frac{1}{2n-1}
+\end{equation*}
+
+Integral of $\cos$:
+~
+\begin{equation*}
+    \int^L_0 \cos\left( 2 \pi \frac{\eta (2 n - 1)}{4 L} \right) \Idx{\eta} = 
+    - \frac{2 L}{\pi} \frac{(-1)^n}{2n-1}
+\end{equation*}
+
+Integral of $\sin \cdot \sin$:
+~
+\begin{equation*}
+    \int^L_0 \sin\left( 2 \pi \frac{\eta (2 k - 1)}{4 L} \right) \sin\left( 2 \pi \frac{\eta (2 n - 1)}{4 L} \right) \Idx{\eta} = 
+    \begin{cases}
+        \frac{L}{2} & k = n \\
+        0 & k \neq n
+    \end{cases}
+\end{equation*}
+
+Integral of $\cos \cdot \cos$:
+~
+\begin{equation*}
+    \int^L_0 \cos\left( 2 \pi \frac{\eta (2 k - 1)}{4 L} \right) \cos\left( 2 \pi \frac{\eta (2 n - 1)}{4 L} \right) \Idx{\eta} = 
+    \begin{cases}
+        \frac{L}{2} & k = n \\
+        0 & k \neq n
+    \end{cases}
+\end{equation*}
+
+Integral of $\sin \cdot \cos$:
+~
+\begin{equation*}
+    \int^L_0 \sin\left( 2 \pi \frac{\eta (2 k - 1)}{4 L} \right) \cos\left( 2 \pi \frac{\eta (2 n - 1)}{4 L} \right) \Idx{\eta} = 
+    \begin{cases}
+        \frac{2 L}{\pi} \frac{1}{2(2n-1)} & k = n \\
+        \frac{2 L}{\pi} \frac{1}{2(k-n)} & k \neq n
+    \end{cases}
+\end{equation*}
+
+Integral of $\cos \cdot \cos \cdot \sin$:
+~
+\begin{equation*}
+\begin{split}
+    & \int^L_0 \cos\left( 2 \pi \frac{\eta (2 k - 1)}{4 L} \right)
+    \cos\left( 2 \pi \frac{\eta (2 m - 1)}{4 L} \right)
+    \sin\left( 2 \pi \frac{\eta (2 n - 1)}{4 L} \right) \Idx{\eta} =
+    \\ & \qquad \qquad \qquad
+    \frac{2 L}{\pi} \frac{
+    (1 - 2n)(4k^2 - 4k + 4m^2 - 4m - 4n^2 + 4n + 1)
+    }{
+    %(2 k - 1)^4 + (2 m - 1)^4 + (2 n - 1)^4
+    %- 2 (2 k - 1)^2 (2 m - 1)^2
+    %- 2 (2 k - 1)^2 (2 n - 1)^2
+    %- 2 (2 m - 1)^2 (2 n - 1)^2
+    (2(k+m+n)-3)(2(k-m+n)-1)(2(k+m-n)-1)(2(k-m-n)+1)
+    }
+\end{split}
+\end{equation*}
+
+Integral of $\cos \cdot \cos \cdot \cos$:
+~
+\begin{equation*}
+\begin{split}
+    & \int^L_0 \cos\left( 2 \pi \frac{\eta (2 k - 1)}{4 L} \right)
+    \cos\left( 2 \pi \frac{\eta (2 m - 1)}{4 L} \right)
+    \cos\left( 2 \pi \frac{\eta (2 n - 1)}{4 L} \right) \Idx{\eta} =
+    \\ & \qquad \qquad \qquad
+    \frac{2 L}{\pi} \frac{
+    %-(-1)^k(-1)^m(-1)^n(8km - 4m - 4k + n(8k + 8m - 16km - 4) + 2)
+    %-2(-1)^(k + m + n + 1)(2*k - 1)(2*m - 1)(2*n - 1)
+    2(-1)^{k+m+n}(2k - 1)(2m - 1)(2n - 1)
+    }{
+    %(2 k - 1)^4 + (2 m - 1)^4 + (2 n - 1)^4
+    %- 2 (2 k - 1)^2 (2 m - 1)^2
+    %- 2 (2 k - 1)^2 (2 n - 1)^2
+    %- 2 (2 m - 1)^2 (2 n - 1)^2
+    (2(k+m+n)-3)(2(k-m+n)-1)(2(k+m-n)-1)(2(k-m-n)+1)
+    }
+\end{split}
+\end{equation*}

@@ -1,4 +1,4 @@
-\section{Valve Closing Simulations} \label{sec: ClosingSimulation}
+\section{Valve closing simulations} \label{sec: ClosingSimulation}
 
 Now the dynamics of the system of dimensionless differential equations, \cref{eq: Non-DimODE}, will be studied using numerical simulations. This is done using the MATLAB in-built function \textit{ode45}, which uses a 4th order Runge-Kutta method with a 5th order Runge-Kutta corrector to minimise error~\cite{Shampine1997TheSuite}. The simulation of when the valve is slightly perturbed from the equilibria in the negative $x$ direction is shown in \cref{fig:TimeTrajec}. As predicted from the stability analysis, the perturbation grows exponentially until it reaches the low valve stop. At this point, a series of collisions occur which are modelled by considering the impact law given in \cref{sec: ValveCollision}. The collision is implemented by stopping the simulation when one occurs, and using the current values for $x$, $p_t$ and $\dot{x}^+$ from the impact law to form the initial conditions to restart the simulation.
 ~
@@ -42,7 +42,7 @@ Although the valve position and velocity both tend towards zero, the tank pressu
 %     \label{fig:EigenvectorPhase}
 % \end{figure}
 
-\section{Low flow rates}
+\section{Low flow rate analysis}
 
 As has been previously identified, for low flow rates were $\dot{m}_{in} \rightarrow 0$, the limit of $\alpha \rightarrow 0$ and $\beta \rightarrow \infty$ occurs. Focusing on only the limit of $\alpha \rightarrow 0$, the eigenvalues of the linearised form of \cref{eq: Non-DimODE} around the equilibrium are
 ~ % eigenvalues
@@ -139,7 +139,7 @@ In fact, as $\alpha \rightarrow 0$ and $\beta \gg 1$, the equation $1 - \tilde{x
 % \end{figure}
 
 %\newpage
-\section{Fixed Tank Pressure}
+\section{Fixed tank pressure}
 
 One interesting case is when the mass flow rate into the tank, $\dot{m}_{in}$, is allowed to vary such that the tank pressure remains constant. As both $\alpha$ and $\beta$ are functions of $\dot{m}_{in}$ in \cref{eq: Non-DimODE}, this set of dimensionless equations is not useful for the purpose of constant tank pressure. Instead, a new set of dimensionless equations will be introduced. These use the valve equilibrium lift as the reference distance and ambient pressure as the reference pressure.
 
@@ -203,7 +203,7 @@ Now, the tank pressure $\tilde{p}$ is a fixed parameter that the tank is held at
 \textcolor{Red}{WRITE A PARAGRAPH ABOUT THIS GRAPH TO FINISH SECTION!}
 
 \newpage
-\section{Impact Dynamics} \label{sec: ImpactDynamics}
+\section{Impact dynamics} \label{sec: ImpactDynamics}
 
 Now some more thorough consideration of the collisions with either the upper or lower stop will be considered. This is of particular use to simulate the dynamics of the valve between the first collision with the lower stop until the valve remains fully closed. Hence, if the pilot valve dynamics are also considered, a simulation would be able to reproduce the valve closing and then re-opening which is useful to study if cycling may occur. \Cref{fig: ImpactPos} shows the simulation of typical dynamics for a collision with the upper stop. The following analysis can be repeated for a collision with the lower stop, however this is almost identical so will not be considered.
 ~

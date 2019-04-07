@@ -1,4 +1,4 @@
-\documentclass[a4paper]{report}
+\documentclass[a4paper,twoside]{report}
 
 %% Chapter spacing
 %\usepackage{titlesec}
@@ -83,6 +83,10 @@
 %\usepackage[nomarkers,nolists]{endfloat}
 %\renewcommand{\efloatseparator}{\mbox{}}
 
+%Headers and footers
+\input{Sections/Stuff/Fancyhdr.tex}
+
+
 %Colours for notes and shit
 \usepackage[colorinlistoftodos]{todonotes}
 \usepackage{xcolor}
@@ -91,4 +95,13 @@
 
 \input{Sections/Stuff/UserCommands.tex}
 
-\usepackage{mathtools} % test
+%\usepackage{mathtools} % test
+
+% \medmuskip=0mu
+% \thinmuskip=0mu
+% \thickmuskip=0mu
+
+% package for spacing fraction is tables correctly
+\usepackage{booktabs}
+
+\raggedbottom

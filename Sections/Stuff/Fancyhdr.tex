@@ -1,0 +1,26 @@
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}{
+\fancyhf{}
+\fancyhead[CE,CO]{\leftmark}
+\fancyfoot[LE,RO]{Page \thepage}
+%\fancyfoot[RE,LO]{\rightmark}
+\fancyfoot[RE,LO]{Modelling the instability of pilot-operated pressure relief valves}
+\renewcommand{\headrulewidth}{1pt}
+%\renewcommand{\headrule}{\hbox to\headwidth{\color{Red}\leaders\hrule height \headrulewidth\hfill}}
+}
+\renewcommand{\footrulewidth}{1pt}
+
+\usepackage{xpatch} % package to change header/footer colour
+\xpretocmd\headrule{\color{Red}}{}{\PatchFailed} % header
+%\xpretocmd\footrule{\color{Red}}{}{\PatchFailed} % footer
+
+\fancypagestyle{chapter}{
+\fancyhf{}
+\fancyfoot[LE,RO]{Page \thepage}
+\fancyfoot[RE,LO]{Modelling the instability of pilot-operated pressure relief valves}
+\renewcommand{\headrulewidth}{0pt}
+}
+
+\usepackage{etoolbox}
+\patchcmd{\chapter}{\thispagestyle{plain}}{\thispagestyle{chapter}}{}{}
