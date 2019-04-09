@@ -62,20 +62,17 @@ Second, the mass conservation at $\eta = L$ imposes the other boundary condition
 % ADD MORE EXPLANATION OF WHERE THIS EQUATION COMES FROM! Additionally, the mass conservation at $\eta=L$ yields
 % %Mass conservation at the outlet of the pipe gives the second boundary condition of
 ~
-\begin{equation} %\label{eq: QWMBoundary2}
+\begin{equation*} %\label{eq: QWMBoundary2}
 \begin{split}
     \dot{m}(L,t) &= \dot{m}_d(t) \, . \\
     \rho A_p v(L,t) &= \pi D \, x(t) \, C_d \, \rho \sqrt{\frac{2}{\rho} \left( p(L,t) + \frac{\rho}{2} v(L,t)^2 \right)} \, .
 \end{split}
-\end{equation}
+\end{equation*}
 
 Here, it is useful to introduce a discharge coefficient, $\zeta = \sqrt{2} \pi D C_d$, to simplify the boundary condition. Hence, the second boundary condition is given by
 ~
 \begin{equation} \label{eq: QWMBoundary2}
-\begin{split}
-    \dot{m}(L,t) &= \dot{m}_d(t) \, . \\
-    \rho A_p v(L,t) &= \pi D \, x(t) \, C_d \, \rho \sqrt{\frac{2}{\rho} \left( p(L,t) + \frac{\rho}{2} v(L,t)^2 \right)} \, .
-\end{split}
+    \rho A_p v(L,t) = \zeta \, x(t) \, \sqrt{\rho} \sqrt{ p(L,t) + \frac{\rho}{2} v(L,t)^2 } \, .
 \end{equation}
 
 \section{Piston and tank pressure dynamics} \label{subsec: PistonTankDyn}
@@ -405,9 +402,9 @@ Similarly, the second equation calculated from Collocation technique may be re-a
 % Explain why neglected \textcolor{Red}{B(t)} term
 % Write out full set of 5 ODEs
 
-Because of the lengthy and unwieldy expression for $\dot{C}(t)$, the \textcolor{Red}{$B(t)$} will be neglected. This is in a similar way to how the dynamic pressure at the tank end of the pipe, $\eta = 0$, was previously approximated using $v(0,t) = v_L(t) + C(t) \approx v_L(t)$. Hence, the dynamic pressure can be approximated by neglecting the small pressure fluctuation so that $p_t(t) + B(t) \approx p_t(t)$. This greatly simplifies the ordinary differential equations given by \cref{eq: QWMFullDiffB,eq: QWMFullDiffC} by removing any terms coloured in \textcolor{Red}{red}. This may also be seen as ensuring the boundary conditions, \cref{eq: QWMBoundary1,eq: QWMBoundary2}, are fully satisfied when the quarter-wave does not occur so $B(t) = C(t) = 0$. This is an acceptable assumption as the quarter-wave model aims to study the system close to the onset of a flutter instability, at which both $B(t)$ and $C(t)$ will represent very small amplitude oscillations so are close to zero.
+Because of the lengthy and unwieldy expression for $\dot{C}(t)$, the \textcolor{Red}{$B(t)$} will be neglected. Neglecting this small pressure fluctuation is in a similar way to how the dynamic pressure at the tank end of the pipe was previously approximated using $v(0,t) = v_L(t) + C(t) \approx v_L(t)$ in \cref{eq: QWMBoundary1}. Hence, the dynamic pressure is $p_t(t) + B(t) \approx p_t(t)$. This simplifies the ordinary differential equations given by \cref{eq: QWMFullDiffB,eq: QWMFullDiffC} by removing any terms coloured in \textcolor{Red}{red}. This may also be seen as ensuring the boundary conditions, \cref{eq: QWMBoundary1,eq: QWMBoundary2}, are fully satisfied when the quarter-wave does not occur so $B(t) = C(t) = 0$. This assumption is reasonable as the quarter-wave model aims to study the system close to the onset of a flutter instability, at which both $B(t)$ and $C(t)$ will be close to zero.
 
-The additional bonus of this simplification is the differential equations remain consistent with those previously derived for a quarter wave model in the liquid case, for example in~\cite{Hos2015ModelPipe}. The expression for $v_L$ given previously in \cref{eq: QWMPresAndVelBound} is used to write the equation more compactly. The terms which are coloured in \textcolor{Blue}{blue} in \cref{eq: FullQWMDimensional} represent those which occur for the spring-operated case. The differences appear from considering the ideal acceleration of the fluid between the tank and the pipe when considering the boundary conditions. These difference always appear as higher-order terms seen in black, which depends upon the ratio between the discharge area, $\zeta x$, and the pipe area, $A_p$.  The full set of five first-order differential equations, which will be referred to as the quarter-wave model, are given by
+An additional bonus of using this simplification is the differential equations are consistent with those previously derived for a quarter-wave model in the liquid case, for example in~\cite{Hos2015ModelPipe}. The expression for $v_L$ given previously in \cref{eq: QWMPresAndVelBound} will be used to write the quarter-wave model more compactly. The terms which are coloured in \textcolor{Blue}{blue} in \cref{eq: FullQWMDimensional} represent those which occur for the spring-operated case. Again, the differences appear from considering the ideal acceleration of the fluid between the tank and the pipe when considering the boundary condition, \cref{eq: QWMBoundary1}. These differences always appear as higher-order terms seen in black, which include the ratio between the discharge area, $\zeta x$, and the pipe area, $A_p$. This ratio will later be shown as an important parameter for the pilot-operated PRV. The full set of five first-order differential equations, which will be referred to as the quarter-wave model, are given by
 ~
 \begin{equation} \label{eq: FullQWMDimensional}
 \begin{split}
@@ -450,7 +447,9 @@ The additional bonus of this simplification is the differential equations remain
 
 \section{Quarter wave behaviour} \label{sec: QWBehaviour}
 
-We will now display the quarter-wave behaviour of \cref{eq: FullQWMDimensional}. This can be seen by fixing the valve closed, so $x = \dot{x} = 0$, and enforcing that the tank pressure remains constant, so $\dot{p}_t = 0$. The  equation for $\dot{C}(t)$ is differentiated again to find an expression for $\ddot{C}$. Applying the closed valve and constant tank pressure conditions to this gives
+%We will now display the quarter-wave behaviour of \cref{eq: FullQWMDimensional}.
+The quarter-wave behaviour of \cref{eq: FullQWMDimensional} will now be shown.
+This is done by fixing the valve closed, so $x = \dot{x} = 0$, and enforcing that the tank pressure remains constant, so $\dot{p}_t = 0$. The  equation for $\dot{C}(t)$ is differentiated again to find an expression for $\ddot{C}$. Applying the closed valve and constant tank pressure conditions to this gives
 ~
 \begin{equation*}
     \ddot{C}(t) = \frac{\pi \sqrt{2}}{2 L} C \dot{C} - \frac{1}{\rho} \frac{\pi}{2 L} \dot{B} \, .
@@ -473,24 +472,39 @@ which corresponds to the quarter-wave frequency of the pipe.
 \subsection{Fixed open valve}
 
 Instead, the valve will be fixed open at the equilibrium lift. Again, both $\dot{x} = 0$ and $\dot{p}_t = 0$. Also, any convective and frictional terms are neglected by setting $\Lambda = 0$ and $\phi = 0$ respectively. Differentiating the equation for $\dot{C}(t)$ and applying the fixed valve and constant tank pressure gives
-
+~
 \begin{equation*}
-    \ddot{C} + \frac{\pi \sqrt{2}}{4} \frac{\alpha \sigma}{\gamma} \frac{y_1}{\sqrt{y_3 + B}} \dot{C} + \left( \frac{\pi}{2 \gamma} \right)^2 C - \frac{\sqrt{2}}{4} \left( \frac{\pi \alpha}{2 \gamma} \right)^2 \sigma \frac{y_1}{\sqrt{y_3 + B}^3} C^2 = 0 \, .
+    \ddot{C} + \frac{\pi \sqrt{2}}{4} \frac{\rho a^2 \zeta}{L A_p \sqrt{\rho}} \frac{x}{\sqrt{p_t + B}} \dot{C} +
+    \left( 2 \pi \frac{a}{4 L} \right)^2 C -
+    \frac{\sqrt{2}}{4} \left( 2 \pi \frac{\rho a^2}{4L} \right)^2 \frac{\zeta}{A_p \sqrt{\rho}} \frac{x}{\sqrt{p_t + B}^3} C^2 = 0 \, .
 \end{equation*}
+% ~
+% \begin{equation*}
+%     \ddot{C} + \frac{\pi \sqrt{2}}{4} \frac{\alpha \sigma}{\gamma} \frac{y_1}{\sqrt{y_3 + B}} \dot{C} + \left( \frac{\pi}{2 \gamma} \right)^2 C - \frac{\sqrt{2}}{4} \left( \frac{\pi \alpha}{2 \gamma} \right)^2 \sigma \frac{y_1}{\sqrt{y_3 + B}^3} C^2 = 0 \, .
+% \end{equation*}
 
 Only small oscillations around the equilibrium of $C = 0$ are of interest, which is implied by the definition of both $B(t)$ and $C(t)$ as small amplitude pressure and velocity fluctuations. Hence, the above equation can be linearised around $C = 0$ to give the linear equation
+~
+\begin{equation} \label{eq: QWMBehaviourTheory}
+    \ddot{C} + \frac{\sqrt{2}}{2} \frac{\rho a \zeta}{A_p \sqrt{\rho}} \left( 2 \pi \frac{a}{4 L} \right) \frac{x}{\sqrt{p_t}} \dot{C} +
+    \left( 2 \pi \frac{a}{4 L} \right)^2 C = 0 \, .
+\end{equation}
+% ~
+% \begin{equation*} \label{eq: QWMBehaviourTheory}
+%     \ddot{C} + \frac{\pi \sqrt{2}}{4} \frac{\alpha \sigma}{\gamma} \frac{y_1}{\sqrt{y_3 + B}} \dot{C} + \left( \frac{\pi}{2 \gamma} \right)^2 C = 0 \, .
+% \end{equation*}
 
-\begin{equation*} \label{eq: QWMBehaviourTheory}
-    \ddot{C} + \frac{\pi \sqrt{2}}{4} \frac{\alpha \sigma}{\gamma} \frac{y_1}{\sqrt{y_3 + B}} \dot{C} + \left( \frac{\pi}{2 \gamma} \right)^2 C = 0 \, .
-\end{equation*}
-
-This is a damped linear oscillator, which has a natural frequency of $\omega = \frac{\pi}{2 \gamma}$ which is the quarter-wave frequency as before. However, there now exists a non-convective damping, with a damping coefficient of
-
+This is a damped linear oscillator, which has a natural frequency of $\omega = 2 \pi \frac{a}{4 L}$ which is the quarter-wave frequency as before. However, there now exists a non-convective damping, with a damping coefficient of
+~
 \begin{equation*}
-    \zeta = \frac{\sqrt{2}}{4} \alpha \sigma \frac{y_1}{\sqrt{y_3}} \, .
+    \frac{\sqrt{2}}{4} \frac{\rho a \zeta}{A_p \sqrt{\rho}} \frac{x}{\sqrt{p_t}} \, .
 \end{equation*}
+% ~
+% \begin{equation*}
+%     \frac{\sqrt{2}}{4} \alpha \sigma \frac{y_1}{\sqrt{y_3}} \, .
+% \end{equation*}
 
-Using the dimensionless parameters defined in \cref{tab: ValveClosingQWMParameterValues} and the equilibrium of $y_1 = 1$ and an arbitrary tank pressure of $y_3 = 10$ ($p_t = 10 \, \si{bar \, g}$) gives a damping coefficient of $\zeta \approx 9.942$. As $\zeta \gg 1$, the system is heavily overdamped. The significance of this result will be discussed further in \cref{subsec: QWBehavSim}. Notably, this damping is small if the valve is nearly closed, suggesting oscillations are more likely to occur for a nearly closed valve.
+Using the parameters defined in \cref{tab: ValveClosingQWMParameterValues}, the equilibrium lift of $x = 14.7 \, \si{mm}$, and a tank pressure of $p_t = 10 \, \si{bar \, g}$ gives a damping coefficient of approximately $9.942$. As this is much greater than one, the system is heavily overdamped. The significance of this result will be discussed further in \cref{subsec: QWBehavSim}. Notably, this damping is small if the valve is nearly closed, suggesting oscillations are more likely to occur for a nearly closed valve.
 
 \section{Non-dimensionalisation} \label{subsec: QWMNonDim}
 
@@ -549,13 +563,13 @@ Using these new dimensionless variables, the quarter wave model given in \cref{e
     \dash{y_3} &= \beta \, q - \beta \mu \, \tilde{C} - \beta \mu \sigma \, y_1 \, \sqrt{y_3 + \tilde{B}} \, , \\
     \dash{\tilde{B}\,} &= \frac{\pi}{2} \frac{\alpha}{\gamma} \, \tilde{C} - \sqrt{2} \, \dash{y_3} + \frac{\sqrt{2}}{2} \delta^2 \, y_1\power{2} \, \dash{y_3} + \sqrt{2} \, \delta^2 \, y_1 \, y_2 \, y_3 + \frac{\pi}{2} \frac{\Lambda \delta}{\alpha} \, y_1 \tilde{B} \sqrt{y_3 + \tilde{B}} - \frac{\pi \sqrt{2}}{4} \Lambda \tilde{B} \tilde{C} \, , \\
     \dash{\tilde{C}\,} &=
-    \textcolor{Blue}{- \frac{\pi}{2} \frac{1}{\alpha \gamma} \tilde{B}}
-    \textcolor{Blue}{- \frac{\pi \sqrt{2}}{4} \frac{\alpha \sigma}{\gamma} \frac{y_1 \tilde{C}}{\sqrt{y_3 + \tilde{B}}} }
-    \textcolor{Blue}{- \sqrt{2} \, \sigma \, y_2 \, \sqrt{y_3 + \tilde{B}} }
-    \textcolor{Blue}{+ \frac{2-\sqrt{2}}{2} \sigma \frac{y_1 \, \dash{y_3}}{\sqrt{y_3 + \tilde{B}}} }
-    \textcolor{Blue}{- \sigma \delta^2 \frac{y_1\power{2} \, y_2 \, y_3}{\sqrt{y_3 + \tilde{B}}} }
+    - \frac{\pi}{2} \frac{1}{\alpha \gamma} \tilde{B}
+    - \frac{\pi \sqrt{2}}{4} \frac{\alpha \sigma}{\gamma} \frac{y_1 \tilde{C}}{\sqrt{y_3 + \tilde{B}}}
+    - \sqrt{2} \, \sigma \, y_2 \, \sqrt{y_3 + \tilde{B}}
+    + \frac{2-\sqrt{2}}{2} \sigma \frac{y_1 \, \dash{y_3}}{\sqrt{y_3 + \tilde{B}}}
+    - \sigma \delta^2 \frac{y_1\power{2} \, y_2 \, y_3}{\sqrt{y_3 + \tilde{B}}}
     \\ & \quad %newline
-    \textcolor{Blue}{- \frac{1}{2} \sigma \delta^2 \frac{y_1\power{3} \, \dash{y_3}}{\sqrt{y_3 + \tilde{B}}} }
+    - \frac{1}{2} \sigma \delta^2 \frac{y_1\power{3} \, \dash{y_3}}{\sqrt{y_3 + \tilde{B}}}
     + \frac{\pi}{2} \Lambda \sigma \, y_1 \, \tilde{C} \sqrt{y_3 + \tilde{B}}
     + \frac{\pi \sqrt{2}}{4} \Lambda \, \tilde{C}^2
     + \frac{\pi}{4} \Lambda \sigma \frac{y_1 \tilde{B} \, \tilde{C}}{\sqrt{y_3 + \tilde{B}}}
@@ -565,7 +579,7 @@ Using these new dimensionless variables, the quarter wave model given in \cref{e
 \end{split}
 \end{equation}
 
-This dimensionless equation uses several dimensionless parameters, most of which are identical to those used for the spring-operated PRV quarter-wave model~\cite{Hos2016DynamicService}. A short description of the physical meaning of each parameter can be found in \cref{tab: ValveClosingQWMParameterValues}. The dimensionless parameters required are
+This dimensionless equation uses several dimensionless parameters, where all except $\delta$ are consistent to those used for the spring-operated PRV quarter-wave model~\cite{Hos2016DynamicService}. A short description of the physical meaning of each parameter can be found in \cref{tab: ValveClosingQWMParameterValues}. The dimensionless parameters required are
 % ~
 % \begin{equation*}
 % \begin{split}
@@ -649,11 +663,11 @@ As previously mentioned in \cref{subsec: QWMFinalDimensional}, an important para
 
 Notably, the parameter $\delta$ is only a function of the valve and pipe areas, $A_v$ and $A_p$ respectively. Both of these are physical parameters which are very easy to influence during the design of a valve, so introduces a potentially powerful design factor.
 
-Note, the dimensionless parameters are related by
-~
-\begin{equation*}
-    \Lambda \sigma^2 = \left( \frac{x_{\rm{ref}}}{L} \right) \left( \frac{\zeta \sqrt{p_{\rm{ref}}}}{A_p \rho \omega_{\rm{ref}}} \right)^2 = \left( \frac{a}{L \omega_{\rm{ref}}} \right) \left( \frac{p_{\rm{ref}}}{\omega_{\rm{ref}} a \rho x_{\rm{ref}}} \right) \left( \frac{\zeta x_{\rm{ref}}}{A_p} \right)^2 = \frac{\delta^2}{\alpha \gamma}
-\end{equation*}
+% Note, the dimensionless parameters are related by
+% ~
+% \begin{equation*}
+%     \Lambda \sigma^2 = \left( \frac{x_{\rm{ref}}}{L} \right) \left( \frac{\zeta \sqrt{p_{\rm{ref}}}}{A_p \rho \omega_{\rm{ref}}} \right)^2 = \left( \frac{a}{L \omega_{\rm{ref}}} \right) \left( \frac{p_{\rm{ref}}}{\omega_{\rm{ref}} a \rho x_{\rm{ref}}} \right) \left( \frac{\zeta x_{\rm{ref}}}{A_p} \right)^2 = \frac{\delta^2}{\alpha \gamma}
+% \end{equation*}
 
 % But I don't seem to use $\nu$. Also, which parameter do I use? When is it convective?
 % 
@@ -702,11 +716,11 @@ Note, the dimensionless parameters are related by
     \label{tab: ValveClosingQWMParameterValues}
 \end{table}
 
-\Cref{tab: ValveClosingQWMParameterValues} shows the typical values of both the dimensional and dimensionless parameters used by the quarter-wave model. Where ever possible, these parameters have been chosen to be consistent with the spring-operated PRV~\cite{Hos2016DynamicService}.
+\Cref{tab: ValveClosingQWMParameterValues} shows the typical values of both the dimensional and dimensionless parameters used by the quarter-wave model. Where ever possible, the dimensional parameters have been chosen to be equivalent with the spring-operated PRV~\cite{Hos2016DynamicService}. However, the dimensionless parameters are found to be different to the spring-operated case.
 
 \section{Pipe-mode instability} \label{subsec: QWMAnalyticalBound}
 
-As shown by the fluid behaviour for the spring-operated case~\cite{Hos2015ModelPipe}, the convective and dissipative frictional losses within the pipe may be neglected. This suggests the convective effects can be neglected by assuming $\Lambda = 0$ and the dissipative effects can be neglected by assuming $\phi = 0$. This assumption is supported by the values of the dimensionless parameters in \cref{tab: ValveClosingQWMParameterValues}, where both $\Lambda$ and $\phi$ are orders of magnitude smaller than the other terms. Hence, the quarter-wave model given by \cref{eq: FullQWMDimensionless} reduces to
+As shown by the fluid behaviour for the spring-operated case~\cite{Hos2015ModelPipe}, the convective and dissipative frictional losses within the pipe may be neglected. The convective effects are neglected by setting $\Lambda = 0$ and the dissipative effects are neglected by setting $\phi = 0$. From the values of the dimensionless parameters in \cref{tab: ValveClosingQWMParameterValues}, both $\Lambda$ and $\phi$ are orders of magnitude smaller than the other terms. Hence, the quarter-wave model given by \cref{eq: FullQWMDimensionless} reduces to
 ~
 \begin{equation*}
 \begin{split}
@@ -725,7 +739,8 @@ As shown by the fluid behaviour for the spring-operated case~\cite{Hos2015ModelP
 \end{split}
 \end{equation*}
 
-The flutter instability does not occur from pressure oscillations within the tank~\cite{Allison2015TestingValves}. Hence, we consider the case that the tank volume large enough that $\beta \ll 1$ so $\dash{y_3} = 0$. Hence, the system of four first order equations are
+\newpage
+Experimental results show the flutter instability does not occur from pressure oscillations within the tank~\cite{Allison2015TestingValves}. Hence, we consider the case that the tank volume large enough that $\beta \ll 1$ so that $\dash{y_3} = 0$. Hence, a model referred to as the fixed tank pressure model is given by
 ~
 \begin{equation} \label{eq: QWFixedTankPressure}
 \begin{split}
@@ -743,7 +758,14 @@ The flutter instability does not occur from pressure oscillations within the tan
 The quarter-wave model will now be expressed as a system of two second-order coupled oscillators. Hence, the second derivative, $\ddash{\tilde{B}\,}$, must be calculated by taking the time derivative of $\dash{\tilde{B}\,}$. This means that
 ~
 \begin{equation*}
-    \ddash{\tilde{B}\,} = \frac{\pi}{2} \frac{\alpha}{\gamma} \dash{\tilde{C}\,} - \sqrt{2} \, \ddash{y_3} + \frac{\sqrt{2}}{2} \, \delta^2 \left( 2 \, y_1 \, y_2 \, \dash{y_3} + y_1\power{2} \, \ddash{y_3} \right) + \sqrt{2} \, \delta^2 \left( y_2\power{2} \, y_3 + y_1 \, \dash{y_2} \, y_3 + y_1 \, y_2 \, \dash{y_3} \right) \, .
+    \ddash{\tilde{B}\,} =
+    \frac{\pi}{2} \frac{\alpha}{\gamma} \dash{\tilde{C}\,}
+    %- \sqrt{2} \, \ddash{y_3}
+    %+ \frac{\sqrt{2}}{2} \, \delta^2 \left( 2 \, y_1 \, y_2 \, \dash{y_3} + y_1\power{2} \, \ddash{y_3} \right)
+    + \sqrt{2} \, \delta^2 \left( y_2\power{2} \, y_3
+    + y_1 \, \dash{y_2} \, y_3
+    %+ y_1 \, y_2 \, \dash{y_3}
+    \right) \, .
 \end{equation*}
 
 Substituting $\dash{\tilde{C}\,}$ into the equation for $\ddash{\tilde{B}\,}$ and neglecting variations in the tank pressure yields
@@ -757,13 +779,13 @@ Substituting $\dash{\tilde{C}\,}$ into the equation for $\ddash{\tilde{B}\,}$ an
 \end{split}
 \end{equation}
 
-Now, the pressure at which the tank is kept at is $p_0$. For the case that the tank pressure remains fixed at equilibrium pressure, then $p_0$ is given by calculating the steady-state of the tank pressure differential equation, so that
+Now, the pressure at which the tank is held at will be expressed by $p_0$. If the tank pressure remains fixed at equilibrium pressure, then $p_0$ is given by calculating the steady-state of the tank pressure differential equation, such that
 
 \begin{equation*}
     \sqrt{p_0} = \frac{q}{\sigma \mu} \, .
 \end{equation*}
 
-Now, \cref{eq: QWMOscillatorB} will be linearised around the equilibrium given by $p = p_0$, $y_1 = 1$ and $\tilde{B} = \tilde{C} = 0$. Also, the second-order differential equation for the main valve piston lift ($y_1$) is linearised around the same equilibrium, using the new variable, $Y = y_1 - 1$. Hence, the two second-order linearised oscillator equations for $Y$ and $\tilde{B}$ are given by
+However, the general case where $p_0$ is not necessarily the equilibrium pressure will be considered. Now, \cref{eq: QWMOscillatorB} will be linearised around the equilibrium given by $p = p_0$, $y_1 = 1$ and $\tilde{B} = \tilde{C} = 0$. Also, the second-order differential equation for the main valve piston lift ($y_1$) is linearised around the same equilibrium which is shifted to zero using the new variable, $Y = y_1 - 1$. Hence, the two second-order linearised oscillator equations for $Y$ and $\tilde{B}$ are given by
 ~
 \begin{equation} \label{eq: YandBOscil}
 \begin{split}
@@ -774,7 +796,7 @@ Now, \cref{eq: QWMOscillatorB} will be linearised around the equilibrium given b
 \end{split}
 \end{equation}
 
-Similarly to for the spring-operated PRV~\cite{Hos2015ModelPipe}, the valve position $Y$ is assumed to be forced by pressure oscillation $\tilde{B}$. The pressure oscillation is assumed to be of the form $\tilde{B} = A(\varepsilon \tau) \cos\left( \omega_p \tau \right)$, where $\varepsilon$ represents the slow time dynamics of how the amplitude changes in time. A multiple timescale asymptotic analysis allows the slow time dynamics of $A(\varepsilon \tau)$ to be neglected. Hence, the forced response solution of the piston dynamics, $Y$, can be expressed by
+Similar to an analysis of the spring-operated PRV~\cite{Hos2015ModelPipe}, the valve position $Y$ is assumed to be forced by pressure oscillation $\tilde{B}$. The pressure oscillation is assumed to be of the form $\tilde{B} = A(\varepsilon \tau) \cos\left( \omega_p \tau \right)$, where $\varepsilon$ represents the slow time dynamics of how the amplitude changes in time. A multiple timescale asymptotic analysis allows the slow time dynamics of $A(\varepsilon \tau)$ to be neglected. Hence, the forced response solution of the piston dynamics, $Y$, can be expressed by
 ~
 \begin{equation} \label{eq: YForced}
     Y(\tau) = - \, \frac{2}{\omega_p\power{2} + 2 p_0} \tilde{B}(\tau) + \Order{\kappa} \, .
