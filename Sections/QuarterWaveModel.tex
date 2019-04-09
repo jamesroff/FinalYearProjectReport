@@ -116,7 +116,7 @@ During experimental results of chatter, and also for organ-pipe acoustic waves, 
 
 \subsection{Galerkin method} \label{subsec: Galerkin}
 
-Now, the fluid dynamical equations from \cref{eq: FluidPDE} will be simplified to a set of ordinary differential equations using the Galerkin method. Using the method is very similar to obtain differential equations for dynamics of both the pressure and velocity fluctuations, $B_k(t)$ and $C_k(t)$ respectively. Hence, only the derivation for $B_k(t)$ will be detailed here. The reader is referred to the appendix for full details of the derivation for $\dot{C}_n$. First, the assumed pressure and velocity distributions from \cref{eq: PressVelDist} are substituted into the mass conservation equation for the fluid piping, \cref{eq: FluidPDE}. This gives the following expression,
+Now, the fluid dynamical equations from \cref{eq: FluidPDE} will be simplified to a set of ordinary differential equations using the Galerkin method. Only the derivation for pressure fluctuations, $B_k(t)$, will be detailed here. The reader is referred to the appendix for full details of the derivation for $\dot{C}_n$. First, the assumed pressure and velocity distributions from \cref{eq: PressVelDist} are substituted into the mass conservation equation for the fluid piping, \cref{eq: FluidPDE}. This gives the following expression,
 ~
 \begin{equation*}
 \begin{split}
@@ -144,9 +144,9 @@ Now, the fluid dynamical equations from \cref{eq: FluidPDE} will be simplified t
 %     \frac{\lambda}{D} \left( v_L + \sum_{k=1}^{\infty} C_k \fun{cos}{2\pi \frac{\eta \left( 2 k - 1 \right)}{4L}} \right) \left| v_L + \sum_{k=1}^{\infty} C_k \fun{cos}{2\pi \frac{\eta \left( 2 k - 1 \right)}{4L}} \right|
 % \end{split}
 % \end{equation*}
-\vspace{-30pt}
-Notice that the dynamics of all modes are coupled, as $\dot{B}_k$ appears for each of the $k$ modes. The Galerkin method uses the orthogonality between each mode to isolate an ordinary differential equation for an arbitrary mode, $B_n$. Hence, the equations above are multiplied by the arbitrary mode-shape, $\sin\left(2\pi\frac{\eta(2k-1)}{4L}\right)$ and Then, the equation is integrated over the domain of interest, from $0$ to $L$. This gives
 
+Notice that the dynamics of all modes are coupled, as $\dot{B}_k$ appears for each of the $k$ modes. The Galerkin method uses the orthogonality between each mode to isolate an ordinary differential equation for an arbitrary mode, $B_n$. Hence, the equations above are multiplied by the arbitrary mode-shape, $\sin\left(2\pi\frac{\eta(2k-1)}{4L}\right)$ and then integrated over the domain of interest, from $0$ to $L$. Doing so gives
+~
 \begin{equation*}
 \begin{split}
     \dot{p}_0 \int^L_0 \sin\left(2\pi\frac{\eta(2n-1)}{4L}\right) \Idx{\eta}
@@ -157,7 +157,7 @@ Notice that the dynamics of all modes are coupled, as $\dot{B}_k$ appears for ea
     + \sum_{k=1}^{\infty} \sum_{m=1}^{\infty} C_k B_m \frac{\pi \left( 2 m - 1 \right)}{2L} \int^L_0 \fun{cos}{2\pi \frac{\eta \left( 2 k - 1 \right)}{4L}} \fun{cos}{2\pi \frac{\eta \left( 2 m - 1 \right)}{4L}} \sin\left(2\pi\frac{\eta(2n-1)}{4L}\right) \Idx{\eta}
     & \\ % newline
     - \rho a^2 \sum_{k=1}^{\infty} C_k \frac{\pi \left( 2 k - 1 \right)}{2L} \int^L_0 \fun{cos}{2\pi \frac{\eta \left( 2 k - 1 \right)}{4L}} \sin\left(2\pi\frac{\eta(2n-1)}{4L}\right) \Idx{\eta}
-    &= 0
+    &= 0 \, .
 \end{split}
 \end{equation*}
 
@@ -265,7 +265,7 @@ Use collocation technique.
         $2$ & $2.0000$ & $2$ & $2.0000$ & $0\%$ \\  \hline
         $\frac{8}{3 \pi}$ & $0.8488$ & $\frac{\sqrt{2}}{2}$ & $0.7071$ & $16.7\%$
     \end{tabular}
-    \caption{Caption}
+    \caption{Comparison of the different coefficients found for the quarter-wave model using the Galerkin and Collocation techniques.}
     \label{tab: GalerkinCollocationComparison}
 \end{table}
 
