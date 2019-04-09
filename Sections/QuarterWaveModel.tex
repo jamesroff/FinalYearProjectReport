@@ -810,61 +810,76 @@ First, we consider the case when $\delta = 0$, in which the expression for $\dda
     \ddash{\tilde{B}\,} + \frac{\pi \sqrt{2}}{2} \frac{\alpha \sigma}{\gamma} \left( \frac{1}{2 \sqrt{p_0}} - \frac{2 \sqrt{p_0}}{\omega_p\power{2}+2 p_0} \right) \dash{\tilde{B}\,} + \left( \frac{\pi}{2 \gamma} \right)^2 \tilde{B} = 0 \, .
 \end{equation*}
 
-This is a second-order linear oscillator with a damping force equal to the $\dash{\tilde{B}\,}$ coefficient. The point at which the damping switches from positive damping, dissipating the energy of the system for stability, to negative damping corresponds to a Hopf bifurcation~\cite{Kuznetsov2004ElementsTheory}. It is trivial to show the damping is negative, corresponding to an instability, when
+This is a second-order linear oscillator with a damping force equal to the $\dash{\tilde{B}\,}$ coefficient. The point at which the damping switches from positive damping (dissipating energy from the system for stability) to negative damping corresponds to a Hopf bifurcation~\cite{Kuznetsov2004ElementsTheory}. It is trivial to show the damping is negative, corresponding to an instability, when
 
 \begin{equation*}
-    \frac{\omega_p\power{2}}{2 \sqrt{p_0} \left( \omega_p\power{2} + 2 p_0 \right)} < 0 \, .
+    \frac{\omega_p\power{2} - 2 p_0}{2 \sqrt{p_0} \left( \omega_p\power{2} + 2 p_0 \right)} < 0 \, .
 \end{equation*}
 
-As $\omega_p\power{2} > 0$ and $\sqrt{p_0} > 0$, this inequality can never be satisfied so a flutter instability will not occur. However, this makes two unsatisfactory assumptions. Firstly, the non-linear system has been linearised around the unstable equilibrium. It was shown in \cref{sec: Prog} that this equilibrium is unstable, so the valve closes along the unstable manifold of the system. Hence, the linearisation will only be valid close to the equilibrium, not further from the equilibrium where the valve is almost closed. \textcolor{Red}{This is particularly problematic as chatter instability is most likely to occur at low flow rates when the valve is nearly closed for spring-operated PRVs~\cite{Hos2016DynamicService}.}
+Hence, if the tank pressure is high enough, a flutter instability will occur.
+%As $\omega_p\power{2} > 0$ and $\sqrt{p_0} > 0$, this inequality can never be satisfied so a flutter instability will not occur.
+However, this makes two unsatisfactory assumptions. Firstly, the non-linear system has been linearised around the unstable equilibrium. It was shown in \cref{sec: Prog} that this equilibrium is unstable, so the valve closes along the unstable manifold of the system. Hence, the linearisation will only be valid close to the equilibrium, not further from the equilibrium where the valve is almost closed. \textcolor{Red}{This is particularly problematic as chatter instability is most likely to occur at low flow rates when the valve is nearly closed for spring-operated PRVs~\cite{Hos2016DynamicService}.}
 
-Secondly, it is assumed that $\delta = 0$, which is an unrealistic assumption. However, this analysis does shows some important features. Firstly, the quarter wave frequency of the pipe is clearly important as forms the natural frequency of the pressure oscillations. Additionally, this shows that if $\delta^2$ terms are negligible, i.e. $A_v \approx A_p$, then the valve will never undergo a chatter instability while close to fully open. Now, the analysis will repeated including the effects of $\Order{\delta^2}$ terms.
+Secondly, it is assumed that $\delta = 0$, which is an unrealistic assumption. However, this analysis does shows some important features. Firstly, the quarter wave frequency of the pipe is clearly important as forms the natural frequency of the pressure oscillations. Additionally, this shows that if $\delta^2$ terms are negligible, i.e. $A_v \approx A_p$, then the stability does not depend on the pipe length, $\gamma$. Now, the analysis will repeated including the effects of $\Order{\delta^2}$ terms.
 
 When the same forced response for $Y(\tau)$ from \cref{eq: YForced} is substituted into the expression for $\ddash{\tilde{B}}$ from \cref{eq: YandBOscil} without neglecting $\Order{\delta^2}$ terms, we find
 ~
 \begin{equation*}
     \ddash{\tilde{B}} +
     \left( \frac{
-    \frac{\pi}{2} \frac{\alpha \sigma}{\gamma} \sqrt{p_0} \, \delta^2 + \frac{\pi \sqrt{2}}{4} \frac{\alpha \sigma}{\gamma} \frac{\omega_p\power{2}}{\sqrt{p_0}} - \sigma \sqrt{p_0} \, \delta^2
+    \pi \frac{\alpha \sigma}{\gamma} \sqrt{p_0} \, \delta^2 + \frac{\pi \sqrt{2}}{4} \frac{\alpha \sigma}{\gamma} \frac{\omega_p\power{2}}{\sqrt{p_0}} - 2 \sigma \sqrt{p_0} \, \delta^2
     }{\omega_p\power{2} + 2 p_0} \right) \dash{\tilde{B}\,} +
-    \left( \left( \frac{\pi}{2 \gamma} \right)^2 + 2 \sqrt{2} \, \delta^2 \, p_0\power{2} \left( \frac{1}{\omega_p\power{2} + 2 p_0} - 1 \right) \right) \tilde{B} = 0 \, .
+    \left( \left( \frac{\pi}{2 \gamma} \right)^2 + 2 \sqrt{2} \, \delta^2 \, p_0\power{2} \left( \frac{2}{\omega_p\power{2} + 2 p_0} - 1 \right) \right) \tilde{B} = 0 \, .
 \end{equation*}
 
-Again, the flutter instability occurs for a positive effective damping on these pressure oscillations. The condition for negative damping, and so for a flutter instability to occur, is when
+Again, the flutter instability occurs for a negative damping on the pressure oscillations. Hence, the condition for a flutter instability to occur is when
+% ~
+% \begin{equation} \label{eq: QWMStabilityInequality}
+%     \frac{\sqrt{2}}{2} \alpha \left( \frac{\pi}{2 \gamma} \right)^3 + 2 \alpha p_0 \delta^2 \left( \frac{\pi}{2 \gamma} \right) - 2 \left( \frac{q \, \delta}{\sigma \mu} \right)^2 < 0 \, .
+% \end{equation}
 ~
 \begin{equation} \label{eq: QWMStabilityInequality}
-    \frac{\sqrt{2}}{2} \alpha \left( \frac{\pi}{2 \gamma} \right)^3 + 2 \alpha p_0 \delta^2 \left( \frac{\pi}{2 \gamma} \right) - 2 \left( \frac{q \, \delta}{\sigma \mu} \right)^2 < 0 \, .
+    \frac{\sqrt{2}}{2} \alpha \left( \frac{\pi}{2 \gamma} \right)^3 + 2 \alpha p_0 \delta^2 \left( \frac{\pi}{2 \gamma} \right) - 2 p_0 \delta^2 < 0 \, .
 \end{equation}
 
-\begin{equation*} %\label{eq: QWMStabilityInequality}
-    \frac{\sqrt{2}}{2} \alpha \left( \frac{\pi}{2 \gamma} \right)^3 + 2 \alpha p_0 \delta^2 \left( \frac{\pi}{2 \gamma} \right) - 2 p_0 \delta^2 < 0 \, .
-\end{equation*}
+This inequality reveals an approximate condition for when a Hopf bifurcation will occur corresponding to flutter, but only close to the open equilibrium. It does represent many well know characteristic of flutter instability. If $L \rightarrow 0$, then $\gamma \rightarrow 0$ so the two positive terms dominate and the above expression can never be satisfied. Hence, for a short inlet pipe, flutter and chatter instability will not occur. Additionally, if $L \rightarrow \infty$ then $\gamma \rightarrow \infty$ and only the term not including $\gamma$ remains, meaning the inequality is always true. As expected, for a long pipe, a flutter instability will occur regardless of the tank pressure.
 
-This inequality reveals an approximate condition for when a Hopf bifurcation will occur corresponding to flutter, but only close to the open equilibrium. It does represent many well know characteristic of flutter instability. If $L \rightarrow 0$, then $\gamma \rightarrow 0$ so the two positive terms dominate and the above expression can never be satisfied. Hence, for a short inlet pipe, flutter and chatter instability will not occur. Additionally, if $L \rightarrow \infty$ then $\gamma \rightarrow \infty$ and only the term not including $\gamma$ remains, meaning the inequality is always true. As expected, for a long pipe, a flutter instability will occur regardless of the flow rate.
+However, this is a cubic equation in terms of $\gamma$, so is very difficult to solve analytically. Hence, an analytical stability boundary will not be found in terms of a pipe length $\gamma$, but instead a criterion for the tank pressure, $p_0$.
 
-This is a cubic equation in terms of $\gamma$, so is very difficult to solve analytically. In fact, the expression found to factorise in terms of $\gamma$ are extremely complex, although can be solved.
-
-First, consider the case when $1 - \frac{\pi}{2} \frac{\alpha}{\gamma} < 0$, which corresponds to a short pipe so $\gamma$ is small. Then, the inequality from \cref{eq: QWMStabilityInequality} can be rewritten for a criteria in terms of $q$ of
-
-\begin{equation*}
-    \left( \frac{q \, \delta}{\sigma \mu} \right)^2 < \frac{\frac{\pi \sqrt{2}}{4} \frac{\alpha}{\gamma} \omega_p\power{2}}{2 \left( 1 - \frac{\pi}{2}\frac{\alpha}{\gamma} \right)} \, .
-\end{equation*}
-
-However, this is a contradiction as the right hand side is negative and the left is clearly positive. Therefore, the inequality can never be satisfied, agreeing with the result that flutter does not occur for short pipe lengths. This gives a \textbf{sufficient?} condition for stability, that $\gamma < \frac{\pi}{2} \alpha$.
-
-Now consider if $1 - \frac{\pi}{2} \frac{\alpha}{\gamma} > 0$, for a long pipe so $\gamma$ is large. This allows the inequality from \cref{eq: QWMStabilityInequality} to be re-written as
-
-\begin{equation*}
-    \left( \frac{q \, \delta}{\sigma \mu} \right)^2 > \frac{\frac{\pi \sqrt{2}}{4} \frac{\alpha}{\gamma} \omega_p\power{2}}{2 \left( 1 - \frac{\pi}{2}\frac{\alpha}{\gamma}\right)} \, .
-\end{equation*}
-
-This allows us to express a stability criterion for the flow rate $q$ as
+First, consider the case when $1 - \frac{\pi}{2} \frac{\alpha}{\gamma} < 0$, which corresponds to a short pipe so $\gamma$ is small. Then, the inequality from \cref{eq: QWMStabilityInequality} can be rewritten for a criteria in terms of $p_0$ of
 ~
 \begin{equation*}
-    q > \frac{\sigma \mu}{\delta} \sqrt{\frac{\frac{\pi \sqrt{2}}{4}\frac{\alpha}{\gamma}\omega_p\power{2}}{2 \left( 1 - \frac{\pi}{2}\frac{\alpha}{\gamma}\right) }}
+    p_0 \, \delta^2 < \frac{\pi \sqrt{2} \, \alpha \, \omega_p\power{2}}{4 \left( 2 \gamma - \pi \alpha \right)} \, .
 \end{equation*}
 
-This suggests that a high mass flow rate through the pilot-operated PRV will create the onset of a flutter instability, which will quickly develop into a chatter instability once impacts occur. This result is directly opposite to for the spring-operated PRV, in which a sufficiently small flow rate is necessary for flutter to occur~\cite{Hos2015ModelPipe,Hos2016DynamicService}.
+However, this is a contradiction as the right hand side is negative and the left is clearly positive. Therefore, the inequality for instability can never be satisfied, agreeing with the result that flutter does not occur for short pipe lengths. This gives a sufficient condition for stability, that $\gamma < \frac{\pi}{2} \alpha$.
+
+Now consider if $1 - \frac{\pi}{2} \frac{\alpha}{\gamma} > 0$, for a long pipe so $\gamma$ is large. This allows the inequality from \cref{eq: QWMStabilityInequality} to be re-written as
+% ~
+% \begin{equation*}
+%     \left( \frac{q \, \delta}{\sigma \mu} \right)^2 > \frac{\frac{\pi \sqrt{2}}{4} \frac{\alpha}{\gamma} \omega_p\power{2}}{2 \left( 1 - \frac{\pi}{2}\frac{\alpha}{\gamma}\right)} \, .
+% \end{equation*}
+~
+\begin{equation*}
+    p_0 \, \delta^2 > \frac{\pi \sqrt{2} \, \alpha \, \omega_p\power{2}}{4 \left( 2 \gamma - \pi \alpha \right)} \, .
+\end{equation*}
+
+This allows us to express a stability criterion for the tank pressure $p_0$ as
+~
+\begin{equation*}
+    p_0 > \frac{1}{\delta^2} \frac{\pi \sqrt{2} \, \alpha \, \omega_p\power{2}}{4 \left( 2 \gamma - \pi \alpha \right) }
+\end{equation*}
+
+Alternatively, the stability criterion can be expressed in terms of the flow rate $q$, such that
+~
+\begin{equation*}
+    q > \frac{\sigma \mu}{\delta} \sqrt{
+    % \frac{\frac{\pi \sqrt{2}}{4}\frac{\alpha}{\gamma}\omega_p\power{2}}{2 \left( 1 - \frac{\pi}{2}\frac{\alpha}{\gamma}\right) }
+    \frac{\pi \sqrt{2} \, \alpha \, \omega_p\power{2}}{4 \left( 2 \gamma - \pi \alpha \right) }
+    }
+\end{equation*}
+
+This suggests that a high mass flow rate through the pilot-operated PRV will create the onset of a flutter instability, which will likely quickly develop into a chatter instability. This result is directly opposite to for the spring-operated PRV, in which a sufficiently small flow rate is necessary for flutter to occur~\cite{Hos2015ModelPipe,Hos2016DynamicService}. Alternatively, if the tank is held above a critical tank pressure, then the flutter instability will occur.
 
 % \newpage
 % \begin{itemize}
