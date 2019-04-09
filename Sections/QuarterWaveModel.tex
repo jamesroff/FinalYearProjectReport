@@ -45,7 +45,7 @@ Applying each of these assumptions allows use to simplify the continuity and mom
 
 As we may expect, the PDE describing the fluid behaviour is identical to for the direct spring-operated PRV case~\cite{Hos2015ModelPipe}. It is the slight compressibility that allows waves to propagate along the inlet pipe. Now that the slightly compressible nature of the fluid is accounted for while obtaining \cref{eq: FluidPDE}, the fluctuations in density can now be neglected. Hence, the fluid is now considered incompressible as before in \cref{sec: Prog}. Alternatively, the density $\rho$ can be viewed  fluctuating but approximately constant. %\textcolor{Red}{REWORD!}
 
-\subsection{Boundary conditions}
+\subsection{Boundary conditions} \label{subsubsec: BoundCond}
 
 At the valve end of the inlet pipe, $\eta = L$, the velocity is such that mass is conserved between the flow through the pipe and discharged through the main valve. At the tank end of the inlet pipe, $\eta = 0$, the sum of the pressure $p(0,t)$ and the dynamic pressure is equal to the pressure within the tank. This relaxes an assumption made during previous work~\cite{Hos2015ModelPipe}, where the ideal acceleration of the fluid between the tank and the pipe is neglected.
 
@@ -78,7 +78,7 @@ Here, it is useful to introduce a discharge coefficient, $\zeta = \sqrt{2} \pi D
 \end{split}
 \end{equation}
 
-\section{Piston and tank pressure dynamics}
+\section{Piston and tank pressure dynamics} \label{subsec: PistonTankDyn}
 
 Now, the dynamics of the main valve piston will be found in terms of the pressure, $p(\eta,t)$, and velocity, $v(\eta,t)$, of the inlet piping fluid. As before in \cref{sec: Prog}, the three forces acting on the piston are the pipe pressure, dome pressure and change of momentum of the fluid. These forces only depend upon the pressure and velocity at the valve end of the pipe, $p(L,t)$ and $v(L,t)$ respectively. Similarly, the differential equation describing the dynamics for the pressure in the tank can be expressed in terms of the same fluid properties, but at the tank end of the pipe, $\eta = 0$. Hence, the differential equations describing the main piston motion and pressure within the tank are given by
 
@@ -120,7 +120,7 @@ Now, the fluid dynamical equations from \cref{eq: FluidPDE} will be simplified t
 ~
 \begin{equation*}
 \begin{split}
-    \dot{p}_0
+    \pdiff{p_0}{t}
     + \sum_{k=1}^{\infty} \dot{B}_k \fun{sin}{2\pi \frac{\eta \left( 2 k - 1 \right)}{4L}}
     + v_L \sum_{k=1}^{\infty} B_k \frac{\pi \left( 2 k - 1 \right)}{2L} \fun{cos}{2\pi \frac{\eta \left( 2 k - 1 \right)}{4L}} 
     & \\ % newline
@@ -149,7 +149,7 @@ Notice that the dynamics of all modes are coupled, as $\dot{B}_k$ appears for ea
 ~
 \begin{equation*}
 \begin{split}
-    \dot{p}_0 \int^L_0 \sin\left(2\pi\frac{\eta(2n-1)}{4L}\right) \Idx{\eta}
+    \pdiff{p_0}{t} \int^L_0 \sin\left(2\pi\frac{\eta(2n-1)}{4L}\right) \Idx{\eta}
     + \sum_{k=1}^{\infty} \dot{B}_k \int^L_0 \fun{sin}{2\pi \frac{\eta \left( 2 k - 1 \right)}{4L}} \sin\left(2\pi\frac{\eta(2n-1)}{4L}\right) \Idx{\eta}
     & \\ % newline
     + v_L \sum_{k=1}^{\infty} B_k \frac{\pi \left( 2 k - 1 \right)}{2L} \int^L_0 \fun{cos}{2\pi \frac{\eta \left( 2 k - 1 \right)}{4L}} \sin\left(2\pi\frac{\eta(2n-1)}{4L}\right) \Idx{\eta}
@@ -240,17 +240,17 @@ At this point, $\fun{sin}{2 \pi \frac{\eta}{4L}} = \fun{cos}{2 \pi \frac{\eta}{4
 %
 The pressure and velocity distributions from \cref{eq: PressVelDist} are substituted into the fluid PDEs from \cref{eq: FluidPDE}. Considering that $\eta = \frac{L}{2}$, and rationalising by multiplying by $\sqrt{2}$, requires that
 ~
-\begin{equation*}
+\begin{equation} \label{eq: CollocationODE}
 \begin{split}
     \sqrt{2} \dot{p}_0(t) + \dot{B}(t) + \frac{\pi \sqrt{2}}{4 L} B(t) \left( \sqrt{2} v_L(t) + C(t) \right) &= a^2 \rho \frac{\pi}{2L} C(t) \, , \\
     \sqrt{2} \dot{v}_L(t) + \dot{C}(t) - \frac{\pi \sqrt{2}}{4 L} C(t) \left( \sqrt{2} v_L(t) + C(t) \right) &= - \frac{1}{\rho} \frac{\pi}{2 L} B(t) \\
     &\qquad + \frac{\lambda \sqrt{2}}{2D} \left( \sqrt{2} v_L(t) + C(t) \right) \left| \sqrt{2} v_L(t) + C(t) \right| \, .
 \end{split}
-\end{equation*}
+\end{equation}
 
 \subsection{Comparison of model reductions}
 
-Use collocation technique.
+Now, a comparison between the coefficients for each of the terms of the ordinary differential equations derived by the Galerkin and Collocation techniques. \Cref{tab: GalerkinCollocationComparison} lists each of the coefficients which were calculated by the two different methods. Clearly, all the coefficients are of the same order of magnitude, and most have a relatively small error between them.
 
 \begin{table}[ht]
     \centering \renewcommand*{\arraystretch}{1.4}
@@ -268,28 +268,35 @@ Use collocation technique.
     \label{tab: GalerkinCollocationComparison}
 \end{table}
 
+However, two of the coefficients have a error between them of $36.3\%$ and $40.0\%$. Both of these coefficients are from the convective terms of the partial differential equation, which are generally negligible for the compressible liquid case~\cite{Hos2016DynamicService}. That the convective effects are negligible will confirmed in \cref{subsec: QWMNonDim} when the dimensionless differential equations are calculated. Hence, the difference between using the Galerkin and Collocation techniques appears largely unimportant.
+
 \section{Quarter-wave derivation} \label{subsec: QWM Derivation}
 
-Take the one mode truncation!
+As stated previously, the one-mode truncation was found appropriate for the spring-operated case~\cite{Hos2015ModelPipe}. Therefore, one the one-mode truncation will now be considered, corresponding to the acoustic quarter-wave. For a direct spring-operated PRV, using the Collocation technique to perform a model reduction was shown to be quantitatively similiar to experimental data~\cite{Hos2015DynamicModelling}. Hence, only the coefficients from the Collocation technique will be used, which also ensures the following analysis is consistent with the spring-operated case. We begin by ensuring the boundary conditions are satisfied by the quarter-wave model.
+%
+%\subsection{Boundary conditions}
 
-\subsection{Boundary conditions}
-
-Unfortunately, the boundary conditions defined by \cref{eq: QWMBoundary1,eq: QWMBoundary2} yield extremely complex expressions for $p_0(t)$ and $v_L(t)$. The velocity at the end of the pipe is given by
-
-\begin{equation*}
-    v_L(t) = \frac{1}{2} \left( \frac{\zeta x}{A_p \sqrt{\rho}} \right)^2 \left( - \rho C(t) + \sqrt{4 \left( \frac{A_p \sqrt{\rho}}{\zeta x} \right)^2 \left( p_t(t) + B(t) \right) + \rho^2 C(t)^2 \left( 1 - 2 \frac{A_p\power{2}}{\zeta^2 x^2} \right)} \, \right) \, .
-\end{equation*}
-
+Unfortunately, fully satisfying the boundary conditions defined by \cref{eq: QWMBoundary1,eq: QWMBoundary2} yields complicated expressions for $p_0(t)$ and $v_L(t)$.
+% The velocity at the end of the pipe is given by
+% ~
+% \begin{equation*}
+%     v_L(t) = \frac{1}{2} \left( \frac{\zeta x}{A_p \sqrt{\rho}} \right)^2 \left( - \rho C(t) + \sqrt{4 \left( \frac{A_p \sqrt{\rho}}{\zeta x} \right)^2 \left( p_t(t) + B(t) \right) + \rho^2 C(t)^2 \left( 1 - 2 \frac{A_p\power{2}}{\zeta^2 x^2} \right)} \, \right) \, .
+% \end{equation*}
+% 
 % As $C(t)$ is a small fluctuation, a binomial expansion may be applied to the square-root term, to give
-
+% ~
 % \begin{equation*}
 %     v_L(t) = \frac{\zeta x}{A_p \sqrt{\rho}} \sqrt{p_t(t) + B(t)} - 
 %     \left( \frac{\zeta x}{A_p \sqrt{\rho}} \right)^2 \left( \frac{1}{2} \rho C(t) - \frac{1}{8} \frac{\zeta x}{A_p \sqrt{\rho}} \frac{\rho^2 C(t)^2}{\sqrt{p_t(t) + B(t)}} \left( 1 - 2 \frac{A_p\power{2}}{\zeta^2 x^2} \right) \right) \, .
 % \end{equation*}
+Additionally, both the pressure and velocity distributions, $p(\eta,t)$ and $v(\eta,t)$, are functions of both $B$ and $C$. Therefore, when $\pdiff{p}{t}$ and $\pdiff{v}{t}$ to ensure \cref{eq: FluidPDE} is satisfied, each of two ordinary differential equations contains $\dot{B}$ and $\dot{C}$.
+%However, as both $p(\eta,t)$ and $v(\eta,t)$ are functions of $B$ and $C$, both ordinary differential equations are in terms of $\dot{B}$ and $\dot{C}$.
+As the system is linear for $\dot{B}$ and $\dot{C}$, the set of differential equation could be solved, but involves algebra too long to be of use for further analysis.
 
-Additionally, both the pressure and velocity become functions of both $B$ and $C$. When calculating $\pdiff{p}{t}$ and $\pdiff{v}{t}$ to ensure \cref{eq: FluidPDE} is satisfied, a system of two ordinary differential equations for $\dot{B}$ and $\dot{C}$. However, as both $p(\eta,t)$ and $v(\eta,t)$ are functions of $B$ and $C$, both ordinary differential equations are in terms of $\dot{B}$ and $\dot{C}$. As the system is linear for $\dot{B}$ and $\dot{C}$, this could be solved, but would involve algebra too long to be of use for further analysis.
-
-The most general simplification is to neglect the fluctuations in velocity, $C(t) \approx 0$, when calculating the boundary condition given by \cref{eq: QWMBoundary1}. As $C(t)$ represents a small amplitude oscillation, the assumption that $v_L(t) + C(t) \approx v_L(t)$ is valid. However, if large amplitude oscillations occur, then the boundary conditions will no longer be satisfied. As this model is only interested in the onset of a flutter instability, this is an acceptable assumption. By allowing $C(t) \approx 0$, the boundary conditions can be solved to give
+%\newpage
+The most general simplification is to neglect the fluctuations in velocity, $C(t) \approx 0$, when calculating the boundary condition given by \cref{eq: QWMBoundary1}. As $C(t)$ represents a small amplitude oscillation, the assumption that $v_L(t) + C(t) \approx v_L(t)$ is valid.
+%However, if large amplitude oscillations occur, then the boundary conditions will no longer be satisfied.
+As this model is only interested in the onset of a flutter instability, this is an acceptable assumption. Using this assumption, the boundary conditions can be solved to give
 ~
 \begin{equation} \label{eq: QWMPresAndVelBound}
     p_0(t) = p_t(t) - \frac{\zeta^2 x^2}{2 A_p\power{2}} \left( p_t(t) \textcolor{Red}{+ B(t)} \right)
@@ -297,11 +304,11 @@ The most general simplification is to neglect the fluctuations in velocity, $C(t
     v_L(t) = \frac{\zeta x}{A_p \sqrt{\rho}} \sqrt{p_t(t) + B(t)} \, .
 \end{equation}
 
-The expression for $v_L(t)$ is identical to that for the direct spring-operated case~\cite{Hos2015ModelPipe}, but $p_0(t) \neq p_t(t)$ because the conversion of the tank static pressure into dynamic pressure is considered. The term in \textcolor{Red}{red} represents another small fluctuation which could also be neglected using a similar argument to $C(t)$. For completeness, the \textcolor{Red}{red} term will initially not be neglected, with \textcolor{Red}{red} terms in later equations indicating the terms dependent upon the small fluctuation, $\textcolor{Red}{B(t)}$.
+The expression for $v_L(t)$ is identical to that for the direct spring-operated case~\cite{Hos2015ModelPipe}, but $p_0(t) \neq p_t(t)$ because the conversion of the tank static pressure into dynamic pressure is considered as discussed in \cref{subsubsec: BoundCond}. Another small fluctuation for which it may be possible to ignore using a similar argument to $C(t)$ is shown in \textcolor{Red}{red}. For completeness, this \textcolor{Red}{red} term will initially not be neglected, with \textcolor{Red}{red} terms in later equations indicating that those terms occur from considering the small fluctuation, $\textcolor{Red}{B(t)}$.
+%
+%\subsection{Piston and tank pressure dynamics}
 
-\subsection{Piston and tank pressure dynamics}
-
-These pressure and velocity distributions may be substituted into the previous equations of motion for the valve and tank pressure, \cref{eq: ValveODEsPipe}, giving
+Now that the values of $p_0(t)$ and $v_L(t)$ have been found, the pressure and velocity distributions from \cref{eq: PressVelDist,eq: QWMPresAndVelBound} can be substituted into the previous equations of motion for the valve and tank pressure found in \cref{subsec: PistonTankDyn}. Using the previous results, \cref{eq: ValveODEsPipe} becomes
 ~
 \begin{equation*}
 \begin{split}
@@ -311,11 +318,11 @@ These pressure and velocity distributions may be substituted into the previous e
 \end{split}
 \end{equation*}
 
-When the quarter wave is not present, namely when $B(t) = C(t) = 0$, the equations reduce to the original equations for the valve closing model, \cref{eq: ClosingDiffEqFull}, presented in \cref{sec: Prog}. Now, it becomes clear why the ideal acceleration of the fluid at the tank end must be included. Neglecting this acceleration, the equation of motion is not identical to the previously system. This is as the force on the valve due to the change in momentum is counteracted by the decrease in fluid static pressure due to the fluid flow. Neglecting the conversion between dynamic and static conversion hence overestimates the force acting on the valve by a factor of 2.
+With zero amplitude of the quarter wave, so $B(t) = C(t) = 0$, the equations reduce to the original equations for the valve closing model, \cref{eq: ClosingDiffEqFull}, presented in \cref{sec: Prog}. However, if the ideal acceleration of the fluid for the boundary condition \cref{eq: QWMBoundary1}, then the equation of motion is not identical to previously. The force acting on the main piston due to the change in momentum is counteracted by the decrease in fluid static pressure due to the fluid flow. Neglecting the conversion between dynamic and static conversion would overestimate the force acting on the valve by a factor of two.
+%
+%\subsection{Quarter wave fluid equations} 
 
-\subsection{Quarter wave fluid equations} 
-
-The first equation can be re-arranged to find an expression for $\dot{B}(t)$ as
+Finally, the differential equation for both $\dot{B}(t)$ and $\dot{C}(t)$ must be found. The first equation found by the collocation technique can be re-arranged to find an expression for $\dot{B}(t)$. Substituting the expressions for $p_0(t)$ and $v_L(t)$ into \cref{eq: CollocationODE} gives
 ~
 %EQUATION FOR $\dot{B}(t)$.
 \begin{equation}  \label{eq: QWMFullDiffB}
@@ -325,13 +332,17 @@ The first equation can be re-arranged to find an expression for $\dot{B}(t)$ as
     \frac{\pi}{2L} a^2 \rho C(t) - \frac{\pi \sqrt{2}}{4L} \left( \sqrt{2} v_L(t) + C(t) \right) - \sqrt{2} \dot{p}_t(t)}
      \right.  \\ & \quad \left.  % linebreak
     + \frac{\sqrt{2} \zeta^2 x(t)^2}{2 A_p\power{2}} \dot{p}_t(t) + \frac{\sqrt{2} \zeta^2 x(t)}{A_p\power{2}} \left( p_t(t) \textcolor{Red}{+ B(t)} \right) \dot{x}(t)
-    \right)
+    \right) \, .
 \end{split}
 \end{equation}
 
-As before, \textcolor{Red}{red} terms represent those terms which do not appear if the small amplitude oscillation \textcolor{Red}{$B(t)$} is neglected. The \textcolor{Blue}{blue} terms show those terms which occur within the derivation of a QWM for a spring-operated PRV~\cite{Hos2015ModelPipe}, as long as the red terms are neglected. Therefore, the black terms shows the higher order terms which appear by consideration of the ideal acceleration between the tank and inlet piping, so are not included in the original derivation.
+As previously noted, \textcolor{Red}{red} terms will not appear if the small amplitude oscillation \textcolor{Red}{$B(t)$} is neglected. Consider the case when \textcolor{Red}{$B(t)$} is neglected. Terms which are coloured \textcolor{Blue}{blue} occur within the derivation of a QWM for a spring-operated PRV~\cite{Hos2015ModelPipe}. Therefore, it is seen that some additional higher order terms which appear as those coloured in black. These higher order terms occur by considering of the ideal acceleration between the tank and inlet piping as discussed in \cref{subsubsec: BoundCond}.
 
-Similarly, the second equation may be re-arranged to find an ordinary differential equation for $\dot{C}(t)$, given by
+%%%%%%%%%%%%%%%%%%%%
+%% GOT UP TO HERE %%
+%%%%%%%%%%%%%%%%%%%%
+Similarly, the second equation calculated from Collocation technique may be re-arranged to find an ordinary differential equation for $\dot{C}(t)$. The terms will be coloured in the same way as \cref{eq: QWMFullDiffB}. However, unlike for $\dot{B}(t)$, the equation for $\dot{C}(t)$ also contains $\dot{B}(t)$, which when substituted in gives
+% The terms are coloured in the same way as before. Notably, the equation for $\dot{C}(t)$ is a function of $\dot{B}(t)$. This contributes to the long and unwieldy equation above which is difficult to manipulate algebraically.
 ~
 \begin{equation} \label{eq: QWMFullDiffC}
 \begin{split}
@@ -363,8 +374,6 @@ Similarly, the second equation may be re-arranged to find an ordinary differenti
     + \frac{\lambda \sqrt{2}}{4 D} \left( \sqrt{2} v_L + C \right) \left| \sqrt{2} v_L + C \right| } \, .
 \end{split}
 \end{equation}
-
-The terms are coloured in the same way as before. Notably, the equation for $\dot{C}(t)$ is a function of $\dot{B}(t)$. This contributes to the long and unwieldy equation above which is difficult to manipulate algebraically.
 
 % \section{Actual pressure and velocity profiles}
 
