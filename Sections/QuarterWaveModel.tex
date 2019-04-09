@@ -161,7 +161,7 @@ Notice that the dynamics of all modes are coupled, as $\dot{B}_k$ appears for ea
 \end{split}
 \end{equation*}
 
-Final generalised equation for $\dot{B}_n(t)$:
+The orthogonality conditions then mean that the only derivative with non-zero coefficient is $\dot{B}_n$. Hence, a separate equation for each temporal derivatives for the pressure fluctuation amplitudes can be found. Applying the orthogonality conditions and evaluating the remaining integrals give the generalised equation for $\dot{B}_n(t)$ as
 ~
 \begin{equation*}
 \begin{split}
@@ -174,7 +174,7 @@ Final generalised equation for $\dot{B}_n(t)$:
     (2m-1)(1-2n)(4k^2 - 4k + 4m^2 - 4m - 4n^2 + 4n + 1)
     }{
     (2(k+m+n)-3)(2(k-m+n)-1)(2(k+m-n)-1)(2(k-m-n)+1)
-    }
+    } \, .
 \end{split}
 \end{equation*}
 
@@ -195,9 +195,7 @@ Final generalised equation for $\dot{B}_n(t)$:
 % \end{split}
 % \end{equation*}
 
-An almost identical method can be used on the momentum equation to find an ordinary differential equation for $\dot{C}_n$.
-However, the full details of the derivation are omitted as are lengthy and almost identical to those for $\dot{B}_n$. The reader is referred to the appendix for further details of the derivation for $C_k(t)$.
-Hence, the generalised equation for $\dot{C}_n(t)$ is
+As previously mentioned, the derivation for $\dot{C}_n(t)$ is omitted here as is the same steps applied to the momentum equation. Again, the reader is referred to the appendix for full details of the derivation. After using the Galerkin method on the momentum equation, the generalised equation for $\dot{C}_n(t)$ is
 ~ 
 \begin{equation*}
 \begin{split}
@@ -220,25 +218,27 @@ Hence, the generalised equation for $\dot{C}_n(t)$ is
     (-1)^k (-1)^m (-1)^n (2k-1) (2m-1) (2n-1)
     }{
     (2(k+m+n)-3)(2(k-m+n)-1)(2(k+m-n)-1)(2(k-m-n)+1)
-    }
+    } \, .
 \end{split}
 \end{equation*}
 
-Taking the one-mode truncation, the ordinary differential equations are:
+Obviously, it is impossible to consider the infinite number of modes considered by $k \in [1,\infty]$. Instead, an approximation by taking only a finite number of modes is used. As the one-mode truncation was found appropriate for the spring-operated case~\cite{Hos2015ModelPipe}, a one-mode truncation will be used here. Hence, the ordinary differential equations describing the quarter-wave are given by
 ~
 \begin{equation*}
 \begin{split}
-    \dot{B}_1 &= \rho a^2 \frac{\pi}{2 L} C_1 - \frac{4}{\pi} \pdiff{p_0}{t} - \frac{1}{L} v_L B_1 - \frac{2}{3L} C_1 B_1
+    \dot{B}_1 &= \rho a^2 \frac{\pi}{2 L} C_1 - \frac{4}{\pi} \pdiff{p_0}{t} - \frac{1}{L} v_L B_1 - \frac{2}{3L} C_1 B_1 \, ,
     \\
-    \dot{C}_1 &= - \frac{4}{\pi} \pdiff{v_L}{t} + \frac{1}{L} v_L C_1 - \frac{1}{\rho} \frac{\pi}{2L} B_1 + \frac{2}{3L} C_1\power{2} + \frac{\lambda}{D} \frac{4}{\pi} v_L\power{2} + 2 \frac{\lambda}{D} v_L C_1 + \frac{\lambda}{D} \frac{8}{3 \pi} C_1\power{2}
+    \dot{C}_1 &= - \frac{4}{\pi} \pdiff{v_L}{t} + \frac{1}{L} v_L C_1 - \frac{1}{\rho} \frac{\pi}{2L} B_1 + \frac{2}{3L} C_1\power{2} + \frac{\lambda}{D} \frac{4}{\pi} v_L\power{2} + 2 \frac{\lambda}{D} v_L C_1 + \frac{\lambda}{D} \frac{8}{3 \pi} C_1\power{2} \, .
 \end{split}
 \end{equation*}
 
 \subsection{Collocation technique}
 
-Now, the partial differential equation given in \cref{eq: FluidPDE} will be expressed as a system of ordinary differential equations using the collocation technique. These ordinary differential equations will describe the dynamics of the quarter-wave. The partial differential equation given by \cref{eq: FluidPDE} must be satisfied at all points along the pipe. The collocation technique will be used, ensuring that the fluid equations are satisfied at a single location, the mid-point of the pipe where $\eta = \frac{L}{2}$. At this point, $\fun{sin}{2 \pi \frac{\eta}{4L}} = \fun{cos}{2 \pi \frac{\eta}{4L}} = \frac{1}{\sqrt{2}}$, so the entire equation is rationalised by multiplied by $\sqrt{2}$.
-
-Hence, using the pressure and velocity distributions from \cref{eq: PressVelDist} requires that
+An alternative approach for reducing the partial differential equation given in \cref{eq: FluidPDE} to a system of ordinary differential equations is the collocation technique. Instead of considering the entire length of the pipe, the collocation technique ensure the partial differential equation is satisfied at a number of points along the pipe. It is more difficult to use the collocation technique for the general case of $N$ nodes, so a one-mode truncation will immediately be used. Hence, the subscripts will be dropped so $B_1 = B$ and $C_1 = C$. As the one-mode truncation is used, the fluid equations must only be satisfied at a single location, chosen as the mid-point of the pipe where $\eta = \frac{L}{2}$.
+%
+At this point, $\fun{sin}{2 \pi \frac{\eta}{4L}} = \fun{cos}{2 \pi \frac{\eta}{4L}} = \frac{1}{\sqrt{2}}$.
+%
+The pressure and velocity distributions from \cref{eq: PressVelDist} are substituted into the fluid PDEs from \cref{eq: FluidPDE}. Considering that $\eta = \frac{L}{2}$, and rationalising by multiplying by $\sqrt{2}$, requires that
 ~
 \begin{equation*}
 \begin{split}
@@ -248,7 +248,6 @@ Hence, using the pressure and velocity distributions from \cref{eq: PressVelDist
 \end{split}
 \end{equation*}
 
-\newpage
 \subsection{Comparison of model reductions}
 
 Use collocation technique.
