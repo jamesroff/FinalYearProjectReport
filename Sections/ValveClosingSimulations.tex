@@ -1,20 +1,20 @@
 \section{Valve closing simulations} \label{sec: ClosingSimulation}
 
-Now the dynamics of the system of dimensionless differential equations, \cref{eq: Non-DimODE}, will be studied using numerical simulations. This is done using the MATLAB in-built function \textit{ode45}, which uses a 4th order Runge-Kutta method with a 5th order Runge-Kutta corrector to minimise error~\cite{Shampine1997TheSuite}. The simulation of when the valve is slightly perturbed from the equilibria in the negative $x$ direction is shown in \cref{fig:TimeTrajec}. As predicted from the stability analysis, the perturbation grows exponentially until it reaches the low valve stop. At this point, a series of collisions occur which are modelled by considering the impact law given in \cref{sec: ValveCollision}. The collision is implemented by stopping the simulation when one occurs, and using the current values for $x$, $p_t$ and $\dot{x}^+$ from the impact law to form the initial conditions to restart the simulation.
+Now the dynamics of the system of dimensionless differential equations, \cref{eq: Non-DimODE}, will be studied using numerical simulations. Any following analysis will use the dimensionless variables, but the tilde notion will be dropped for convenience. The differential equations are solved using the MATLAB in-built function \textit{ode45}, which uses a fourth order Runge-Kutta method with a fifth order Runge-Kutta corrector to control error~\cite{Shampine1997TheSuite}. The simulation of when the valve is slightly perturbed from its equilibrium in the negative $x$ direction is shown in \cref{fig:TimeTrajec}. As predicted from the stability analysis, the perturbation grows exponentially until it reaches the low valve stop at $x = x_l = 0$. At this point, a series of collisions occur which are modelled by considering the impact law given in \cref{sec: ValveCollision}. The collision is implemented by stopping the simulation when one occurs, and using the current values for $x$ and $p$ with $\dot{x}^+$ calculated from the impact law to form the initial conditions to restart the simulation.
 ~
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=0.7\textwidth]{Figures/Example/PositionTimeTrajectory.png}
     \includegraphics[width=0.49\textwidth]{Figures/Example/VelocityTimeTrajectory.png}
     \includegraphics[width=0.49\textwidth]{Figures/Example/PressureTimeTrajectory.png}
-    \caption{Simulation results for $\alpha = 0.1$ and $\beta = 1$.}
+    \caption{Simulation of \cref{eq: Non-DimODE,eq: ImpactLaw} for $\alpha = 0.1$ and $\beta = 1$. All figures are shown in the dimensionless units given by \cref{eq: BadDimensionlessVar}.}
     \label{fig:TimeTrajec}
 \end{figure}
 
-The dynamics in \cref{fig:TimeTrajec} show the desired behaviour in which the valve closes. Interestingly, the valve requires a series of impacts to gradually decrease the velocity until the valve is at rest. However, these impacts do not constitute a chatter instability, as they are low frequency and non-sustained. With these impacts, the valve will close in a finite time, which will be discussed later in this report%, \cref{sec:ValveCloseImpacts} 
-.
+The dynamics in \cref{fig:TimeTrajec} show the desired behaviour in which the valve closes. Interestingly, the valve requires a series of impacts to gradually decrease the velocity until the valve is at rest. However, these impacts do not constitute a chatter instability, as they are low energy and non-sustained. With these impacts, the valve will close in a finite time, which will be discussed in \cref{sec: ImpactDynamics}.
 
-Although the valve position and velocity both tend towards zero, the tank pressure does not show similar behaviour as instead $p_t \rightarrow \infty$. This may initially seem slightly counter-intuitive except for two important restrictions of this simple model. Firstly, the pilot valve is completely ignored, which means the main valve will never open once it has closed as the opening mechanism is dependent on the pilot valve. Secondly, except in the limit that $\alpha \rightarrow 0$ and $\beta \rightarrow \infty$, there is also a non-zero mass flow rate into the tank, or equivalently $\dot{m}_{in} \neq 0$. Hence, when the valve is closed, the mass of fluid is still increasing. Therefore, the density must slightly increase so the pressure must also slightly increase.
+\newpage
+Although the valve position and velocity both tend towards zero, the tank pressure does not show similar behaviour as instead $p \rightarrow \infty$. This may initially seem slightly counter-intuitive except for two important restrictions of this simple model. Firstly, the pilot valve is completely ignored, which means the main valve will never open once it has closed as the opening mechanism is dependent on the pilot valve. Secondly, except in the limit that $\alpha \rightarrow 0$ and $\beta \rightarrow \infty$, there is also a non-zero mass flow rate into the tank, or equivalently $\dot{m}_{in} \neq 0$. Hence, when the valve is closed, the mass of fluid is still increasing. Therefore, the density must slightly increase so the pressure must also slightly increase. \Cref{sec: ClosingFixPres} will consider an alternative approach for which the tank pressure is fixed by varying the mass flow into the tank.
 
 % % Example Trajectory in Phase Portrait - PROBABLY NOT WORTH USING
 % \begin{figure}[!ht]
@@ -84,18 +84,19 @@ There is also one constant eigenvalue, $\lambda_2$, which does not depend upon $
     \caption{$\alpha = 0.01, \, \beta = 10$}
 %    \label{fig:2}
     \end{subfigure}
-    \caption{3D Phase Portrait}
+    \caption{3D phase portrait of the valve closing model, \cref{eq: Non-DimODE,eq: ImpactLaw}. All details are as in \cref{fig:TimeTrajec} unless otherwise stated.}
     \label{fig: ValveClose3DPhase}
 \end{figure}
 
-In fact, we see that the dynamics approaches the unstable manifold of the equilibrium. The valve then either follows the manifold in the direction of decreasing piston position, so that the valve closes. Alternatively, the dynamics follow the manifold with increasing valve position, so that the valve closes. Regardless of the value of $\beta$ used, the unstable manifold appears to have an identical shape in the velocity dimension. Because of the similar behaviour in the velocity direction, phase portraits will now only show a 2D representation in the position-pressure space for clarity.
+\newpage
+In fact, we see that the dynamics approaches the unstable manifold of the equilibrium. The valve then either follows the manifold in the direction of decreasing piston position, so that the valve closes. Alternatively, the dynamics follow the manifold with increasing valve position, so that the valve opens further to the upper stop. Regardless of the value of $\beta$ used, the unstable manifold appears to have an identical shape when projected onto the velocity-position and velocity-pressure plane. Because of this similar behaviour, phase portraits will now only show a 2D representation in the position-pressure space for clarity.
 
-One difference which can be seen between the phase portraits for $\beta = 1$ and $\beta = 10$, \cref{fig: ValveClose3DPhase}, is due to impact dynamics. For $\beta = 1$, the valve collides with the lower stop at a low enough pressure that it can be seen in the pressure range shown in \cref{fig: ValveClose3DPhase}. These dynamics are predictable in that an impact occurs so the velocity reverses, but the piston is still being forced downwards by the fluid. Hence, the impacts continue while the velocity tends to 0. This will be further explored in \cref{sec: ImpactDynamics}.
+One difference which can be seen between the phase portraits for $\beta = 1$ and $\beta = 10$ (\cref{fig: ValveClose3DPhase}) is due to impact dynamics. For $\beta = 1$, the valve collides with the lower stop at a low enough pressure that it can be seen in the pressure range shown in \cref{fig: ValveClose3DPhase}. These dynamics are predictable in that an impact occurs so the velocity reverses, but the piston is still being forced downwards by the fluid. Hence, the impacts continue while the velocity tends to 0. This will be further explored in \cref{sec: ImpactDynamics}.
 
 By looking at \cref{eq: Non-DimODE}, we see that as $\alpha \rightarrow 0$ and $\beta \rightarrow \infty$, a slow-fast system occurs. Hence, we expect the dynamics to quickly approach the equilibrium pressure, so that
 ~
 \begin{equation*}
-    1 - \tilde{x} \sqrt{\tilde{p}} = 0 \, .
+    1 - x \sqrt{p} = 0 \, .
 \end{equation*}
 
 This is in agreement with the eigenvalues, as $\lambda_1 \rightarrow - \infty$. The corresponding eigenvector, $v_1$, shows these dynamics purely effect the tank pressure locally to the equilibrium. In fact, this is exactly what we see in \cref{fig: ValveClose3DPhase}, where the vertical lines show the dynamics very quickly approach the equilibrium pressure. In fact, the dynamics approach the family of equilibria which exist as $\dot{m}_{in} \rightarrow 0$. Further from the equilibrium at $\tilde{x} = 1$, the fast dynamics do not act purely horizontally.
@@ -114,10 +115,11 @@ This is in agreement with the eigenvalues, as $\lambda_1 \rightarrow - \infty$. 
     \caption{$\alpha = 0.01, \, \beta = 10$}
     \label{fig: ValveClosePhase10}
     \end{subfigure}
-    \caption{2D Phase Portrait}    \label{fig: ValveClosePhase}
+    \caption{2D representation of the phase portrait in \cref{fig: ValveClose3DPhase}}    \label{fig: ValveClosePhase}
 \end{figure}
 
-In fact, as $\alpha \rightarrow 0$ and $\beta \gg 1$, the equation $1 - \tilde{x} \sqrt{\tilde{p}} = 0$ gives a closer approximation to the unstable manifold. However, even when $\beta$ is not sufficiently large, this gives a good approximation sufficiently close to the equilibrium. This expression is tangeant to the unstable eigenvector given by $v_3$ at the equilibrium.
+In fact, as $\alpha \rightarrow 0$ and $\beta \gg 1$, the equation $1 - \tilde{x} \sqrt{\tilde{p}} = 0$ gives a closer approximation to the unstable manifold. However, even when $\beta$ is not sufficiently large, this gives a good approximation sufficiently close to the equilibrium.
+%This expression is tangeant to the unstable eigenvector given by $v_3$ at the equilibrium.
 
 % Simulation results support this. 
 % 
@@ -138,10 +140,10 @@ In fact, as $\alpha \rightarrow 0$ and $\beta \gg 1$, the equation $1 - \tilde{x
 % %    \caption{}
 % \end{figure}
 
-%\newpage
-\section{Fixed tank pressure}
+% \newpage
+\section{Fixed tank pressure} \label{sec: ClosingFixPres}
 
-One interesting case is when the mass flow rate into the tank, $\dot{m}_{in}$, is allowed to vary such that the tank pressure remains constant. As both $\alpha$ and $\beta$ are functions of $\dot{m}_{in}$ in \cref{eq: Non-DimODE}, this set of dimensionless equations is not useful for the purpose of constant tank pressure. Instead, a new set of dimensionless equations will be introduced. These use the valve equilibrium lift as the reference distance and ambient pressure as the reference pressure.
+Perhaps a more realistic case is when the mass flow rate into the tank, $\dot{m}_{in}$, is allowed to vary such that the tank pressure remains constant. Hence, the extreme rise in tank pressure seen in \cref{fig:TimeTrajec} does not occur. As both $\alpha$ and $\beta$ are functions of $\dot{m}_{in}$ in \cref{eq: Non-DimODE}, this set of dimensionless equations is not useful for the purpose of constant tank pressure. Instead, a new set of dimensionless equations will be introduced. These use the valve equilibrium lift as the reference distance and ambient pressure as the reference pressure.
 
 Hence, the reference dimensions are given by
 ~
@@ -149,7 +151,7 @@ Hence, the reference dimensions are given by
 \begin{split}
     x_{ref} = \frac{1}{C_d} \sqrt{\frac{A_v - A_p}{4 \pi}}
     \, , \qquad
-    p_{ref} = p_a = 1 \si{bar}
+    p_{ref} = p_a = 1 \, \si{bar}
     \, , \qquad
     \omega_{ref} = C_d \sqrt{4 \pi} \sqrt{\frac{p_{ref} x_{ref}}{m_v}} \, .
 \end{split}
@@ -186,8 +188,6 @@ It is now clear why such a non-dimensionalisation was chosen. For the tank press
     q = \sigma \mu \, \tilde{x} \, \sqrt{\tilde{p}} \, .
 \end{equation*}
 
-Now, the tank pressure $\tilde{p}$ is a fixed parameter that the tank is held at. Hence, the mass flow into the tank must be directly proportional to the valve lift.
-~
 % POSSIBLY INCLUDE TWO GRAPHS OF $\tilde{x}$ AND $q$?! MAYBE SET MAXIMUM OF $q = 1$ AND SHOW PRESSURE AS VALVE CLOSING
 % 
 \begin{figure}[!ht]
@@ -196,21 +196,33 @@ Now, the tank pressure $\tilde{p}$ is a fixed parameter that the tank is held at
     \includegraphics[width=0.49\textwidth]{Figures/FixedPressure/FlowRate.png}
     \includegraphics[width=0.49\textwidth]{Figures/FixedPressure/Velocity.png}
     \includegraphics[width=0.49\textwidth]{Figures/FixedPressure/Pressure.png}
-    \caption{Simulation when maximum flow rate into the tank is $q = 2$}
+    \caption{Simulation of fixed tank pressure valve closing model (\cref{eq: AltNonDim}) when maximum flow rate into the tank is $q = 2$. All parameters are given in \cref{tab: ValveClosingQWMParameterValues}.}
     \label{fig: FixPres}
 \end{figure}
 
-\textcolor{Red}{WRITE A PARAGRAPH ABOUT THIS GRAPH TO FINISH SECTION!}
+Now, the tank pressure $\tilde{p}$ is a fixed parameter that the tank is held at. Hence, the mass flow into the tank must be directly proportional to the valve lift.
 
-\newpage
+In practice, there may be a maximum flow into the tank which can be achieved. This can be modelled by using a flow rate defined by
+~
+\begin{equation*}
+    q = \max \begin{cases} 2 & \quad \dash{\tilde{p}} \neq 0 \, , \\
+    \mu \sigma \tilde{x} \tilde{p} & \quad \dash{\tilde{p}} = 0 \, .
+    \end{cases}
+\end{equation*}
+
+\Cref{fig: FixPres} shows the simulation results for this case. It is clear that initially the flow rate into the tank is the maximum allowable, such that the valve is discharging more fluid than can be supplied to the tank.  Hence, the pressure is expected to decrease as is seen. However, once the valve is closed such that the discharge from the valve can be matched, the flow rate begins to change proportionally to the valve position. Hence, the pressure remains fixed. It can also be seen that this can be achieved even when impacts occur.
+
+%\newpage
 \section{Impact dynamics} \label{sec: ImpactDynamics}
 
-Now some more thorough consideration of the collisions with either the upper or lower stop will be considered. This is of particular use to simulate the dynamics of the valve between the first collision with the lower stop until the valve remains fully closed. Hence, if the pilot valve dynamics are also considered, a simulation would be able to reproduce the valve closing and then re-opening which is useful to study if cycling may occur. \Cref{fig: ImpactPos} shows the simulation of typical dynamics for a collision with the upper stop. The following analysis can be repeated for a collision with the lower stop, however this is almost identical so will not be considered.
+Now some more thorough consideration of the collisions with either the upper or lower stop will be considered. This is of particular use to simulate the dynamics of the valve between the first collision with the lower stop until the valve remains fully closed. Hence, if the pilot valve dynamics are also considered, a simulation would be able to reproduce the valve closing and then re-opening which is useful to study if cycling may occur. Additionally, the same analysis may be used to accurately detect the exact time at which the pilot valve closes.
+
+\Cref{fig: ImpactPos} shows the simulation of typical dynamics for a collision with the upper stop. The following analysis can be repeated for a collision with the lower stop, however this is almost identical so will not be considered.
 ~
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.7\textwidth]{Figures/ImpactSeries/PositionTime.png}
-    \caption{Predictions of valve closing time using different calculated ratios.}
+    \caption{Time trajectory of the valve position, with indications of three predictions for the final valve closing time. The red vertical dashed line (left) corresponds to using the ratio between the times of the between the first, second and third collisions. The blue vertical dashed line (right) corresponds to using the average ratio of all collisions which can be calculated. The green vertical dashed line (middle) corresponds to using the ratio between the times of the final three collisions.}
     \label{fig: ImpactPos}
 \end{figure}
 
@@ -222,7 +234,7 @@ The important feature to notice is that the time between each successive impact 
 
 where $t_i$ represents the time at which the $i$-th impact occurs.
 
-An important use of this series is to calculate the time at which the final impact occurs, at which point the valve remains closed. This is given by $t_\infty$, however this would involve an infinite number of collisions which is not feasible for simulation. However, the time at which the valve remains closed, $t_f$, may be expressed as
+The important use of this series is to calculate the time at which the final impact occurs, at which point the valve remains closed. This is given by $t_\infty$, however this would involve an infinite number of collisions which is not feasible for simulation. However, the time at which the valve remains closed, $t_f$, may be expressed as
 ~
 \begin{equation*}
     t_f = t_\infty = t_1 + \sum^\infty_{i = 1} T_i \, .
@@ -230,7 +242,6 @@ An important use of this series is to calculate the time at which the final impa
 
 Now we must find if the series is a geometric series for which a common ratio $r$ exists and is constant for all terms, such that $T_i = T_0 \cdot r^i$ and each successive term is the previous term multiplied by the common ratio. \Cref{fig: ImpactOtherRatio} shows how the ratio between successive terms of $T_i$ changes as more impacts occur. It can be seen that this common ratio $r$ is nearly constant over all impacts, however some small variation does exist.
 
-\newpage
 If the initial common ratio, i.e. $r = \sfrac{T_2}{T_1}$, is used to predict the closing time assuming the time between collisions follows a geometric series, the time at which the valve finally closes is greatly underestimated. This can be seen in \cref{fig: ImpactPos} where the red vertical dashed line represents the time at which the valve is predicted to be fully closed. Clearly, the simulated oscillations occur past this point. This is expected from \cref{fig: ImpactOtherRatio}, where the initial common ratio is much lower than the future ratios.
 ~
 \begin{figure}[ht]
@@ -254,6 +265,7 @@ Now we consider the case for which the simulation has modelled the collisions un
 So two alternative approximations of the common ratio are used to predict the valve closing time. The first is to simply take the mean average of the common ratios. The second is to consider the geometric series only occurs continues after the collisions can no longer be simulated, such that the last calculated common ratio is used.%, such that $r = \sfrac{T_N}{T_{N-1}}$.
 When these common ratios are calculated, it can be seen in \cref{fig: ImpactOtherRatio} that both give similar values for $r$.
 
+\newpage
 From \Cref{fig: ImpactPos}, it is clear both of these approaches give a reasonable estimate of when the final collision occurs and the valve remains closed. However, \cref{fig: ImpactOtherTimes} shows how the time at which each collision occurs. It appears using the final common ratio gives the better approximation of the finite time of the collision when $i \rightarrow \infty$. Hence, to calculate the time at which the valve remains closed, the best approximation is given by
 ~
 \begin{equation*}

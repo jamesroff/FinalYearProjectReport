@@ -87,3 +87,65 @@ Integral of $\cos \cdot \cos \cdot \cos$:
     }
 \end{split}
 \end{equation*}
+
+\section*{A2: Galerkin method for velocity fluctuations}
+
+First, as before in \cref{subsec: Galerkin}, the assumed pressure and velocity distribution (\cref{eq: PressVelDist}) are substituted into the equations describing the fluid dynamics (\cref{eq: FluidPDE}). This gives
+~
+\begin{equation*}
+\begin{split}
+    \dot{v}_L
+    + \sum_{k=1}^{\infty} \dot{C}_k \fun{cos}{2\pi \frac{\eta \left( 2 k - 1 \right)}{4L}}
+    - v_L \sum_{k=1}^{\infty} C_k \frac{\pi \left( 2 k - 1 \right)}{2L} \fun{sin}{2\pi \frac{\eta \left( 2 k - 1 \right)}{4L}}
+    & \\ % newline
+    - \sum_{k=1}^{\infty} \sum_{m=1}^{\infty} C_k C_m \frac{\pi \left( 2 m - 1 \right)}{2L} \fun{cos}{2\pi \frac{\eta \left( 2 k - 1 \right)}{4L}} \fun{sin}{2\pi \frac{\eta \left( 2 m - 1 \right)}{4L}} 
+    & \\ % newline
+    + \frac{1}{\rho} \sum_{k=1}^{\infty} B_k \frac{\pi \left( 2 k - 1 \right)}{2L} \fun{cos}{2\pi \frac{\eta \left( 2 k - 1 \right)}{4L}}
+    &= \\ % newline
+    \frac{\lambda}{D} \left( v_L + \sum_{k=1}^{\infty} C_k \fun{cos}{2\pi \frac{\eta \left( 2 k - 1 \right)}{4L}} \right) \left| v_L + \sum_{k=1}^{\infty} C_k \fun{cos}{2\pi \frac{\eta \left( 2 k - 1 \right)}{4L}} \right| \, .
+\end{split}
+\end{equation*}
+
+Similarly to $\dot{B}_n$, \cref{subsec: Galerkin}, the orthogonality between modes is used to isolate the dynamics of an arbitrary mode, $\dot{C}_n$. Multiplying by the shape function, $\cos\left(2\pi\frac{\eta(2k-1)}{4L}\right)$, and integrating over the domain yields
+~
+\begin{equation*}
+\begin{split}
+    \dot{v}_L \int^L_0 \cos\left(2\pi\frac{\eta(2n-1)}{4L}\right) \Idx{\eta}
+    + \sum_{k=1}^{\infty} \dot{C}_k \int^L_0 \fun{cos}{2\pi \frac{\eta \left( 2 k - 1 \right)}{4L}} \cos\left(2\pi\frac{\eta(2n-1)}{4L}\right) \Idx{\eta}
+    & \\ % newline
+    - v_L \sum_{k=1}^{\infty} C_k \frac{\pi \left( 2 k - 1 \right)}{2L} \int^L_0 \fun{sin}{2\pi \frac{\eta \left( 2 k - 1 \right)}{4L}} \cos\left(2\pi\frac{\eta(2n-1)}{4L}\right) \Idx{\eta}
+    & \\ % newline
+    - \sum_{k=1}^{\infty} \sum_{m=1}^{\infty} C_k C_m \frac{\pi \left( 2 m - 1 \right)}{2L} \int^L_0 \fun{cos}{2\pi \frac{\eta \left( 2 k - 1 \right)}{4L}} \fun{sin}{2\pi \frac{\eta \left( 2 m - 1 \right)}{4L}} \cos\left(2\pi\frac{\eta(2n-1)}{4L}\right) \Idx{\eta}
+    & \\ % newline
+    + \frac{1}{\rho} \sum_{k=1}^{\infty} B_k \frac{\pi \left( 2 k - 1 \right)}{2L} \int^L_0 \fun{cos}{2\pi \frac{\eta \left( 2 k - 1 \right)}{4L}} \cos\left(2\pi\frac{\eta(2n-1)}{4L}\right) \Idx{\eta}
+    &= \\ % newline
+    \frac{\lambda}{D} \int^L_0 \left( v_L + \sum_{k=1}^{\infty} C_k \fun{cos}{2\pi \frac{\eta \left( 2 k - 1 \right)}{4L}} \right) \left| v_L + \sum_{k=1}^{\infty} C_k \fun{cos}{2\pi \frac{\eta \left( 2 k - 1 \right)}{4L}} \right| \cos\left(2\pi\frac{\eta(2n-1)}{4L}\right) \Idx{\eta} \, .
+\end{split}
+\end{equation*}
+
+Applying the orthogonality conditions and evaluating each integral in term, the generalised equation for $\dot{C}_n(t)$ is given by
+~
+\begin{equation*}
+\begin{split}
+    \dot{C}_n &=
+    \frac{4}{\pi} \frac{(-1)^n}{2n-1} \pdiff{v_L}{t}
+    + \frac{1}{L} v_L \sum^{\infty}_{k=1,k \neq n} C_k \frac{2k-1}{k-n}
+    + \frac{1}{L} v_L C_n
+    - \frac{1}{\rho} \sum^{\infty}_{k=1} B_k \frac{\pi (2k-1)}{2L}
+    \\ & \quad % newline
+    - \frac{2}{L} \sum^{\infty}_{k=1} \sum^{\infty}_{m=1} C_k C_m \frac{
+    (2m-1)^2 (4k^2 - 4k + 4m^2 - 4m - 4n^2 + 4n + 1)
+    }{
+    (2(k+m+n)-3)(2(k-m+n)-1)(2(k+m-n)-1)(2(k-m-n)+1)
+    }
+    \\ & \quad % newline
+    - \frac{\lambda}{D} \frac{4}{\pi} \frac{(-1)^n}{2n-1} v_L\power{2}
+    + 2 \frac{\lambda}{D} v_L C_n
+    \\ & \quad % newline
+    + \frac{\lambda}{D} \frac{8}{\pi} \sum^{\infty}_{k=1} \sum^{\infty}_{k=1} C_k C_m \frac{
+    (-1)^k (-1)^m (-1)^n (2k-1) (2m-1) (2n-1)
+    }{
+    (2(k+m+n)-3)(2(k-m+n)-1)(2(k+m-n)-1)(2(k-m-n)+1)
+    }
+\end{split}
+\end{equation*}

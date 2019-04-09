@@ -1,15 +1,18 @@
 \chapter{Valve closing with inlet piping} \label{sec: QWM}
 
 Now, the effect of the fluid within the inlet piping between the pressure tank and pilot-operated PRV will be considered.
-Rather than studying a full system of partial differential equations describing the fluid within the pipework, the fluid is assumed to be described by a standing quarter acoustic wave.
+First the full system of partial differential equations describing the fluid within the pipework will be considered, which will then be simplified by considering standing acoustic waves.
 %Unlike previously in \cref{sec: PDE} where a system of partial differential equations is used to describe the fluid, it is assumed the fluid behaviour is described by a standing quarter acoustic wave.
-This follows an identical method to that used to calculate an analytic stability boundary for the simpler direct spring-operated PRV~\cite{Hos2015ModelPipe,Hos2015DynamicModelling,Hos2016DynamicService,Hos2017DynamicRecommendations}. As in \cref{sec: Prog}, the dynamics of the valve will still only be considered while the main valve is closing.
+This method had previously been used to calculate an analytic stability boundary for the simpler direct spring-operated PRV~\cite{Hos2015ModelPipe,Hos2015DynamicModelling,Hos2016DynamicService,Hos2017DynamicRecommendations}. As in \cref{sec: Prog}, the dynamics of the valve will still only be considered while the main valve is closing.
 
-The pressure and velocity of the fluid within the pipework are functions of time and distance along the pipe. Hence, the fluid properties within the pipe will be described by $p(\eta,t)$ and $v(\eta,t)$ respectively. As before, the fluid is considered only slightly compressible. The slightly compressible nature of the fluid is taken into account while obtaining \cref{eq: FluidPDE}. Hence, the fluid may now be considered incompressible as before, so the density of the fluid is constant. %\textcolor{Red}{REWORD!}
+% The pressure and velocity of the fluid within the pipework are functions of time and distance along the pipe. Hence, the fluid properties within the pipe will be described by $p(\eta,t)$ and $v(\eta,t)$ respectively. As before, the fluid is considered only slightly compressible. The slightly compressible nature of the fluid is taken into account while obtaining \cref{eq: FluidPDE}. Hence, the fluid may now be considered incompressible as before, so the density of the fluid is constant. %\textcolor{Red}{REWORD!}
 
 \section{Pipe fluid dynamics}
 
-The fluid within the inlet piping is a spatio-temporal function. The distance along the pipe will be described by $\eta$, such that $\eta = 0$ at the tank end of the pipe. \textcolor{Red}{This can be seen in \cref{fig: Diagram}.} The equations of motion for the fluid consist of the standard 1D unsteady equation for continuity and conversation of momentum and energy. These are given by
+The fluid within the inlet piping is now a spatio-temporal function. Density, velocity, pressure and internal energy all vary along the length of the pipe and in time. The distance along the pipe will be described by $\eta$, such that $\eta = 0$ at the tank end of the pipe. Hence, the density, velocity, pressure and internal energy distributions will be given by $\rho(\eta,t)$, $v(\eta,t)$, $p(\eta,t)$ and $e(\eta,t)$ respectively.
+%Fluid properties such as the pressure, $p(\eta,t)$, and velocity, $v(\eta,t)$, vary along the length of the pipe and in time. The distance along the pipe will be described by $\eta$, such that $\eta = 0$ at the tank end of the pipe.
+%\textcolor{Red}{This can be seen in \cref{fig: Diagram}.}
+A standard 1D unsteady equation for continuity and conversation of momentum and energy is used to describe the fluid dynamics. These are given by
 
 \begin{equation*}
     \pdiff{}{t} \begin{pmatrix}
@@ -23,15 +26,15 @@ The fluid within the inlet piping is a spatio-temporal function. The distance al
     \end{pmatrix} \, .
 \end{equation*}
 
-The density, velocity, pressure and internal energy along the length of the pipe are given by $\rho(\eta,t)$, $v(\eta,t)$, $p(\eta,t)$ and $e(\eta,t)$ respectively. The non-conservative force represents the frictional loss through the inlet piping, for which $\lambda$ is a friction factor and again $D$ is the diameter of the pipe. However, a number of assumptions will now be made to simplify the partial differential equations describing the fluid.
+On the right-hand side of the equation, a non-conservative force represents the frictional loss through the inlet piping, for which $\lambda$ is a friction factor and $D$ is again the diameter of the pipe. However, a number of assumptions will now be made to simplify the partial differential equations describing the fluid.
 
-Firstly, as the working fluid is a liquid, it can be assumed that the temperature of the fluid remains constant as the fluid is very close to incompressible. Hence, the energy equation is not required to be considered. Additionally, as the temperature is constant, the density is only a function of the pressure. Hence, $\frac{p}{\rho}$ is a conserved quantity. Also, the relationship between the pressure and density can be written in terms of the sonic velocity, $a$, using
+Firstly, as the working fluid is a liquid, it can be assumed that the temperature of the fluid remains constant as the fluid is almost incompressible. Hence, the energy equation is not required to be considered. Additionally, as the temperature is constant, the density is only a function of the pressure. Hence, $\sfrac{p}{\rho}$ is a conserved quantity. Also, a relationship between the pressure and density can be written in terms of the sonic velocity, $a$, using
 ~
 \begin{equation*}
     \diff{p}{\rho} = a^2 \, .
 \end{equation*}
 
-Applying each of these assumption allows use to simplify the continuity and momentum equations to
+Applying each of these assumptions allows use to simplify the continuity and momentum equations to
 ~
 \begin{equation} \label{eq: FluidPDE}
 \begin{split}
@@ -40,11 +43,13 @@ Applying each of these assumption allows use to simplify the continuity and mome
 \end{split}
 \end{equation}
 
-As we may expect, the PDE describing the fluid behaviour is identical to for the direct spring-operated PRV case~\cite{Hos2015ModelPipe}.
+As we may expect, the PDE describing the fluid behaviour is identical to for the direct spring-operated PRV case~\cite{Hos2015ModelPipe}. It is the slight compressibility that allows waves to propagate along the inlet pipe. Now that the slightly compressible nature of the fluid is accounted for while obtaining \cref{eq: FluidPDE}, the fluctuations in density can now be neglected. Hence, the fluid is now considered incompressible as before in \cref{sec: Prog}. Alternatively, the density $\rho$ can be viewed  fluctuating but approximately constant. %\textcolor{Red}{REWORD!}
 
 \subsection{Boundary conditions}
 
-At $\eta = L$, the velocity must ensure mass is conserved between the flow through the pipe and the mass discharged through the main valve. At $\eta = 0$, the sum of the pressure $p(0,t)$ and the dynamic pressure is equal to the pressure within the tank. This relaxes an assumption made during previous work~\cite{Hos2015ModelPipe}, where the ideal acceleration of the fluid between the tank and the pipe is neglected. This ideal acceleration between the tank and the entrance of the inlet piping may be written as
+At the valve end of the inlet pipe, $\eta = L$, the velocity is such that mass is conserved between the flow through the pipe and discharged through the main valve. At the tank end of the inlet pipe, $\eta = 0$, the sum of the pressure $p(0,t)$ and the dynamic pressure is equal to the pressure within the tank. This relaxes an assumption made during previous work~\cite{Hos2015ModelPipe}, where the ideal acceleration of the fluid between the tank and the pipe is neglected.
+
+First, considering the boundary condition at $\eta = 0$, the ideal acceleration between the tank and the inlet piping may be written as
 ~
 \begin{equation} \label{eq: QWMBoundary1}
 \begin{split}
@@ -53,9 +58,18 @@ At $\eta = L$, the velocity must ensure mass is conserved between the flow throu
 \end{split}
 \end{equation}
 
-As suggested, the mass conservation at $\eta = L$ imposed the second boundary condition. The mass flow rate at the end of the pipe, when $\eta=L$, is trivially calculated using $\dot{m}(L,t) = \rho A_p v(L,t)$. The discharge from the valve is calculated using \cref{eq: ValveMassDischarge}. However, the discharge velocity must be expressed in terms of the pressure and velocity at the end of the pipe. The discharge velocity, $v_d$, can be calculated by considering the conversion of the total pressure into dynamic pressure. Hence, the second boundary condition can be expressed as
+Second, the mass conservation at $\eta = L$ imposes the other boundary condition. The mass flow rate at the end of the pipe, when $\eta=L$, is trivially calculated using $\dot{m}(L,t) = \rho A_p v(L,t)$. The discharge from the valve is calculated as before using \cref{eq: ValveMassDischarge}. However, the discharge velocity must be expressed in terms of the pressure and velocity at the end of the pipe. The discharge velocity, $v_d$, can be calculated by considering the conversion of the total pressure into dynamic pressure, rather than the static pressure of the tank in \cref{sec: Prog}. Hence, the second boundary condition can be expressed as
 % ADD MORE EXPLANATION OF WHERE THIS EQUATION COMES FROM! Additionally, the mass conservation at $\eta=L$ yields
 % %Mass conservation at the outlet of the pipe gives the second boundary condition of
+~
+\begin{equation} %\label{eq: QWMBoundary2}
+\begin{split}
+    \dot{m}(L,t) &= \dot{m}_d(t) \, . \\
+    \rho A_p v(L,t) &= \pi D \, x(t) \, C_d \, \rho \sqrt{\frac{2}{\rho} \left( p(L,t) + \frac{\rho}{2} v(L,t)^2 \right)} \, .
+\end{split}
+\end{equation}
+
+Here, it is useful to introduce a discharge coefficient, $\zeta = \sqrt{2} \pi D C_d$, to simplify the boundary condition. Hence, the second boundary condition is given by
 ~
 \begin{equation} \label{eq: QWMBoundary2}
 \begin{split}
@@ -64,11 +78,9 @@ As suggested, the mass conservation at $\eta = L$ imposed the second boundary co
 \end{split}
 \end{equation}
 
-Here, it is useful to introduce $\zeta = \sqrt{2} \pi D C_d$.
-
 \section{Piston and tank pressure dynamics}
 
-First, the dynamics of the main valve piston must be found, which will depend upon the fluid within the inlet piping. As before in \cref{sec: Prog}, the three forces acting on the piston are the pipe pressure, dome pressure and change of momentum of the fluid. These three forces acting on the piston depend upon the fluid properties within the pipe. Similarly, the differential equation describing the dynamics for the pressure in the tank can be expressed in terms of the same fluid properties. Hence, the differential equations describing the main piston motion and pressure within the tank are given by
+Now, the dynamics of the main valve piston will be found in terms of the pressure, $p(\eta,t)$, and velocity, $v(\eta,t)$, of the inlet piping fluid. As before in \cref{sec: Prog}, the three forces acting on the piston are the pipe pressure, dome pressure and change of momentum of the fluid. These forces only depend upon the pressure and velocity at the valve end of the pipe, $p(L,t)$ and $v(L,t)$ respectively. Similarly, the differential equation describing the dynamics for the pressure in the tank can be expressed in terms of the same fluid properties, but at the tank end of the pipe, $\eta = 0$. Hence, the differential equations describing the main piston motion and pressure within the tank are given by
 
 \begin{equation} \label{eq: ValveODEsPipe}
 \begin{split}
@@ -80,20 +92,74 @@ First, the dynamics of the main valve piston must be found, which will depend up
 \end{split}
 \end{equation}
 
-Both these equation depend upon the mass flow rate though the pipe, $\dot{m}(\eta,t)$. Because the fluid is considered incompressible, this can be calculated as the product of the pipe area $A_p$, fluid density $\rho$, and fluid velocity $v(\eta,t)$. Hence, the mass flow rate can be expressed in terms of the velocity using $\dot{m}(\eta,t) = \rho A_p v(\eta,t)$.
+Both these equation depend upon the mass flow rate though the pipe, $\dot{m}(\eta,t)$. Because the fluid is considered incompressible, this can be calculated as the product of the pipe area $A_p$, fluid density $\rho$, and fluid velocity $v(\eta,t)$. Hence, the mass flow rate can be expressed in terms of the velocity using $\dot{m}(\eta,t) = \rho \, A_p \, v(\eta,t)$.
 
 \section{Model reduction}
 
-The pressure and velocity distributions within the pipe will be considered to consist purely of a small amplitude quarter-wave around the principal/prominent pressure and velocity imposed by the tank pressure and mass discharged through the PRV. A very similar approach has previously been adopted for the simpler direct spring-operated PRV \cite{Hos2016DynamicService,Hos2015ModelPipe}. These quarter-wave velocity and pressure distributions can be represented by
+Now, the pressure and velocity distributions within the pipe will be considered to consist purely of a small amplitude acoustic waves. These distribution occur around the dominant pressure and velocity imposed by the tank pressure and mass discharged through the PRV. It has been shown that the inlet pipe undergoes acoustic waves which are almost identical to those found in an organ pipe~\cite{Botros1997Riser-ReliefInteractions}, where the valve end is considered closed and the tank is an open end. As such, only odd multiples of the quarter-wave frequency satisfy these boundary conditions, so only these need to be considered.
+% ~
+% \begin{figure}[ht]
+%     \centering
+%     \includegraphics[width=0.7\textwidth]{Diagrams/QWM/QWDiagram.png}
+%     \caption{Fluctuations of pressure (top) and velocity (bottom) within the inlet piping.}
+%     \label{fig: QWDiagram}
+% \end{figure}
+
+During experimental results of chatter, and also for organ-pipe acoustic waves, the velocity oscillations lead the pressure oscillations by $90^o$~\cite{Hos2015DynamicModelling}. Hence, the pressure distribution will be modelled using a $\sin$ function, while the velocity distribution will use a $\cos$ function. A similar approach has previously been adopted for the simpler direct spring-operated PRV \cite{Hos2016DynamicService,Hos2015ModelPipe}. The velocity and pressure distributions of these acoustic waves will be represented by
 ~
 \begin{equation} \label{eq: PressVelDist}
 \begin{split}
-    p(\eta,t) &= p_0(t) + B(t) \fun{sin}{2\pi \frac{\eta}{4L}} \, ,\\
-    v(\eta,t) &= v_L(t) + C(t) \fun{cos}{2\pi \frac{\eta}{4L}} \, .
+    p(\eta,t) &= p_0(t) + \sum^{\infty}_{k=1} B_k(t) \, \fun{sin}{2\pi \frac{\eta \left( 2 k - 1 \right)}{4L}} \, ,\\
+    v(\eta,t) &= v_L(t) + \sum_{k=1}^{\infty} C_k(t) \, \fun{cos}{2\pi \frac{\eta \left( 2 k - 1 \right)}{4L}} \, .
 \end{split}
 \end{equation}
 
-\subsection{Galerkin method}
+\subsection{Galerkin method} \label{subsec: Galerkin}
+
+Now, the fluid dynamical equations from \cref{eq: FluidPDE} will be simplified to a set of ordinary differential equations using the Galerkin method. Using the method is very similar to obtain differential equations for dynamics of both the pressure and velocity fluctuations, $B_k(t)$ and $C_k(t)$ respectively. Hence, only the derivation for $B_k(t)$ will be detailed here. The reader is referred to the appendix for full details of the derivation for $\dot{C}_n$. First, the assumed pressure and velocity distributions from \cref{eq: PressVelDist} are substituted into the mass conservation equation for the fluid piping, \cref{eq: FluidPDE}. This gives the following expression,
+~
+\begin{equation*}
+\begin{split}
+    \dot{p}_0
+    + \sum_{k=1}^{\infty} \dot{B}_k \fun{sin}{2\pi \frac{\eta \left( 2 k - 1 \right)}{4L}}
+    + v_L \sum_{k=1}^{\infty} B_k \frac{\pi \left( 2 k - 1 \right)}{2L} \fun{cos}{2\pi \frac{\eta \left( 2 k - 1 \right)}{4L}} 
+    & \\ % newline
+    + \sum_{k=1}^{\infty} \sum_{m=1}^{\infty} C_k B_m \frac{\pi \left( 2 m - 1 \right)}{2L} \fun{cos}{2\pi \frac{\eta \left( 2 k - 1 \right)}{4L}} \fun{cos}{2\pi \frac{\eta \left( 2 m - 1 \right)}{4L}} 
+    & \\ % newline
+    - \rho a^2 \sum_{k=1}^{\infty} C_k \frac{\pi \left( 2 k - 1 \right)}{2L} \fun{cos}{2\pi \frac{\eta \left( 2 k - 1 \right)}{4L}}
+    &= 0 \, .
+\end{split}
+\end{equation*}
+
+% \begin{equation*}
+% \begin{split}
+%     \dot{v}_L
+%     + \sum_{k=1}^{\infty} \dot{C}_k \fun{cos}{2\pi \frac{\eta \left( 2 k - 1 \right)}{4L}}
+%     - v_L \sum_{k=1}^{\infty} C_k \frac{\pi \left( 2 k - 1 \right)}{2L} \fun{sin}{2\pi \frac{\eta \left( 2 k - 1 \right)}{4L}}
+%     & \\ % newline
+%     - \sum_{k=1}^{\infty} \sum_{m=1}^{\infty} C_k C_m \frac{\pi \left( 2 m - 1 \right)}{2L} \fun{cos}{2\pi \frac{\eta \left( 2 k - 1 \right)}{4L}} \fun{sin}{2\pi \frac{\eta \left( 2 m - 1 \right)}{4L}} 
+%     & \\ % newline
+%     + \frac{1}{\rho} \sum_{k=1}^{\infty} B_k \frac{\pi \left( 2 k - 1 \right)}{2L} \fun{cos}{2\pi \frac{\eta \left( 2 k - 1 \right)}{4L}}
+%     &= \\ % newline
+%     \frac{\lambda}{D} \left( v_L + \sum_{k=1}^{\infty} C_k \fun{cos}{2\pi \frac{\eta \left( 2 k - 1 \right)}{4L}} \right) \left| v_L + \sum_{k=1}^{\infty} C_k \fun{cos}{2\pi \frac{\eta \left( 2 k - 1 \right)}{4L}} \right|
+% \end{split}
+% \end{equation*}
+\vspace{-30pt}
+Notice that the dynamics of all modes are coupled, as $\dot{B}_k$ appears for each of the $k$ modes. The Galerkin method uses the orthogonality between each mode to isolate an ordinary differential equation for an arbitrary mode, $B_n$. Hence, the equations above are multiplied by the arbitrary mode-shape, $\sin\left(2\pi\frac{\eta(2k-1)}{4L}\right)$ and Then, the equation is integrated over the domain of interest, from $0$ to $L$. This gives
+
+\begin{equation*}
+\begin{split}
+    \dot{p}_0 \int^L_0 \sin\left(2\pi\frac{\eta(2n-1)}{4L}\right) \Idx{\eta}
+    + \sum_{k=1}^{\infty} \dot{B}_k \int^L_0 \fun{sin}{2\pi \frac{\eta \left( 2 k - 1 \right)}{4L}} \sin\left(2\pi\frac{\eta(2n-1)}{4L}\right) \Idx{\eta}
+    & \\ % newline
+    + v_L \sum_{k=1}^{\infty} B_k \frac{\pi \left( 2 k - 1 \right)}{2L} \int^L_0 \fun{cos}{2\pi \frac{\eta \left( 2 k - 1 \right)}{4L}} \sin\left(2\pi\frac{\eta(2n-1)}{4L}\right) \Idx{\eta}
+    & \\ % newline
+    + \sum_{k=1}^{\infty} \sum_{m=1}^{\infty} C_k B_m \frac{\pi \left( 2 m - 1 \right)}{2L} \int^L_0 \fun{cos}{2\pi \frac{\eta \left( 2 k - 1 \right)}{4L}} \fun{cos}{2\pi \frac{\eta \left( 2 m - 1 \right)}{4L}} \sin\left(2\pi\frac{\eta(2n-1)}{4L}\right) \Idx{\eta}
+    & \\ % newline
+    - \rho a^2 \sum_{k=1}^{\infty} C_k \frac{\pi \left( 2 k - 1 \right)}{2L} \int^L_0 \fun{cos}{2\pi \frac{\eta \left( 2 k - 1 \right)}{4L}} \sin\left(2\pi\frac{\eta(2n-1)}{4L}\right) \Idx{\eta}
+    &= 0
+\end{split}
+\end{equation*}
 
 Final generalised equation for $\dot{B}_n(t)$:
 ~
@@ -112,7 +178,26 @@ Final generalised equation for $\dot{B}_n(t)$:
 \end{split}
 \end{equation*}
 
-Final generalised equation for $\dot{C}_n(t)$:
+% Similarly for $\dot{C}_n$, multiplying by the shape function and integrating over the domain gives
+% ~
+% \begin{equation*}
+% \begin{split}
+%     \dot{v}_L \int^L_0 \cos\left(2\pi\frac{\eta(2n-1)}{4L}\right) \Idx{\eta}
+%     + \sum_{k=1}^{\infty} \dot{C}_k \int^L_0 \fun{cos}{2\pi \frac{\eta \left( 2 k - 1 \right)}{4L}} \cos\left(2\pi\frac{\eta(2n-1)}{4L}\right) \Idx{\eta}
+%     & \\ % newline
+%     - v_L \sum_{k=1}^{\infty} C_k \frac{\pi \left( 2 k - 1 \right)}{2L} \int^L_0 \fun{sin}{2\pi \frac{\eta \left( 2 k - 1 \right)}{4L}} \cos\left(2\pi\frac{\eta(2n-1)}{4L}\right) \Idx{\eta}
+%     & \\ % newline
+%     - \sum_{k=1}^{\infty} \sum_{m=1}^{\infty} C_k C_m \frac{\pi \left( 2 m - 1 \right)}{2L} \int^L_0 \fun{cos}{2\pi \frac{\eta \left( 2 k - 1 \right)}{4L}} \fun{sin}{2\pi \frac{\eta \left( 2 m - 1 \right)}{4L}} \cos\left(2\pi\frac{\eta(2n-1)}{4L}\right) \Idx{\eta}
+%     & \\ % newline
+%     + \frac{1}{\rho} \sum_{k=1}^{\infty} B_k \frac{\pi \left( 2 k - 1 \right)}{2L} \int^L_0 \fun{cos}{2\pi \frac{\eta \left( 2 k - 1 \right)}{4L}} \cos\left(2\pi\frac{\eta(2n-1)}{4L}\right) \Idx{\eta}
+%     &= \\ % newline
+%     \frac{\lambda}{D} \int^L_0 \left( v_L + \sum_{k=1}^{\infty} C_k \fun{cos}{2\pi \frac{\eta \left( 2 k - 1 \right)}{4L}} \right) \left| v_L + \sum_{k=1}^{\infty} C_k \fun{cos}{2\pi \frac{\eta \left( 2 k - 1 \right)}{4L}} \right| \cos\left(2\pi\frac{\eta(2n-1)}{4L}\right) \Idx{\eta}
+% \end{split}
+% \end{equation*}
+
+An almost identical method can be used on the momentum equation to find an ordinary differential equation for $\dot{C}_n$.
+However, the full details of the derivation are omitted as are lengthy and almost identical to those for $\dot{B}_n$. The reader is referred to the appendix for further details of the derivation for $C_k(t)$.
+Hence, the generalised equation for $\dot{C}_n(t)$ is
 ~ 
 \begin{equation*}
 \begin{split}
@@ -163,6 +248,7 @@ Hence, using the pressure and velocity distributions from \cref{eq: PressVelDist
 \end{split}
 \end{equation*}
 
+\newpage
 \subsection{Comparison of model reductions}
 
 Use collocation technique.
@@ -195,12 +281,12 @@ Unfortunately, the boundary conditions defined by \cref{eq: QWMBoundary1,eq: QWM
     v_L(t) = \frac{1}{2} \left( \frac{\zeta x}{A_p \sqrt{\rho}} \right)^2 \left( - \rho C(t) + \sqrt{4 \left( \frac{A_p \sqrt{\rho}}{\zeta x} \right)^2 \left( p_t(t) + B(t) \right) + \rho^2 C(t)^2 \left( 1 - 2 \frac{A_p\power{2}}{\zeta^2 x^2} \right)} \, \right) \, .
 \end{equation*}
 
-As $C(t)$ is a small fluctuation, a binomial expansion may be applied to the square-root term, to give
+% As $C(t)$ is a small fluctuation, a binomial expansion may be applied to the square-root term, to give
 
-\begin{equation*}
-    v_L(t) = \frac{\zeta x}{A_p \sqrt{\rho}} \sqrt{p_t(t) + B(t)} - 
-    \left( \frac{\zeta x}{A_p \sqrt{\rho}} \right)^2 \left( \frac{1}{2} \rho C(t) - \frac{1}{8} \frac{\zeta x}{A_p \sqrt{\rho}} \frac{\rho^2 C(t)^2}{\sqrt{p_t(t) + B(t)}} \left( 1 - 2 \frac{A_p\power{2}}{\zeta^2 x^2} \right) \right) \, .
-\end{equation*}
+% \begin{equation*}
+%     v_L(t) = \frac{\zeta x}{A_p \sqrt{\rho}} \sqrt{p_t(t) + B(t)} - 
+%     \left( \frac{\zeta x}{A_p \sqrt{\rho}} \right)^2 \left( \frac{1}{2} \rho C(t) - \frac{1}{8} \frac{\zeta x}{A_p \sqrt{\rho}} \frac{\rho^2 C(t)^2}{\sqrt{p_t(t) + B(t)}} \left( 1 - 2 \frac{A_p\power{2}}{\zeta^2 x^2} \right) \right) \, .
+% \end{equation*}
 
 Additionally, both the pressure and velocity become functions of both $B$ and $C$. When calculating $\pdiff{p}{t}$ and $\pdiff{v}{t}$ to ensure \cref{eq: FluidPDE} is satisfied, a system of two ordinary differential equations for $\dot{B}$ and $\dot{C}$. However, as both $p(\eta,t)$ and $v(\eta,t)$ are functions of $B$ and $C$, both ordinary differential equations are in terms of $\dot{B}$ and $\dot{C}$. As the system is linear for $\dot{B}$ and $\dot{C}$, this could be solved, but would involve algebra too long to be of use for further analysis.
 
@@ -313,7 +399,7 @@ The terms are coloured in the same way as before. Notably, the equation for $\do
 
 Because of the lengthy and unwieldy expression for $\dot{C}(t)$, the \textcolor{Red}{$B(t)$} will be neglected. This is in a similar way to how the dynamic pressure at the tank end of the pipe, $\eta = 0$, was previously approximated using $v(0,t) = v_L(t) + C(t) \approx v_L(t)$. Hence, the dynamic pressure can be approximated by neglecting the small pressure fluctuation so that $p_t(t) + B(t) \approx p_t(t)$. This greatly simplifies the ordinary differential equations given by \cref{eq: QWMFullDiffB,eq: QWMFullDiffC} by removing any terms coloured in \textcolor{Red}{red}. This may also be seen as ensuring the boundary conditions, \cref{eq: QWMBoundary1,eq: QWMBoundary2}, are fully satisfied when the quarter-wave does not occur so $B(t) = C(t) = 0$. This is an acceptable assumption as the quarter-wave model aims to study the system close to the onset of a flutter instability, at which both $B(t)$ and $C(t)$ will represent very small amplitude oscillations so are close to zero.
 
-The additional bonus of this simplification is the differential equations remain consistent with those previously derived for a quarter wave model in the liquid case, for example in~\cite{Hos2015ModelPipe}. In fact, almost all terms which occur are equivalent to those previously derived. These can be seen coloured in \textcolor{Blue}{blue} in \cref{eq: FullQWMDimensional}. The only difference occurs in two higher-order terms seen in black, which is equal to the ratio between the discharge area, $\zeta x$, and the pipe area, $A_p$. These appear from considering the ideal acceleration of the fluid between the tank and the pipe. The full set of five first-order differential equations which will be referred to as the quarter-wave model are given by
+The additional bonus of this simplification is the differential equations remain consistent with those previously derived for a quarter wave model in the liquid case, for example in~\cite{Hos2015ModelPipe}. The expression for $v_L$ given previously in \cref{eq: QWMPresAndVelBound} is used to write the equation more compactly. The terms which are coloured in \textcolor{Blue}{blue} in \cref{eq: FullQWMDimensional} represent those which occur for the spring-operated case. The differences appear from considering the ideal acceleration of the fluid between the tank and the pipe when considering the boundary conditions. These difference always appear as higher-order terms seen in black, which depends upon the ratio between the discharge area, $\zeta x$, and the pipe area, $A_p$.  The full set of five first-order differential equations, which will be referred to as the quarter-wave model, are given by
 ~
 \begin{equation} \label{eq: FullQWMDimensional}
 \begin{split}
@@ -353,8 +439,6 @@ The additional bonus of this simplification is the differential equations remain
     \, .
 \end{split}
 \end{equation}
-
-Note that this uses the expression for $v_L$ given previously in \cref{eq: QWMPresAndVelBound} to write the equation more compactly.
 
 \section{Quarter wave behaviour} \label{sec: QWBehaviour}
 
@@ -469,9 +553,7 @@ Using these new dimensionless variables, the quarter wave model given in \cref{e
     + \frac{\pi}{4} \Lambda \sigma \frac{y_1 \tilde{B} \, \tilde{C}}{\sqrt{y_3 + \tilde{B}}}
     + \frac{\pi \sqrt{2}}{4} \Lambda \sigma^2 \, y_1\power{2} \, \tilde{B}
     \\ & \quad %newline
-    + \frac{\sqrt{2}}{2}
-    \textcolor{Red}{L} \,
-    \phi \left( \sqrt{2} \, \sigma \, y_1 \sqrt{y_3 + \tilde{B}} + \tilde{C} \right) \left| \sqrt{2} \, \sigma \, y_1 \sqrt{y_3 + \tilde{B}} + \tilde{C} \right| \, .
+    + \frac{\sqrt{2}}{2} \, \phi \left( \sqrt{2} \, \sigma \, y_1 \sqrt{y_3 + \tilde{B}} + \tilde{C} \right) \left| \sqrt{2} \, \sigma \, y_1 \sqrt{y_3 + \tilde{B}} + \tilde{C} \right| \, .
 \end{split}
 \end{equation}
 
@@ -559,14 +641,14 @@ As previously mentioned in \cref{subsec: QWMFinalDimensional}, an important para
 
 Notably, the parameter $\delta$ is only a function of the valve and pipe areas, $A_v$ and $A_p$ respectively. Both of these are physical parameters which are very easy to influence during the design of a valve, so introduces a potentially powerful design factor.
 
-However, the dimensionless parameters are related by
+Note, the dimensionless parameters are related by
 ~
 \begin{equation*}
     \Lambda \sigma^2 = \left( \frac{x_{\rm{ref}}}{L} \right) \left( \frac{\zeta \sqrt{p_{\rm{ref}}}}{A_p \rho \omega_{\rm{ref}}} \right)^2 = \left( \frac{a}{L \omega_{\rm{ref}}} \right) \left( \frac{p_{\rm{ref}}}{\omega_{\rm{ref}} a \rho x_{\rm{ref}}} \right) \left( \frac{\zeta x_{\rm{ref}}}{A_p} \right)^2 = \frac{\delta^2}{\alpha \gamma}
 \end{equation*}
 
-But I don't seem to use $\nu$. Also, which parameter do I use? When is it convective?
-
+% But I don't seem to use $\nu$. Also, which parameter do I use? When is it convective?
+% 
 % \newpage
 % \section{Parameter Values}
 

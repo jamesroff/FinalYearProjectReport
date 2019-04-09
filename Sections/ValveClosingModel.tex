@@ -1,43 +1,43 @@
 %\chapter{Valve Closing Model} \label{sec: Prog}
 \chapter{A simple model for the closing cycle} \label{sec: Prog}
 
-A diagram showing the full arrangement of the pilot-operated pressure relief valve to be considered can be seen in \cref{fig: Diagram}. As the chatter instability was mainly observed during the closing of the main valve~\cite{Allison2015TestingValves}, perhaps the simplest model considers the situation when the main valve is open and the pilot valve has just closed. The pilot valve dynamics can be neglected, as it remains shut. Additionally, the upstream pipework is initially neglected. A zero length pipe ($L=0$) can be considered, meaning the main valve is directly connected to the tank. 
+As the chatter instability was mainly observed during the closing of the main valve~\cite{Allison2015TestingValves}, perhaps the simplest model considers the situation when the main valve is open and the pilot valve has just closed. Hence, the pilot valve dynamics can be neglected, as it remains shut. Additionally, the upstream pipework is initially neglected. A zero length pipe ($L=0$ in \cref{fig: IntroPilot}) can be considered, meaning the main valve is directly connected to the tank. A diagram showing the full arrangement of the pilot-operated PRV to be considered can be seen in \cref{fig: Diagram}.
 
 %\begin{figure}[ht]
-\input{Sections/Stuff/ValveDiagram.tex}
+\input{Sections/Stuff/ValveClosingDiagram.tex}
 %\end{figure}
 
 Within the main valve, the fluid can be considered to act on the piston in three ways. The pressure above the piston, in the volume known as the dome, exerts a pressure force across the piston area, $A_v$. This dome pressure is assumed to be equal to the tank pressure. The jet of fluid from the inlet piping exerts a pressure and undergoes change of momentum due to the valve. For simplicity, the jet of fluid is assumed to act over an area equal to the piping cross-sectional area, $A_p$. The force exerted on the valve is equal to the momentum change exerted by the valve to cause the fluid to change flow direction. Combining all of these forces, the motion of the main valve piston can be described by
 %\chapter{Valve closing}
 
 \begin{equation} \label{eq: Newton}
-    m_v \ddot{x} + c_v \dot{x} = - A_v p_t + A_p p_p + \dot{m}_{out} \left( v_p - v_d \sin(\theta) \right) \, .
+    m_v \ddot{x} + c_v \dot{x} = - A_v p_t + A_p p_p + \dot{m}_{\rm{out}} \left( v_p - v_d \sin(\theta) \right) \, .
 \end{equation}
 
-Here, $m_v$ is the valve piston mass, $c_v$ is the valve damping, $p_p$ is the pressure at the end of the pipe, and $\theta$ is the discharge angle. $v_p$ is the velocity of the fluid between the main valve and tank through the orifice or zero length pipe, which will now simply be referred to as the pipe velocity.
+Here, $m_v$ is the valve piston mass, $c_v$ is the valve damping, $p_p$ is the pressure at the end of the pipe, and $\theta$ is the discharge angle. Also, $v_p$ is the velocity of the fluid between the main valve and tank through the orifice or zero length pipe, which will now simply be referred to as the pipe velocity.
 
 %\newpage
-Clearly, the properties which depend on fluid dynamics must be expressed in terms of the piston position, $x$, and tank pressure, $p_t$. Firstly, the discharge velocity can be calculated by considering the conversion of static pressure into kinetic energy.
-
-Hence, the discharge velocity is given by
-
+Clearly, the properties which depend on fluid dynamics must be expressed in terms of the piston position, $x$, and tank pressure, $p_t$. First, the discharge velocity can be calculated by considering the conversion of static pressure into kinetic energy. Hence, the discharge velocity is given by
+~
 \begin{equation} \label{eq: DisVel}
     v_d = C_d \sqrt{\frac{2 p_t}{\rho}} \, .
 \end{equation}
 
-Once the discharge velocity is known, the mass flow rate leaving the tank can be calculated as $\dot{m}_{out} = \rho A_d v_d$, where $A_d$ is the area through which the fluid is discharged. This area is the cylinder formed between the pipe outlet and the main valve piston. Therefore, the mass flow rate can be expressed as
+Once the discharge velocity is known, the mass flow rate leaving the tank can be calculated as $\dot{m}_{\rm{out}} = \rho A_d v_d$, where $A_d$ is the area through which the fluid is discharged. This area is the cylinder formed between the pipe outlet and the main valve piston. Therefore, the mass flow rate can be expressed as
 
 \begin{equation} \label{eq: ValveMassDischarge}
-    \dot{m}_{out} =
+    \dot{m}_{\rm{out}} =
 %    \rho \left( \frac{\pi D^2}{4} \right) v_p =
-    \rho \,\, \pi D x \cos(\theta) \,\, v_d \, ,
+    \rho \,\, \pi D \, x \cos(\theta) \,\, v_d \, ,
 \end{equation}
 
-where $D$ is the diameter of the pipe and $\rho$ is the fluid density. The discharge velocity, $v_d$, is given by \cref{eq: DisVel}. The pipe velocity, $v_p$, can be calculated by equating the mass flow through the pipe with that being discharged from the valve. Hence,
+where $D$ is the diameter of the pipe and $\rho$ is the fluid density. The discharge velocity, $v_d$, is given by \cref{eq: DisVel}.
+
+Second, the pipe velocity, $v_p$, can be calculated by equating the mass flow through the pipe with that being discharged from the valve. Hence,
 %Hence, the velocity flow through the pipe, $v_p$, is given by
 
 \begin{equation*}
-    v_p = C_d \frac{4 x \cos(\theta)}{D} \sqrt{\frac{2 p_t}{\rho}} \, .
+    v_p = C_d \frac{4 \, x \cos(\theta)}{D} \sqrt{\frac{2 p_t}{\rho}} \, .
 \end{equation*}
 
 Finally, the static pressure acting on the bottom of the piston must be calculated. This static pressure will be equal to the tank pressure, with some pressure being converted into kinetic energy because of the fluid flow. Applying Bernoulli's equation, neglecting the change in gravitational potential, expresses $p_p$ as
@@ -48,7 +48,7 @@ Finally, the static pressure acting on the bottom of the piston must be calculat
     p_t \left( 1 - C_d \,^2 \left( \frac{4 x \cos(\theta)}{D} \right)^2 \right) \, .
 \end{equation*}
 
-All of the fluid properties calculated can be substituted into the piston equation of motion, given by~\cref{eq: Newton}. This yields the final equation of motion describing the piston motion,
+All of the fluid properties calculated can be substituted into the piston equation of motion, given by~\cref{eq: Newton}. This yields the equation of motion describing the piston motion,
 
 \begin{equation} \label{eq: CompDiffEqValve}
     m_v \ddot{x} + c_v \dot{x} = p_t \left(
@@ -61,22 +61,23 @@ All of the fluid properties calculated can be substituted into the piston equati
 Finally, the equation for the pressure within the tank must be found. Obviously, any fluid flowing into the tank will increase the pressure. Conversely, the fluid leaving the tank through the PRV will decrease the pressure. Previous work identifies the relationship between tank pressure and mass flow rates~\cite{Hos2015DynamicModelling}. This allows the pressure to be expressed by
 
 \begin{equation} \label{eq: DiffEqPres}
-    \dot{p}_t = \frac{a^2}{V} \left( \dot{m}_{in} - \dot{m}_{out} \right) \, ,
+    \dot{p}_t = \frac{a^2}{V} \left( \dot{m}_{\rm{in}} - \dot{m}_{\rm{out}} \right) \, ,
 \end{equation}
 
-where $a$ is the sonic velocity, $V$ is the volume of the tank, and $\dot{m}_{in}$ and $\dot{m}_{out}$ are the mass flow rates in and out of the tank respectively.
+where $a$ is the sonic velocity, $V$ is the volume of the tank, and $\dot{m}_{\rm{in}}$ and $\dot{m}_{\rm{out}}$ are the mass flow rates into and out of the tank respectively.
 
-Hence, the system of differential equations representing the main valve closing is given by \cref{eq: CompDiffEqValve,,eq: DiffEqPres}. These form a nonlinear system of differential equations, which will be now be analysed.
+Hence, the system of differential equations representing the main valve closing is given by \cref{eq: CompDiffEqValve,,eq: DiffEqPres}. Unlike for the direct spring-operated PRV~\cite{Hos2014DynamicMechanisms}, there is no linear stiffness term. Additionally, the tank pressure is a common factor for the main piston equations, already suggesting that the piston equilibrium is not dependent on the tank pressure. %These form a nonlinear system of differential equations, which will be now be analysed.
 
+\newpage
 \section{Valve collisions} \label{sec: ValveCollision}
 
-The differential equations given by \cref{eq: CompDiffEqValve,eq: DiffEqPres} describe the dynamics of the valve. However, they do not describe when a collision occurs between the main valve piston and the upper and lower stops. These collisions are described by the impact law,
+The differential equations given by \cref{eq: CompDiffEqValve,eq: DiffEqPres} describe the dynamics of the valve. However, they do not describe when a collision occurs between the main valve piston and the upper or lower stops. These collisions can be simply described by the impact law,
 ~
-\begin{equation*}
+\begin{equation} \label{eq: ImpactLaw}
     \dot{x}^+ = - r \, \dot{x}^- \, ,
-\end{equation*}
+\end{equation}
 
-with $\dot{x}^-$ and $\dot{x}^+$ being the velocity of the valve immediately before and after the impact respectively. Also, $r$ is a coefficient of restitution, were $r < 1$ to represent the dissipation of some energy during the collision. This impact law must be applied to both the upper and lower stops, which will be referred to as $x_u$ and $x_l$ respectively. Hence, an impact is considered to occur at time $t$ if $x(t) = x_u$ or $x(t) = x_l$.
+with $\dot{x}^-$ and $\dot{x}^+$ being the velocity of the valve immediately before and after the impact respectively. Also, $r$ is a coefficient of restitution, where $r < 1$ to represent the dissipation of some energy during the collision. This impact law must be applied to both the upper and lower stops, which will be referred to as $x_u$ and $x_l$ respectively. Hence, an impact is considered to occur at time $t$ if $x(t) = x_u$ or $x(t) = x_l$.
 
 \section{Equilibrium}
 
@@ -92,34 +93,40 @@ with $\dot{x}^-$ and $\dot{x}^+$ being the velocity of the valve immediately bef
 
 %\section{No Discharge Angle}
 
-Firstly, the steady state of \cref{eq: CompDiffEqValve,,eq: DiffEqPres} must be calculated. To simplify the expression of the steady state, the discharge angle $\theta$ will be assumed to be zero. This greatly simplifies the equations of motion to
-
+A first step in analysing the dynamics of \cref{eq: CompDiffEqValve,eq: DiffEqPres,eq: ImpactLaw} is to compute the steady state. To simplify the expression of the steady state, the discharge angle $\theta$ will be assumed to be zero. This greatly simplifies the equations of motion to
+~
 \begin{equation} \label{eq: ClosingDiffEqFull}
     m_v \ddot{x} + c_v \dot{x} = p_t \left(
-    C_d \,^2 \left( 4 \pi \cos^2(\theta) x^2
-    - 2 \pi D \sin(\theta) \cos(\theta) x \right)
-    - \left( A_v - \frac{\pi D^2}{4} \right)
+    4 \pi C_d \,^2 x^2
+    - \left( A_v - A_p \right)
     \right) \, .
 \end{equation}
+% \begin{equation} \label{eq: ClosingDiffEqFull}
+%     m_v \ddot{x} + c_v \dot{x} = p_t \left(
+%     C_d \,^2 \left( 4 \pi \cos^2(\theta) x^2
+%     - 2 \pi D \sin(\theta) \cos(\theta) x \right)
+%     - \left( A_v - \frac{\pi D^2}{4} \right)
+%     \right) \, .
+% \end{equation}
 
 The steady state of the system is calculated by equating the derivatives to zero. This gives equilibrium as
 
 \begin{equation*}
-    x_0 = \frac{1}{C_d} \sqrt{\frac{A_v - \frac{\pi D^2}{4}}{4 \pi}}
+    x_0 = \frac{1}{C_d} \sqrt{\frac{A_v - A_p}{4 \pi}}
     \, , \quad
-    p_0 = \frac{\dot{m}_{in} \,^2}{2 \frac{\pi D^2}{4} \left( A_v - \frac{\pi D^2}{4} \right)} \, .
+    p_0 = \frac{\dot{m}_{\rm{in}}\power{2}}{2 A_p \left( A_v - A_p \right)} \, .
 \end{equation*}
 
 % This gives the equilibrium pressure as
 
 % \begin{equation*}
-%     p_t = \frac{\dot{m}_{in} \,^2}{2 \frac{\pi D^2}{4} \left( A_v - \frac{\pi D^2}{4} \right)}
+%     p_t = \frac{\dot{m}_{\rm{in}} \,^2}{2 \frac{\pi D^2}{4} \left( A_v - \frac{\pi D^2}{4} \right)}
 % \end{equation*}
 
-\section{Parameter values}
+%\section{Parameter values}
 
-Typical values for the parameters are given in the table below. Some from \cite{Hos2016DynamicService}.
-
+The typical values for the parameters used are given in the table below. All parameters except $A_v$ are taken from the direct spring-operated case~\cite{Hos2016DynamicService}, as many pilot-operated PRVs use the same main valve body. However, the main valve area ($A_v$) is an important parameter which does not appear in the spring-operated case. This is approximated as $50\%$ larger than the pipe area.
+~
 \begin{table}[ht]
     \centering
     \begin{tabular}{c|c|c|c}
@@ -130,7 +137,7 @@ Typical values for the parameters are given in the table below. Some from \cite{
         $D$ & Inlet pipe diameter & 0.0266 & \si{m} \\ \hline % Valve 1E2 from \cite{Hos2016DynamicService}
         $A_p$ & Inlet pipe area & 5.56 $\times 10^{-4}$ & \si{m^2} \\ \hline
         $A_v$ & Main valve piston area & 8.34 $\times 10^{-4}$ & \si{m^2} \\ \hline
-        $\dot{m}_{in}$ & Mass flow rate into tank & 0-3.8 & \si{kg.s^{-1}} \\ \hline % Valve 1E2 from \cite{Hos2016DynamicService}
+        $\dot{m}_{\rm{in}}$ & Mass flow rate into tank & 0 -- 3.8 & \si{kg.s^{-1}} \\ \hline % Valve 1E2 from \cite{Hos2016DynamicService}
         $\rho$ & Density of fluid & 998.2 & \si{kg.m^{-3}} \\ \hline % Valve 1E2 from \cite{Hos2016DynamicService}
         $a$ & Sonic velocity & 890 & \si{m.s^{-1}} \\ \hline % Valve 1E2 from \cite{Hos2016DynamicService}
         $V$ & Tank volume & 10.6 & \si{m^3} \\ \hline % Valve 1E2 from \cite{Hos2016DynamicService}
@@ -138,7 +145,7 @@ Typical values for the parameters are given in the table below. Some from \cite{
         $\alpha$ & First Dimensionless Parameter & 0 -- 0.9718 & - \\ \hline
         $\beta$ & Second Dimensionless Parameter & 0.1333 -- $\infty$ & - \\ %0.13326
     \end{tabular}
-    \caption{Caption}
+    \caption{Typical parameters of a pilot-operated PRV.}
     \label{tab:my_label}
 \end{table}
 
@@ -146,17 +153,17 @@ Typical values for the parameters are given in the table below. Some from \cite{
 
 Before further analysis is performed, it is useful to express the system in terms of dimensionless variables. The dimensionless variables needed are displacement, pressure and time; which can be expressed in terms of reference parameters. For displacement and pressure, the steady state values are used as reference variables. The non-dimensional parameter used are
 
-\begin{equation*}
+\begin{equation} \label{eq: BadDimensionlessVar}
     \tilde{x} = \frac{x}{x_{0}} \, ; \qquad
     \tilde{p} = \frac{p_t}{p_{0}} \, ; \qquad 
     \tilde{t} = t \cdot \frac{c_v}{m_v} \, .
-\end{equation*}
+\end{equation}
 
 %  The reference dimension for the time variable is given by
 
 % \begin{equation*}
 % %    x_{ref} = \frac{1}{C_d} \sqrt{\frac{A_v - \frac{\pi D^2}{4}}{4\pi}} ; \qquad
-% %    p_{ref} = \frac{1}{2} \frac{\dot{m}_{in}\,^2}{\rho \left( \frac{\pi D^2}{4} \right) \left( A_v - \frac{\pi D^2}{4} \right)} \, ; \qquad
+% %    p_{ref} = \frac{1}{2} \frac{\dot{m}_{\rm{in}}\,^2}{\rho \left( \frac{\pi D^2}{4} \right) \left( A_v - \frac{\pi D^2}{4} \right)} \, ; \qquad
 %     t_{ref} = \frac{m_v}{c_v} \, .
 % \end{equation*}
 
@@ -173,10 +180,10 @@ Here, the dimensionless constants $\alpha$ and $\beta$ are given by
 
 \begin{equation*}
     \alpha = %\frac{4 \pi C_d \,^2}{m_v} x_{ref} p_{ref} t_{ref} =
-    \frac{\sqrt{\pi} \, C_d \, m_v \, \dot{m}_{in}\,^2}{\rho \, c_v\,^2 \left( \frac{\pi D^2}{4} \right) \sqrt{A_v - \frac{\pi D^2}{4}} } \, , %\\
+    \frac{\sqrt{\pi} \, C_d \, m_v \, \dot{m}_{\rm{in}}\power{2}}{\rho \, c_v\,^2 A_p \sqrt{A_v - A_p}} \, , %\\
     \qquad
-    \beta = %\frac{a^2}{V} \frac{t_ref}{p_ref} \dot{m}_{in} =
-    \frac{ 2 \, \rho \, a^2 \, m_v \left( \frac{\pi D^2}{4} \right) \left( A_v - \frac{\pi D^2}{4} \right) }{ c_v \, V \, \dot{m}_{in} } \, .
+    \beta = %\frac{a^2}{V} \frac{t_ref}{p_ref} \dot{m}_{\rm{in}} =
+    \frac{ 2 \, \rho \, a^2 \, m_v A_p \left( A_v - A_p \right) }{ c_v \, V \, \dot{m}_{\rm{in}} } \, .
 %    \\ \mu = \frac{c_v}{m_v} t_{ref}
 \end{equation*}
 
@@ -221,10 +228,8 @@ As the equilibrium for the system of differential equations has been calculated 
 \lambda_2 = - \frac{1}{2} - \sqrt{2 \alpha + \frac{1}{4}} \, , \quad \lambda_3 = - \frac{1}{2} + \sqrt{2 \alpha + \frac{1}{4}} \, .
 \end{equation*}
 
-From the definition of the two non-dimensional parameters, $\alpha$ and $\beta$, it can be seen than both must be positive constants. Because $\alpha > 0$ and $\beta > 0$, exactly one eigenvalue is positive so the equilibrium is a saddle. Because of the positive eigenvalue, the equilibrium is unstable. This suggests the main valve will not remain open, which may explain why the main valve closes. However, a potential concern of this model is, if the main valve lift rises above the open position equilibrium, then it will continually increase to infinity.
-
 The corresponding eigenvalues are given by
-
+~
 \begin{equation*}
     v_1 = \begin{pmatrix}
     0 \\ 0 \\ 1
@@ -236,6 +241,10 @@ The corresponding eigenvalues are given by
     \frac{1}{2\beta} \left( 1 - \sqrt{8\alpha+1} \right) - \frac{1}{2} \\ \frac{1}{4\beta} \left( 1 - \sqrt{8\alpha+1} \right) \left( \beta - 2 \right) - \frac{2\alpha}{\beta} \\ 1
     \end{pmatrix}
 \end{equation*}
+
+From the definition of the two non-dimensional parameters, $\alpha$ and $\beta$, it can be seen than both must be positive constants. Because $\alpha > 0$ and $\beta > 0$, exactly one eigenvalue is positive so the equilibrium is a saddle. Because of the positive eigenvalue, the equilibrium is unstable. This reveals an important difference when compared to a spring-operated PRV, where the valve open equilibrium is stable~\cite{Hos2014DynamicMechanisms}.
+
+This suggests the main valve will not remain open, which may explain why the main valve closes. However, a potential concern is if the main valve lift rises above the open position equilibrium, then rather than closing it will open further. If this is true, when designing a pilot-operated PRV, the upper stop should be placed below the unstable equilibrium ($x_u < x_0$) so the valve will always close. %\textcolor{Red}{MAYBE INCLUDE UNSTABLE FIGURE?}
 
 %\newpage
 \input{Sections/ValveClosingSimulations.tex}
