@@ -1,16 +1,17 @@
-\section{Literature review}
+% \section{Literature review}
 
-% don't need to look at since
-% instabilities are well known
-% research is conclusive
-
-The existence of unstable operation for pressure relief valves (PRVs) has been a known phenomena since the 1960s (for example, see \cite{Kasai1968OnSystem}).
+% % don't need to look at since
+% % instabilities are well known
+% % research is conclusive
+% 
+A review of the current literature on both direct spring-operated and pilot-operated PRVs is now presented. The existence of unstable operation for pressure relief valves (PRVs) has been a known phenomena since the 1960s (for example, see \cite{Kasai1968OnSystem}).
 %, with early analysis believing a resonance occurred between the valve and operating fluid~\cite{KASAI1968OnSystem}.
 As the simplest type of  PRV, a large amount of analysis has been performed on direct spring-operated PRVs \cite{Kasai1968OnSystem,Thomann1976OscillationsPipe,Hayashi1995InstabilityCircuit,Darby2013TheModel,Bazso2013AnValve,Erdodi2017PredictionModelling,Hos2015ModelPipe,Hos2017DynamicRecommendations}. A combination of mathematical analysis and experimental results have been used to study these instabilities. Computational simulations have helped  in two ways; first by allowing full fluid dynamical equations
 %which cannot be solved analytically
 to be investigated (for example \cite{Erdodi2017PredictionModelling,Hos2015ModelPipe}). Second, when combined with reduced order models analysis such as numerical continuation to identify bifurcations can be performed (for example \cite{Hos2015DynamicModelling}).
 
-\subsection{Direct spring-operated PRVs}
+%\subsection{Direct spring-operated PRVs}
+\section{Direct spring-operated PRVs}
 
 One of the earliest works by Kasai~\cite{Kasai1968OnSystem} used the Fourier domain to analysis a spring-operated PRV, performing some experimental validation of the analysis. Later work using similar techniques identified that acoustic waves were induced by the valve~\cite{Thomann1976OscillationsPipe}. These early works incorrectly believed that chatter occurred due to a resonance between the valve and the operating fluid.
 
@@ -27,13 +28,13 @@ in a series of papers~\cite{Hos2014DynamicMechanisms,Hos2015DynamicModelling,Hos
 %Comparison with experimental results displays similar behaviour, including the model reproducing several forms of instability.
 Both valve jumps and cycling instabilities were reproduced by the mathematical model, which were also observed experimentally. Importantly, the onset of flutter instability developing into chatter was reproduced, with oscillations occurring near the quarter-wave frequency of the upstream pipework. That is, the instability seems to be associated with the first 'organ-pipe' mode of the pipework. Stability analysis of the simulated model confirms a Hopf bifurcation is responsible for the flutter instability. While the model recreates the required valve dynamics, it is too complex to develop an analytic stability criteria. %Stability plots, showing the stable regions of mass flow rate against pipe length, show good qualitative agreement between the simulation and experimental results.
 
-\newpage
 % Talk about second paper
 The second paper proposes a reduced order model, which still includes upstream pipework, to analytically study the onset of flutter instability~\cite{Hos2015DynamicModelling}. Only certain acoustic pipe modes are considered in order to study the valve dynamics only close to the onset of the instability. This allows an analytic stability boundary to be calculated for the flutter, unlike previous work.
 %Of these acoustic pipe modes, only the $N$ acoustic modes with the lowest frequencies were considered. This was based on the previous experimental evidence~\cite{Hos2014DynamicMechanisms}, where the flutter oscillations occurred at close to the quarter-wave frequency.
 Comparison to the full one-dimensional Navier-Stokes model revealed quantitatively similar behaviour between the reduced order model and full model for stable systems. Conversely, the model is only suitable for weakly unstable systems, but is sufficient for calculating the stability boundary.
 %Additionally, the stability plot was produced for the reduced order model. A grid of stable and unstable simulation parameter values for the full model showed good quantitative agreement with the stability plot. Finally, a parameter study was performed to study the effect of physical valve properties on the onset of the flutter instability.
 
+\newpage
 % Talk about third paper
 Similar analysis was performed for an incompressible fluid, again formulating a reduced order model using acoustic pipe modes~\cite{Hos2016DynamicService}. The reduced order model was used to calculate the stability boundary of flutter. Comparison with limited experimental results and rigorous simulations suggests the analytic criteria approximates the stability boundary for flutter to high accuracy.
 %, with only small quantitative disagreement being found.
@@ -52,7 +53,8 @@ These justify identifying the flutter instability as the primary concern for val
 
 The extensive work performed for spring-operated PRVs highlights the vast understanding of the  instabilities which may occur, with little further research possible to achieve further insight.
 
-\subsection{Pilot-operated PRV}
+\section{Pilot-operated PRV}
+%\subsection{Pilot-operated PRV}
 
 %% Talk about general work done on instability in pilot-operated PRV %%
 

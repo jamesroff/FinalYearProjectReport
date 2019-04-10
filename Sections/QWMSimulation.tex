@@ -39,7 +39,7 @@ It is also worth noting that the damping does not occur if the main piston is fi
 %%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Fixed tank pressure}
 
-Next, the main piston will be allowed to freely move based on the fluid forces that act upon it. However, the tank pressure will still be fixed, which is realistic if tank is sufficiently large so the limit $V \rightarrow \infty$ means that $\beta \rightarrow 0$. This corresponds to the fixed tank pressure model described by \cref{eq: QWFixedTankPressure}. The first simulation will be performed with the tank held at $p_0 = 0.2$ and the pipe length given by $\gamma = 2$. From the blue cross [\textcolor{Blue}{x}] in \cref{fig: BifurcationDiagram}, the dynamics are expected to be those of a stable valve closing. \Cref{fig: StableHopf} shows the time trajectories of the system.
+Next, the main piston will be allowed to freely move based on the fluid forces that act upon it. However, the tank pressure remain fixed, which is realistic if tank is sufficiently large so the limit $V \rightarrow \infty$ implies that $\beta \rightarrow 0$. This corresponds to the fixed tank pressure model described by \cref{eq: QWFixedTankPressure}. The first simulation will be performed with the tank held at $p_0 = 0.2$ and the pipe length given by $\gamma = 2$. From the blue cross [\textcolor{Blue}{x}] in \cref{fig: BifurcationDiagram}, the dynamics are expected to be those of a stable valve closing. \Cref{fig: StableHopf} shows the time trajectories of the system.
 ~
 \begin{figure}[ht]
     \centering
@@ -48,13 +48,17 @@ Next, the main piston will be allowed to freely move based on the fluid forces t
     \label{fig: StableHopf}
 \end{figure}
 
-It is clear that prolonged oscillations do occur, which may be expected as in the two-parameter space, the parameters lie near the Hopf bifurcation. However, the velocity fluctuations described by $C$ clearly show that these oscillations slowly decay. Additionally, the magnitude of the oscillations in the piston dynamics ($y_1$) also reduce in amplitude. Hence, in this region of the $\gamma$-$p_0$ parameter space, any oscillations are expected to decay and chatter will not occur.
+It is clear that prolonged oscillations do occur, which may be expected as, in the two-parameter space, the parameters lie near the Hopf bifurcation. However, the velocity fluctuations described by $C$ clearly show that these oscillations slowly decay. Additionally, the magnitude of the oscillations in the piston dynamics ($y_1$) also reduce in amplitude. Hence, in this region of the $\gamma$-$p_0$ parameter space, any oscillations are expected to decay and chatter will not occur.
 
-If the simulation is continued for a longer time, it can be verified that these oscillations eventually decay such that they are no longer noticeable. Additionally, the main piston diverges from the unstable equilibrium, and impacts with the lower stop. Hence, it would expected that the valve would eventually close after a series of low energy collisions with the lower stop.
+If the simulation is continued for a longer time, it can be verified that these oscillations eventually decay such that they are no longer noticeable. Additionally, the main piston continues to diverge from the unstable equilibrium, to eventually impact with the lower stop. Hence,
+%it would expected that
+the valve would eventually close after a series of low energy collisions with the lower stop.
 
-TALK ABOUT PERIOD OF 10.9 BUT QW PERIOD OF 8?
+One interesting question raised by \cref{fig: StableHopf} is the frequency of the oscillations which occur. From the pipe length of $\gamma = 2$, the period of the quarter-wave oscillations is calculated to be $8$ dimensionless time units. However, the oscillations in \cref{fig: StableHopf} have a different period of approximately $10.9$ dimensionless time units. The reason for this shift in period has not yet been determined.
+%
+%TALK ABOUT PERIOD OF 10.9 BUT QW PERIOD OF 8?
 
-Now, the pipe length parameter $\gamma$ is increased such that a Hopf bifurcation has occurred, but the tank pressure remains unchanged at $p_0 = 0.2$. This can be seen as the red diamond [\textcolor{Red}{$\diamond$}] in \cref{fig: BifurcationDiagram} now lies beyond the stability boundary. This increase in pipe length corresponds to an increase of the pipe length by about $27 \si{m}$ in dimensional units. \Cref{fig: UnstableHopf(Long)} shows the time trajectories of each variable for this case. 
+Next, the pipe length parameter $\gamma$ is increased beyond where the Hopf bifurcation has occurred, but the tank pressure remains unchanged at $p_0 = 0.2$. This can be seen as the red diamond [\textcolor{Red}{$\diamond$}] in \cref{fig: BifurcationDiagram}, which now lies beyond the stability boundary. This increase in pipe length corresponds to an increase of the pipe length by about $27 \si{m}$ in dimensional units. \Cref{fig: UnstableHopf(Long)} shows the time trajectories of each variable for this case. 
 ~
 \begin{figure}[ht]
     \centering
@@ -63,8 +67,9 @@ Now, the pipe length parameter $\gamma$ is increased such that a Hopf bifurcatio
     \label{fig: UnstableHopf(Long)}
 \end{figure}
 
-From the pressure and velocity fluctuations in the pipe, $B$ and $C$ respectively, it is clear that the amplitude of oscillation grows. However, what is interesting is the dynamics of the main piston position, $y_1$. Clearly, the amplitude of the oscillations still increases over time, but the main piston travels downwards away from the unstable equilibrium faster. Hence, the main piston never reaches a greater height than the initial height.
+From the pressure and velocity fluctuations in the pipe, $B$ and $C$ respectively, it is clear that the amplitude of oscillation grows unlike for the shorter pipe length. However, the dynamics of the main piston position, $y_1$, are particularly interesting. Clearly, the amplitude of the oscillations still increases over time, but the main piston still travels downwards, diverging from from the unstable equilibrium faster than the oscillations grow. Hence, the main piston never reaches a greater height than the initial height.
 
+\newpage
 The best description of these dynamics is a flutter instability occurring. Clearly, oscillations grow in time, however not sufficiently to influence the closing of the main valve. This offers a potential explanation of why chatter instability is less apparent in pilot-operated PRVs than direct spring-operated PRVs.
 For the pilot-operated PRV, the speed at which the valve closes is dependent on the unstable manifold. For a direct-spring operated case, it is dependent on how quickly the stable equilibrium approaches zero, determined by the mass flow rate.
 % For the spring-operated case, the flutter oscillations are around a stationary formerly stable steady state. However, for the pilot-operated case, the flutter oscillations occur around the unstable manifold of the unstable equilibrium.
@@ -85,7 +90,7 @@ On looking at the frequency of oscillation in \cref{fig: QWSustOsc}, these oscil
 %%%%%%%%%%%%%%%%
 %% FULL MODEL %%
 %%%%%%%%%%%%%%%%
-\section{Full model}
+\section{Variable tank pressure}
 
 Finally, the case for which the full quarter-wave model, \cref{eq: FullQWMDimensionless}, will be considered. As before for \cref{fig: QWSustOsc}, the convective effects and frictional pipe losses will be ignored by setting $\Lambda = 0$ and $\phi = 0$. The parameters chosen correspond to a pipe length of $L = 20 \si{m}$, with a mass inflow to the tank of $2.28 \, \si{kg.s^{-1}}$. \Cref{fig: QWNearEquil} shows these results.
 %for the full quarter-wave model described by \cref{eq: FullQWMDimensionless}.
