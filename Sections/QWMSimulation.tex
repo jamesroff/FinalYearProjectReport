@@ -1,16 +1,19 @@
 \chapter{Quarter-wave model simulations} \label{sec: QWSim}
 
-As like previously for the Valve Closing model, \cref{sec: Prog}, numerical simulations can be used to approximate the solution to the Quarter Wave model given in \cref{eq: FullQWMDimensionless}. Again, the MATLAB inbuilt \textit{ode45} function is used to simulate the differential equation~\cite{Shampine1997TheSuite}, with the collisions are handled as described in \cref{sec: ValveCollision}.
+As for the Valve Closing model previously, \cref{sec: Prog}, numerical simulations can be used to approximate the solution to the quarter-wave model presented in \cref{sec: QWM}.
+%given in \cref{eq: FullQWMDimensionless}.
+Again, the MATLAB inbuilt \textit{ode45} function is used to simulate the differential equation~\cite{Shampine1997TheSuite}, with the collisions are handled as described in \cref{sec: ValveCollision}. The numerical simulations of three different models will be considered in this section; the fixed valve quarter-wave model presented in \cref{sec: QWBehaviour}, the fixed tank pressure quarter-wave model given by \cref{eq: QWFixedTankPressure}, and finally the variable tank pressure quarter-wave model given by \cref{eq: FullQWMDimensionless}.
 
 \section{Quarter-wave behaviour} \label{subsec: QWBehavSim}
 
-Firstly, we will try to reproduce sustained oscillations corresponding to the quarter-wave frequency using a similar analysis to in \cref{sec: QWBehaviour}. Hence, the equations of motion are implemented such that the tank pressure remains fixed so $\dash{y_3} = 0$. Additionally, the main piston is held at the equilibrium such that $y_1 = 1$ and $\dash{y_1} = \dash{y_2} = 0$. \Cref{fig: QWMBehaviour} shows the simulation results using these conditions.
+First, %we will try to reproduce
+sustained oscillations corresponding to the quarter-wave frequency using a similar analysis to in \cref{sec: QWBehaviour} will be reproduced. As before, the equations of motion are implemented such that the tank pressure remains fixed so $\dash{y_3} = 0$. Additionally, the main piston is held at the equilibrium such that $y_1 = 1$ and $\dash{y_1} = \dash{y_2} = 0$. \Cref{fig: QWMBehaviour} shows the simulation results using these conditions.
 ~
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=0.7\textwidth]{Figures/QWMSimulation/QWMBehaviourB.png}
     \includegraphics[width=0.7\textwidth]{Figures/QWMSimulation/QWMBehaviourC.png}
-    \caption{Simulation of the Quarter-Wave model, \cref{eq: FullQWMDimensionless}, with a fixed tank pressure when the main piston is forced to remain in the equilibrium position ($y_1 = 1$, $y_3 = \frac{q}{\mu \sigma}$, $\dash{y_1}=\dash{y_2}=\dash{y_3}=0$). The parameters used are those in \cref{tab: ValveClosingQWMParameterValues}, except a pipe length of $L = 0.6 \, \si{m}$ is used, which corresponds to $\gamma = 0.0442$. Hence, the quarter-wave has a period of 0.1769.}
+    \caption{Simulation of the quarter-wave model, \cref{eq: FullQWMDimensionless}, with a fixed tank pressure when the main piston is forced to remain in the equilibrium position ($y_1 = 1$, $y_3 = \frac{q}{\mu \sigma}$, $\dash{y_1}=\dash{y_2}=\dash{y_3}=0$). The parameters used are those in \cref{tab: ValveClosingQWMParameterValues}, except a pipe length of $L = 0.6 \, \si{m}$ is used, which corresponds to $\gamma = 0.0442$. Hence, the quarter-wave has a period of 0.1769.}
     \label{fig: QWMBehaviour}
 \end{figure}
 
@@ -20,17 +23,17 @@ The red dashed line corresponds to the response of the pressure fluctuation for 
     \frac{\sqrt{2}}{4} \alpha \sigma \frac{y_1}{\sqrt{y_3}} \, .
 \end{equation*}
 
-When the values of the dimensionless parameters are used to calculate this damping coefficient, we find that $\zeta = 76.56$. As $\zeta \gg 1$, the second-order linear oscillator is heavily over-damped, which explains why no oscillations are seen for the full Quarter Wave model in \cref{fig: QWMBehaviour}.
+When the values of the dimensionless parameters are used to calculate this damping coefficient, we find that the damping coefficient is $76.56$. As this is much greater than one, the second-order linear oscillator is heavily over-damped, which explains why no oscillations are seen for the quarter-wave model in \cref{fig: QWMBehaviour}.
 
-This can be further verified as when the term which contributes this damping in \cref{eq: QWMBehaviourTheory} is neglected from the simulation. This could equivalently be seen by setting $\alpha \sigma = 0$. The green dotted-dashed line in \cref{fig: QWMBehaviour} shows this case, for which there is clearly oscillatory behaviour, which corresponds to the quarter-wave frequency.
+This can be further verified when the term which contributes this damping in \cref{eq: QWMBehaviourTheory} is neglected from the simulation. Equivalently, the same behaviour can be seen by setting $\alpha \sigma = 0$. The green dotted-dashed line in \cref{fig: QWMBehaviour} shows this case, for which there is clearly oscillatory behaviour, corresponding to the quarter-wave frequency.
 
-Let us now consider the case for which this damping term decreases because of an increasing pressure which the tank is fixed at. The solid blue line in \cref{fig: QWMBehaviour} demonstrates the extremely severe case for which the tank is held at a pressure of $y_3 = 10,000$. The damping coefficient predicts that increase the tank pressure reduces the damping which the pressure and velocity fluctuations experience. When this pressure is used, it can be calculated that $\zeta = 0.3144$ so the system is underdamped. \Cref{fig: QWMBehaviour} demonstrates that at this tank pressure of $y_3 = 10,000$, the system does behave as an underdamped oscillator.
+Let us now consider the case for which this damping term decreases because of an increasing pressure which the tank is fixed at. The solid blue line in \cref{fig: QWMBehaviour} demonstrates the extremely severe case for which the tank is held at a pressure of $y_3 = 10,000$. The damping coefficient predicts that increase the tank pressure reduces the damping which the pressure and velocity fluctuations experience. When this pressure is used, it can be calculated that the damping coefficient is $0.3144$ so the system is underdamped. \Cref{fig: QWMBehaviour} demonstrates that at a tank pressure of $y_3 = 10,000$, the system does behave as an underdamped oscillator.
 
-This damping which acts of the quarter-wave model also occurs for a direct spring-operated PRV when the valve is fixed open. However, for an approximately equivalent direct-spring operated PRV, the corresponding $\alpha$ and $\sigma$ are significantly smaller~\cite{Hos2015DynamicModelling}. This would mean that a smaller damping occurs to the quarter-wave for a spring-operated PRV than for a pilot-operated PRV, which may help explain why chatter instability is a lesser observed event for pilot-operated PRVs.
+The damping which acts of the quarter-wave model is also present for a direct spring-operated PRV when the valve is fixed open. However, for an equivalent direct-spring operated PRV, the corresponding $\alpha$ and $\sigma$ are significantly smaller~\cite{Hos2015DynamicModelling}. This would the quarter-wave would experience a smaller damping for a spring-operated PRV than for a pilot-operated PRV, which may help explain why chatter instability is a lesser observed event for pilot-operated PRVs.
 
-It is also worth noting that the damping does not occur if the main piston is fixed in the closed position, such that $y_1 = 0$. This is consistent with the damping coefficient, which decreases linearly with valve position. Because of the damping decreasing with the main piston lift, it perhaps suggests that a quarter-wave oscillation is more likely to grow unstably for small piston lifts when the main valve is nearly closed. This is certainly the case for direct spring-operated PRVs~\cite{Hos2017DynamicRecommendations}, and perhaps a similar effect occurs for pilot-operated PRVs.
+It is also worth noting that the damping does not occur if the main piston is fixed in the closed position, such that $y_1 = 0$. This is consistent with the damping coefficient, which decreases linearly with valve position. As the damping decreases with the main piston lift, it perhaps suggests that a quarter-wave oscillation is more likely to grow unstably for small piston lifts, or when the main valve is nearly closed. This is certainly the case for direct spring-operated PRVs~\cite{Hos2017DynamicRecommendations}, so perhaps a similar effect occurs for pilot-operated PRVs.
 
-\newpage
+%\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %% FIXED TANK PRESSURE %%
 %%%%%%%%%%%%%%%%%%%%%%%%%
