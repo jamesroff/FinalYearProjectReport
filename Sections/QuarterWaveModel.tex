@@ -852,7 +852,11 @@ First, consider the case when $1 - \frac{\pi}{2} \frac{\alpha}{\gamma} < 0$, whi
     p_0 \, \delta^2 < \frac{\pi \sqrt{2} \, \alpha \, \omega_p\power{2}}{4 \left( 2 \gamma - \pi \alpha \right)} \, .
 \end{equation*}
 
-However, this is a contradiction as the right hand side is negative and the left is clearly positive. Therefore, the inequality for instability can never be satisfied, agreeing with the result that flutter does not occur for short pipe lengths. This gives a sufficient condition for stability, that $\gamma < \frac{\pi}{2} \alpha$.
+However, this is a contradiction as the right hand side is negative and the left is clearly positive. Therefore, the inequality for instability can never be satisfied, agreeing with the result that flutter does not occur for short pipe lengths. This gives a sufficient condition for stability, that
+~
+\begin{equation} \label{eq: CritPipeLength}
+\gamma < \gamma_c = \frac{\pi}{2} \alpha \, .
+\end{equation}
 
 Now consider if $1 - \frac{\pi}{2} \frac{\alpha}{\gamma} > 0$, for a long pipe so $\gamma$ is large. This allows the inequality from \cref{eq: QWMStabilityInequality} to be re-written as
 % ~
@@ -867,7 +871,7 @@ Now consider if $1 - \frac{\pi}{2} \frac{\alpha}{\gamma} > 0$, for a long pipe s
 This allows us to express a stability criterion for the tank pressure $p_0$ as
 ~
 \begin{equation*}
-    p_0 > \frac{1}{\delta^2} \frac{\pi \sqrt{2} \, \alpha \, \omega_p\power{2}}{4 \left( 2 \gamma - \pi \alpha \right) }
+    p_0 > \frac{1}{\delta^2} \frac{\pi \sqrt{2} \, \alpha \, \omega_p\power{2}}{4 \left( 2 \gamma - \pi \alpha \right) } \, .
 \end{equation*}
 
 Alternatively, the stability criterion can be expressed in terms of the flow rate $q$, such that
@@ -875,7 +879,7 @@ Alternatively, the stability criterion can be expressed in terms of the flow rat
 \begin{equation*}
     q > \frac{\sigma \mu}{\delta} \sqrt{
     % \frac{\frac{\pi \sqrt{2}}{4}\frac{\alpha}{\gamma}\omega_p\power{2}}{2 \left( 1 - \frac{\pi}{2}\frac{\alpha}{\gamma}\right) }
-    \frac{\pi \sqrt{2} \, \alpha \, \omega_p\power{2}}{4 \left( 2 \gamma - \pi \alpha \right) }
+    \frac{\pi \sqrt{2} \, \alpha \, \omega_p\power{2}}{4 \left( 2 \gamma - \pi \alpha \right) } \, .
     }
 \end{equation*}
 
