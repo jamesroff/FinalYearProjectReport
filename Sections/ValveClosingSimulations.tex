@@ -14,7 +14,7 @@ Now the dynamics of the system of dimensionless differential equations, \cref{eq
 The dynamics in \cref{fig:TimeTrajec} show the desired behaviour in which the valve closes. Interestingly, the valve requires a series of impacts to gradually decrease the velocity until the valve is at rest. However, these impacts do not constitute a chatter instability, as they are low energy and non-sustained. With these impacts, the valve will close in a finite time, which will be discussed in \cref{sec: ImpactDynamics}.
 
 \newpage
-Although the valve position and velocity both tend towards zero, the tank pressure does not show similar behaviour as instead $p \rightarrow \infty$. This may initially seem slightly counter-intuitive except for two important restrictions of this simple model. Firstly, the pilot valve is completely ignored, which means the main valve will never open once it has closed as the opening mechanism is dependent on the pilot valve. Secondly, except in the limit that $\alpha \rightarrow 0$ and $\beta \rightarrow \infty$, there is also a non-zero mass flow rate into the tank, or equivalently $\dot{m}_{in} \neq 0$. Hence, when the valve is closed, the mass of fluid is still increasing. Therefore, the density must slightly increase so the pressure must also slightly increase. \Cref{sec: ClosingFixPres} will consider an alternative approach for which the tank pressure is fixed by varying the mass flow into the tank.
+Although the valve position and velocity both tend towards zero, the tank pressure does not show similar behaviour as instead $p \rightarrow \infty$. This may initially seem slightly counter-intuitive except for two important restrictions of this simple model. Firstly, the pilot valve is completely ignored, which means the main valve will never open once it has closed as the opening mechanism is dependent on the pilot valve. Secondly, except in the limit that $\alpha \rightarrow 0$ and $\beta \rightarrow \infty$, there is also a non-zero mass flow rate into the tank, or equivalently $\dot{m}_{\rm{in}} \neq 0$. Hence, when the valve is closed, the mass of fluid is still increasing. Therefore, the density must slightly increase so the pressure must also slightly increase. \Cref{sec: ClosingFixPres} will consider an alternative approach for which the tank pressure is fixed by varying the mass flow into the tank.
 
 % % Example Trajectory in Phase Portrait - PROBABLY NOT WORTH USING
 % \begin{figure}[!ht]
@@ -44,7 +44,7 @@ Although the valve position and velocity both tend towards zero, the tank pressu
 
 \section{Low flow rate analysis}
 
-As has been previously identified, for low flow rates were $\dot{m}_{in} \rightarrow 0$, the limit of $\alpha \rightarrow 0$ and $\beta \rightarrow \infty$ occurs. Focusing on only the limit of $\alpha \rightarrow 0$, the eigenvalues of the linearised form of \cref{eq: Non-DimODE} around the equilibrium are
+As has been previously identified, for low flow rates where $\dot{m}_{\rm{in}} \rightarrow 0$, the limit of $\alpha \rightarrow 0$ and $\beta \rightarrow \infty$ occurs. Focusing on only the limit of $\alpha \rightarrow 0$, the eigenvalues of the linearised form of \cref{eq: Non-DimODE} around the equilibrium are
 ~ % eigenvalues
 \begin{equation*}
     \lambda_1 = - \frac{1}{2}\beta \, , \quad
@@ -99,7 +99,7 @@ By looking at \cref{eq: Non-DimODE}, we see that as $\alpha \rightarrow 0$ and $
     1 - x \sqrt{p} = 0 \, .
 \end{equation*}
 
-This is in agreement with the eigenvalues, as $\lambda_1 \rightarrow - \infty$. The corresponding eigenvector, $v_1$, shows these dynamics purely effect the tank pressure locally to the equilibrium. In fact, this is exactly what we see in \cref{fig: ValveClose3DPhase}, where the vertical lines show the dynamics very quickly approach the equilibrium pressure. In fact, the dynamics approach the family of equilibria which exist as $\dot{m}_{in} \rightarrow 0$. Further from the equilibrium at $\tilde{x} = 1$, the fast dynamics do not act purely horizontally.
+This is in agreement with the eigenvalues, as $\lambda_1 \rightarrow - \infty$. The corresponding eigenvector, $v_1$, shows these dynamics purely effect the tank pressure locally to the equilibrium. In fact, this is exactly what we see in \cref{fig: ValveClose3DPhase}, where the vertical lines show the dynamics very quickly approach the equilibrium pressure. In fact, the dynamics approach the family of equilibria which exist as $\dot{m}_{\rm{in}} \rightarrow 0$. Further from the equilibrium at $\tilde{x} = 1$, the fast dynamics do not act purely horizontally.
 ~
 % The phase portrait in Position-Pressure space can be seen below
 % 
@@ -143,17 +143,17 @@ In fact, as $\alpha \rightarrow 0$ and $\beta \gg 1$, the equation $1 - \tilde{x
 % \newpage
 \section{Fixed tank pressure} \label{sec: ClosingFixPres}
 
-Perhaps a more realistic case is when the mass flow rate into the tank, $\dot{m}_{in}$, is allowed to vary such that the tank pressure remains constant. Hence, the extreme rise in tank pressure seen in \cref{fig:TimeTrajec} does not occur. As both $\alpha$ and $\beta$ are functions of $\dot{m}_{in}$ in \cref{eq: Non-DimODE}, this set of dimensionless equations is not useful for the purpose of constant tank pressure. Instead, a new set of dimensionless equations will be introduced. These use the valve equilibrium lift as the reference distance and ambient pressure as the reference pressure.
+Perhaps a more realistic case is when the mass flow rate into the tank, $\dot{m}_{\rm{in}}$, is allowed to vary such that the tank pressure remains constant. Hence, the extreme rise in tank pressure seen in \cref{fig:TimeTrajec} does not occur. As both $\alpha$ and $\beta$ are functions of $\dot{m}_{\rm{in}}$ in \cref{eq: Non-DimODE}, this set of dimensionless equations is not useful for the purpose of constant tank pressure. Instead, a new set of dimensionless equations will be introduced. These use the valve equilibrium lift as the reference distance and ambient pressure as the reference pressure.
 
 Hence, the reference dimensions are given by
 ~
 \begin{equation*}
 \begin{split}
-    x_{ref} = \frac{1}{C_d} \sqrt{\frac{A_v - A_p}{4 \pi}}
+    x_{\rm{ref}} = \frac{1}{C_d} \sqrt{\frac{A_v - A_p}{4 \pi}}
     \, , \qquad
-    p_{ref} = p_a = 1 \, \si{bar}
+    p_{\rm{ref}} = p_a = 1 \, \si{bar}
     \, , \qquad
-    \omega_{ref} = C_d \sqrt{4 \pi} \sqrt{\frac{p_{ref} x_{ref}}{m_v}} \, .
+    \omega_{\rm{ref}} = C_d \sqrt{4 \pi} \sqrt{\frac{p_{\rm{ref}} x_{\rm{ref}}}{m_v}} \, .
 \end{split}
 \end{equation*}
 
@@ -166,19 +166,19 @@ Using these reference dimensions, the dimensionless set of differential equation
 \end{split}
 \end{equation}
 
-This system of equation uses significantly more dimensionless parameters than \cref{eq: Non-DimODE}. However, \cref{eq: AltNonDim} uses dimensionless parameters which are consistent with those used later in this report in \cref{subsec: QWMNonDim}. One important parameter is $q$, which represents the flow into the tank is expressed in terms of the fraction of the maximum flow allowable, a fixed constant $\dot{m}_{cap}$. The definition of all the dimensionless parameters used are
+This system of equation uses significantly more dimensionless parameters than \cref{eq: Non-DimODE}. However, \cref{eq: AltNonDim} uses dimensionless parameters which are consistent with those used later in this report in \cref{subsec: QWMNonDim}. One important parameter is $q$, which represents the flow into the tank and is expressed in terms of the fraction of the maximum flow allowable, a fixed constant $\dot{m}_{\rm{cap}}$. The definition of all the dimensionless parameters used are
 ~
 \begin{equation*}
     \begin{tabular}{p{2.1cm} p{2.8cm} p{2.1cm} p{3cm} p{2.8cm}}
-        $ \kappa = \frac{c_v}{m_v \omega_{ref}} \, , $
+        $ \kappa = \frac{c_v}{m_v \omega_{\rm{ref}}} \, , $
         &
-        $ \beta = \frac{a^2}{V} \frac{\dot{m}_{cap}}{p_{ref} \omega_{ref}} \, , $
+        $ \beta = \frac{a^2}{V} \frac{\dot{m}_{\rm{cap}}}{p_{\rm{ref}} \omega_{\rm{ref}}} \, , $
         &
-        $ q = \frac{\dot{m}_{in}}{\dot{m}_{cap}} \, , $
+        $ q = \frac{\dot{m}_{\rm{in}}}{\dot{m}_{\rm{cap}}} \, , $
         &
-        $ \mu = \frac{\rho A_p \omega_{ref} x_{ref}}{\dot{m}_{cap}} \, , $
+        $ \mu = \frac{\rho A_p \omega_{\rm{ref}} x_{\rm{ref}}}{\dot{m}_{\rm{cap}}} \, , $
         &
-        $ \sigma = \frac{\zeta x_{ref} \sqrt{\rho p_{ref}}}{A_p \rho x_{ref} \omega_{ref}} \, . $
+        $ \sigma = \frac{\zeta x_{\rm{ref}} \sqrt{\rho p_{\rm{ref}}}}{A_p \rho x_{\rm{ref}} \omega_{\rm{ref}}} \, . $
     \end{tabular}
 \end{equation*}
 
@@ -210,7 +210,7 @@ In practice, there may be a maximum flow into the tank which can be achieved. Th
     \end{cases}
 \end{equation*}
 
-\Cref{fig: FixPres} shows the simulation results for this case. It is clear that initially the flow rate into the tank is the maximum allowable, such that the valve is discharging more fluid than can be supplied to the tank.  Hence, the pressure is expected to decrease as is seen. However, once the valve is closed such that the discharge from the valve can be matched, the flow rate begins to change proportionally to the valve position. Hence, the pressure remains fixed. It can also be seen that this can be achieved even when impacts occur.
+\Cref{fig: FixPres} shows the simulation results for this case. It is clear that initially the flow rate into the tank is the maximum allowable, such that the valve is discharging more fluid than can be supplied to the tank.  Hence, the pressure is expected to decrease as is seen. However, once the valve is closed enough such that the discharge from the valve can be matched, the flow rate begins to change proportionally to the valve position. Hence, the pressure remains fixed. It can also be seen that this can be achieved even when impacts occur.
 
 %\newpage
 \section{Impact dynamics} \label{sec: ImpactDynamics}
@@ -234,7 +234,7 @@ The important feature to notice is that the time between each successive impact 
 
 where $t_i$ represents the time at which the $i$-th impact occurs.
 
-The important use of this series is to calculate the time at which the final impact occurs, at which point the valve remains closed. This is given by $t_\infty$, however this would involve an infinite number of collisions which is not feasible for simulation. However, the time at which the valve remains closed, $t_f$, may be expressed as
+The important use of this series is to calculate the time at which the final impact occurs, at which point the valve remains closed. This is given by $t_\infty$, however this would involve an infinite number of collisions which is not feasible for simulation. Despite this, the time at which the valve remains closed, $t_f$, may be expressed as
 ~
 \begin{equation*}
     t_f = t_\infty = t_1 + \sum^\infty_{i = 1} T_i \, .
@@ -256,7 +256,10 @@ If the initial common ratio, i.e. $r = \sfrac{T_2}{T_1}$, is used to predict the
     \caption{Time of each successive impact.}
     \label{fig: ImpactOtherTimes}
     \end{subfigure}
-    \caption{Ratio between time of each impact occurring and the time of each impact.}
+    \caption{Ratio between time of each impact occurring and the time of each impact.
+    The red, blue and green dashed lines are coloured as in \cref{fig: ImpactPos}.
+    %A red vertical dashed line (left) corresponds to using the ratio between the times of the between the first, second and third collisions. A blue vertical dashed line (right) corresponds to using the average ratio of all collisions which can be calculated. A green vertical dashed line (middle) corresponds to using the ratio between the times of the final three collisions.
+    }
     \label{fig: ImpactOther}
 \end{figure}
 
@@ -265,8 +268,7 @@ Now we consider the case for which the simulation has modelled the collisions un
 So two alternative approximations of the common ratio are used to predict the valve closing time. The first is to simply take the mean average of the common ratios. The second is to consider the geometric series only occurs continues after the collisions can no longer be simulated, such that the last calculated common ratio is used.%, such that $r = \sfrac{T_N}{T_{N-1}}$.
 When these common ratios are calculated, it can be seen in \cref{fig: ImpactOtherRatio} that both give similar values for $r$.
 
-\newpage
-From \Cref{fig: ImpactPos}, it is clear both of these approaches give a reasonable estimate of when the final collision occurs and the valve remains closed. However, \cref{fig: ImpactOtherTimes} shows how the time at which each collision occurs. It appears using the final common ratio gives the better approximation of the finite time of the collision when $i \rightarrow \infty$. Hence, to calculate the time at which the valve remains closed, the best approximation is given by
+From \Cref{fig: ImpactPos}, it is clear both of these approaches give a reasonable estimate of when the final collision occurs and the valve remains closed. However, \cref{fig: ImpactOtherTimes} shows the time at which each collision occurs. It appears using the final common ratio gives the better approximation of the finite time of the collision when $i \rightarrow \infty$. Hence, to calculate the time at which the valve remains closed, the best approximation is given by
 ~
 \begin{equation*}
 \begin{split}

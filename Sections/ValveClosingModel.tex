@@ -23,12 +23,12 @@ Clearly, the properties which depend on fluid dynamics must be expressed in term
     v_d = C_d \sqrt{\frac{2 p_t}{\rho}} \, .
 \end{equation}
 
-Once the discharge velocity is known, the mass flow rate leaving the tank can be calculated as $\dot{m}_{\rm{out}} = \rho A_d v_d$, where $A_d$ is the area through which the fluid is discharged. This area is the cylinder formed between the pipe outlet and the main valve piston. Therefore, the mass flow rate can be expressed as
+Once the discharge velocity is known, the mass flow rate leaving the tank can be calculated as $\dot{m}_{\rm{out}} = \rho A_d v_d$, where $A_d$ is the area through which the fluid is discharged. The area, $A_d$, is the cylinder formed between the pipe outlet and the main valve piston. Therefore, the mass flow rate can be expressed as
 
 \begin{equation} \label{eq: ValveMassDischarge}
     \dot{m}_{\rm{out}} =
 %    \rho \left( \frac{\pi D^2}{4} \right) v_p =
-    \rho \,\, \pi D \, x \cos(\theta) \,\, v_d \, ,
+    \rho \, \pi D \, x \cos(\theta) \,\, v_d \, ,
 \end{equation}
 
 where $D$ is the diameter of the pipe and $\rho$ is the fluid density. The discharge velocity, $v_d$, is given by \cref{eq: DisVel}.
@@ -151,7 +151,7 @@ The typical values for the parameters used are given in the table below. All par
 
 \section{Non-dimensionalisation}
 
-Before further analysis is performed, it is useful to express the system in terms of dimensionless variables. The dimensionless variables needed are displacement, pressure and time; which can be expressed in terms of reference parameters. For displacement and pressure, the steady state values are used as reference variables. The non-dimensional parameter used are
+Before further analysis is performed, it is useful to express the system in terms of dimensionless variables. The dimensionless variables needed are displacement, pressure and time; which can be expressed in terms of reference parameters. For displacement and pressure, the steady state values are used as reference variables. The dimensionless parameters used are
 
 \begin{equation} \label{eq: BadDimensionlessVar}
     \tilde{x} = \frac{x}{x_{0}} \, ; \qquad
@@ -167,7 +167,7 @@ Before further analysis is performed, it is useful to express the system in term
 %     t_{ref} = \frac{m_v}{c_v} \, .
 % \end{equation*}
 
-By calculating the derivatives for the non-dimensional variables, \cref{eq: CompDiffEqValve,,eq: DiffEqPres} can be expressed as dimensionless equations. It can be shown that applying these variable transformation leads to the system of equations,
+By calculating the derivatives for the dimensionless variables, \cref{eq: CompDiffEqValve,,eq: DiffEqPres} can be expressed as dimensionless equations. It can be shown that applying these variable transformation leads to the system of equations,
 
 \begin{equation} \label{eq: Non-DimODE}
 \begin{split}
@@ -221,7 +221,7 @@ Here, the dimensionless constants $\alpha$ and $\beta$ are given by
 %     \end{pmatrix}
 % \end{equation*}
 
-As the equilibrium for the system of differential equations has been calculated and transformed into a non-dimensional form, local stability analysis can be performed. The system is linearised around the equilibrium by calculating the Jacobian for the system described by \cref{eq: Non-DimODE}. This involves re-writing the second-order differential equation as two first-order differential equations. The local stability of the equilibrium is determined by the eigenvalues of the Jacobian matrix. These eigenvalues are given by
+As the equilibrium for the system of differential equations has been calculated and transformed into a dimensionless form, local stability analysis can be performed. The system is linearised around the equilibrium by calculating the Jacobian for the system described by \cref{eq: Non-DimODE}. This involves re-writing the second-order differential equation as two first-order differential equations. The local stability of the equilibrium is determined by the eigenvalues of the Jacobian matrix. These eigenvalues are given by
 
 \begin{equation*}
 \lambda_1 = - \frac{1}{2} \beta \, , \quad
@@ -233,16 +233,16 @@ The corresponding eigenvalues are given by
 \begin{equation*}
     v_1 = \begin{pmatrix}
     0 \\ 0 \\ 1
-    \end{pmatrix} \qquad
+    \end{pmatrix} \, , \qquad
     v_2 = \begin{pmatrix}
     \frac{1}{2\beta} \left( 1 + \sqrt{8\alpha+1} \right) - \frac{1}{2} \\ \frac{1}{4\beta} \left( 1 + \sqrt{8\alpha+1} \right) \left( \beta - 2 \right) - \frac{2\alpha}{\beta} \\ 1
-    \end{pmatrix} \qquad
+    \end{pmatrix} \, , \qquad
     v_3 = \begin{pmatrix}
     \frac{1}{2\beta} \left( 1 - \sqrt{8\alpha+1} \right) - \frac{1}{2} \\ \frac{1}{4\beta} \left( 1 - \sqrt{8\alpha+1} \right) \left( \beta - 2 \right) - \frac{2\alpha}{\beta} \\ 1
-    \end{pmatrix}
+    \end{pmatrix} \, .
 \end{equation*}
 
-From the definition of the two non-dimensional parameters, $\alpha$ and $\beta$, it can be seen than both must be positive constants. Because $\alpha > 0$ and $\beta > 0$, exactly one eigenvalue is positive so the equilibrium is a saddle. Because of the positive eigenvalue, the equilibrium is unstable. This reveals an important difference when compared to a spring-operated PRV, where the valve open equilibrium is stable~\cite{Hos2014DynamicMechanisms}.
+From the definition of the two dimensionless parameters, $\alpha$ and $\beta$, it can be seen than both must be positive constants. Because $\alpha > 0$ and $\beta > 0$, exactly one eigenvalue is positive so the equilibrium is a saddle. Because of the positive eigenvalue, the equilibrium is unstable. This reveals an important difference when compared to a spring-operated PRV, where the valve open equilibrium is stable~\cite{Hos2014DynamicMechanisms}.
 
 This suggests the main valve will not remain open, which may explain why the main valve closes. However, a potential concern is if the main valve lift rises above the open position equilibrium, then rather than closing it will open further. If this is true, when designing a pilot-operated PRV, the upper stop should be placed below the unstable equilibrium ($x_u < x_0$) so the valve will always close. %\textcolor{Red}{MAYBE INCLUDE UNSTABLE FIGURE?}
 

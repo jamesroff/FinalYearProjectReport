@@ -106,7 +106,7 @@ First, as before in \cref{subsec: Galerkin}, the assumed pressure and velocity d
 \end{split}
 \end{equation*}
 
-Similarly to $\dot{B}_n$, \cref{subsec: Galerkin}, the orthogonality between modes is used to isolate the dynamics of an arbitrary mode, $\dot{C}_n$. Multiplying by the shape function, $\cos\left(2\pi\frac{\eta(2k-1)}{4L}\right)$, and integrating over the domain yields
+Similarly to $\dot{B}_n$, \cref{subsec: Galerkin}, the orthogonality between modes is used to isolate the dynamics of an arbitrary mode, $\dot{C}_n$. Multiplying by the shape function, $\cos\left(2\pi\frac{\eta(2n-1)}{4L}\right)$, and integrating over the domain yields
 ~
 \begin{equation*}
 \begin{split}
@@ -142,7 +142,7 @@ Applying the orthogonality conditions and evaluating each integral in term, the 
     - \frac{\lambda}{D} \frac{4}{\pi} \frac{(-1)^n}{2n-1} v_L\power{2}
     + 2 \frac{\lambda}{D} v_L C_n
     \\ & \quad % newline
-    + \frac{\lambda}{D} \frac{8}{\pi} \sum^{\infty}_{k=1} \sum^{\infty}_{k=1} C_k C_m \frac{
+    + \frac{\lambda}{D} \frac{8}{\pi} \sum^{\infty}_{k=1} \sum^{\infty}_{m=1} C_k C_m \frac{
     (-1)^k (-1)^m (-1)^n (2k-1) (2m-1) (2n-1)
     }{
     (2(k+m+n)-3)(2(k-m+n)-1)(2(k+m-n)-1)(2(k-m-n)+1)
