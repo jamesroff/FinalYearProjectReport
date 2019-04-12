@@ -267,7 +267,7 @@ Now, a comparison between the coefficients for each of the terms of the ordinary
 
 However, two of the coefficients have a error of $36.3\%$ and $40.0\%$. Both of these coefficients are from the convective terms of the partial differential equation, which are generally negligible for the compressible liquid case~\cite{Hos2016DynamicService}. That the convective effects are negligible will confirmed in \cref{subsec: QWMNonDim} when the dimensionless differential equations are calculated. Hence, the difference between using the Galerkin and Collocation techniques appears largely unimportant.
 
-\section{Quarter-wave derivation} \label{subsec: QWM Derivation}
+\section{Quarter-wave model derivation} \label{subsec: QWM Derivation}
 
 As stated previously, the one-mode truncation was found appropriate for the spring-operated case~\cite{Hos2015ModelPipe}. Therefore, one the one-mode truncation will now be considered, corresponding to the acoustic quarter-wave. For a direct spring-operated PRV, using the collocation technique to perform a model reduction was shown to be quantitatively similar to experimental data~\cite{Hos2015DynamicModelling}. Hence, only the coefficients from the collocation technique will be used, which also ensures the following analysis is consistent with the spring-operated case. We begin by ensuring the boundary conditions are satisfied by the quarter-wave model.
 %
@@ -445,11 +445,12 @@ An additional bonus of using this simplification is the differential equations a
 \end{split}
 \end{equation}
 
-\section{Quarter wave behaviour} \label{sec: QWBehaviour}
+\section{Analysis of the quarter-wave model} \label{sec: QWBehaviour}
 
 %We will now display the quarter-wave behaviour of \cref{eq: FullQWMDimensional}.
-The quarter-wave behaviour of \cref{eq: FullQWMDimensional} will now be shown.
-This is done by fixing the valve closed, so $x = \dot{x} = 0$, and enforcing that the tank pressure remains constant, so $\dot{p}_t = 0$. The  equation for $\dot{C}(t)$ is differentiated again to find an expression for $\ddot{C}(t)$. Applying the closed valve and constant tank pressure conditions gives
+%The quarter-wave behaviour of \cref{eq: FullQWMDimensional} will now be shown. This is done by fixing the valve closed, so $x = \dot{x} = 0$, and enforcing that the tank pressure remains constant, so $\dot{p}_t = 0$.
+Consider first the approximation that the valve is fixed closed, so $x = \dot{x} = 0$, and the tank pressure remains constant, so $\dot{p}_t = 0$.
+The  equation for $\dot{C}(t)$ is differentiated again to find an expression for $\ddot{C}(t)$. Applying the closed valve and constant tank pressure conditions gives
 ~
 \begin{equation*}
     \ddot{C} = \frac{\pi \sqrt{2}}{2 L} C \dot{C} - \frac{1}{\rho} \frac{\pi}{2 L} \dot{B} \, .
@@ -469,9 +470,11 @@ This equation for $\ddot{C}(t)$ is an oscillator with a natural frequency of
 
 which corresponds to the quarter-wave frequency of the pipe.
 
-\subsection{Fixed open valve}
+%\subsection{Fixed open valve}
 
-Instead, the valve will be fixed open at the equilibrium lift. Again, both $\dot{x} = 0$ and $\dot{p}_t = 0$. Also, any convective and frictional terms are neglected. Differentiating the equation for $\dot{C}(t)$ and applying the fixed valve and constant tank pressure gives
+Next, suppose the valve is held open at its equilibrium lift position (even though this is unstable as shown in \cref{sec: Prog}) while again the tank pressure is held constant. Hence, $x = 1$ while $\dot{x} = 0$ and $\dot{p}_t = 0$.
+%Instead, the valve will be fixed open at the equilibrium lift. Again, both $\dot{x} = 0$ and $\dot{p}_t = 0$.
+Also, any convective and frictional terms are neglected. Differentiating the equation for $\dot{C}(t)$ and applying the fixed valve and constant tank pressure gives
 ~
 \begin{equation*}
     \ddot{C} + \frac{\pi \sqrt{2}}{4} \frac{\rho a^2 \zeta}{L A_p \sqrt{\rho}} \frac{x}{\sqrt{p_t + B}} \dot{C} +
@@ -712,13 +715,14 @@ Notably, the parameter $\delta$ is only a function of the valve and pipe areas, 
         $\sigma$ & Velocity to mass flow rate parameter & 10.3808 & - \\ \hline
         $\phi$ & Friction factor & 5.5243 $\times 10^{-3}$ & - \\
     \end{tabular}
-    \caption{Typical parameter values for a Pilot-Operated PRV used for the Valve Closing QWM.}
+    \caption{Typical parameter values for a pilot-operated PRV used for the quarter-wave model.}
     \label{tab: ValveClosingQWMParameterValues}
 \end{table}
 
 \Cref{tab: ValveClosingQWMParameterValues} shows the typical values of both the dimensional and dimensionless parameters used by the quarter-wave model. Where ever possible, the dimensional parameters have been chosen to be equivalent with the spring-operated PRV~\cite{Hos2016DynamicService}. However, the dimensionless parameters are found to be different to the spring-operated case.
 
-\section{Pipe-mode instability} \label{subsec: QWMAnalyticalBound}
+\newpage
+\section{Analytical prediction of the pipe-mode instability} \label{subsec: QWMAnalyticalBound}
 
 As shown by the fluid behaviour for the spring-operated case~\cite{Hos2015ModelPipe}, the convective and dissipative frictional losses within the pipe may be neglected. The convective effects are neglected by setting $\Lambda = 0$ and the dissipative effects are neglected by setting $\phi = 0$. From the values of the dimensionless parameters in \cref{tab: ValveClosingQWMParameterValues}, both $\Lambda$ and $\phi$ are orders of magnitude smaller than the other terms. Hence, the quarter-wave model given by \cref{eq: FullQWMDimensionless} reduces to
 ~
